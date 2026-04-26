@@ -1722,7 +1722,414 @@
         .line-dot {
             fill: var(--primary);
         }
-    </style>
+    
+        /* 欢迎区样式 */
+        .welcome-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .welcome-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .welcome-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .welcome-user {
+            color: #fbbf24;
+        }
+
+        .welcome-date {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .welcome-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .notification-trigger {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .notification-trigger:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .notification-trigger svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .user-menu-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 6px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .user-menu-trigger:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .user-avatar-small {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            color: white;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 32px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            min-width: 180px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .dropdown-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+
+        .dropdown-item.logout {
+            color: var(--danger);
+        }
+
+        .dropdown-item.logout svg {
+            color: var(--danger);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 0;
+        }
+
+        /* 指标卡片hover效果 */
+        .stat-card.hover-lift {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .stat-card.hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 紫色图标 */
+        .stat-icon.purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        /* 图表区域 */
+        .charts-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chart-card {
+            border-radius: var(--radius-lg);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+        }
+
+        .line-chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-line {
+            transition: opacity 0.2s;
+        }
+
+        .chart-line:hover {
+            opacity: 0.8;
+        }
+
+        .data-points circle {
+            cursor: pointer;
+            transition: r 0.2s;
+        }
+
+        .data-points circle:hover {
+            r: 6;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 时间筛选按钮 */
+        .time-filter {
+            display: flex;
+            gap: 8px;
+        }
+
+        .time-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .time-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .time-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* 饼图样式 */
+        .pie-chart-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .pie-chart {
+            width: 160px;
+            height: 160px;
+        }
+
+        .pie-legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .pie-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .pie-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .pie-label {
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        .pie-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 底部双栏 */
+        .bottom-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        /* 快捷操作区域 */
+        .quick-access-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+        }
+
+        .quick-access-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-access-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .quick-access-item:hover .quick-access-icon {
+            transform: scale(1.1);
+        }
+
+        .quick-access-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: transform 0.2s;
+        }
+
+        .quick-access-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .quick-access-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1200px) {
+            .charts-row {
+                flex-direction: column;
+            }
+            .chart-card {
+                flex: 1 !important;
+            }
+            .bottom-row {
+                flex-direction: column;
+            }
+            .quick-access-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-bar {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            .quick-access-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+</style>
 </head>
 <body>
     <!-- Toast 容器 -->
@@ -1888,44 +2295,76 @@
 
             <!-- 首页/仪表盘 -->
             <div class="page active" id="page-dashboard">
+                <!-- 顶部欢迎区 -->
+                <div class="welcome-bar">
+                    <div class="welcome-left">
+                        <h2 class="welcome-title">欢迎回来，<span class="welcome-user">张明华</span></h2>
+                        <div class="welcome-date" id="welcomeDate"></div>
+                    </div>
+                    <div class="welcome-right">
+                        <div class="notification-trigger" onclick="toggleNotifications()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                            <span class="notification-dot"></span>
+                        </div>
+                        <div class="user-menu-trigger" onclick="toggleUserMenu()">
+                            <div class="user-avatar-small">张</div>
+                            <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6,9 12,15 18,9"/>
+                            </svg>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-item" onclick="navigateTo('profile')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                个人中心
+                            </div>
+                            <div class="dropdown-item" onclick="navigateTo('settings')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                </svg>
+                                系统设置
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item logout" onclick="logout()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16,17 21,12 16,7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                退出登录
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第一行：核心指标卡片 -->
                 <div class="stats-grid">
-                    <div class="stat-card">
+                    <div class="stat-card hover-lift">
                         <div class="stat-icon blue">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14,2 14,8 20,8"/>
+                                <path d="M9 15l2 2 4-4"/>
                             </svg>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">本月认证申请</div>
-                            <div class="stat-value">328</div>
+                            <div class="stat-label">本月认证</div>
+                            <div class="stat-value">256</div>
                             <div class="stat-change up">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="18,15 12,9 6,15"/>
                                 </svg>
-                                较上月 +12.5%
+                                ↑12% vs上月
                             </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon green">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22,4 12,14.01 9,11.01"/>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-label">已完成认证</div>
-                            <div class="stat-value">1,856</div>
-                            <div class="stat-change up">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="18,15 12,9 6,15"/>
-                                </svg>
-                                本月 +89
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
+                    <div class="stat-card hover-lift">
                         <div class="stat-icon yellow">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
@@ -1934,77 +2373,206 @@
                         </div>
                         <div class="stat-content">
                             <div class="stat-label">待审核</div>
-                            <div class="stat-value">24</div>
+                            <div class="stat-value">12</div>
+                            <div class="stat-change" style="color: var(--danger);">
+                                紧急 <span style="font-weight:600;">3</span> 个
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card hover-lift">
+                        <div class="stat-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-label">本月取证</div>
+                            <div class="stat-value">48</div>
                             <div class="stat-change down">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="6,9 12,15 18,9"/>
                                 </svg>
-                                较上月 -8
+                                ↓8% vs上月
                             </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon red">
+                    <div class="stat-card hover-lift">
+                        <div class="stat-icon purple">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <path d="M9 16l2 2 4-4"/>
                             </svg>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">风险预警</div>
-                            <div class="stat-value">6</div>
-                            <div class="stat-change">
-                                需关注
+                            <div class="stat-label">证书有效率</div>
+                            <div class="stat-value">98.5%</div>
+                            <div class="stat-change" style="color: var(--warning);">
+                                即将过期 <span style="font-weight:600;">3</span> 个
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="quick-actions">
-                    <div class="quick-action" onclick="navigateTo('apply')">
-                        <div class="quick-action-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 5v14M5 12h14"/>
-                            </svg>
+                <!-- 第二行：图表区域 -->
+                <div class="charts-row">
+                    <!-- 认证趋势图 -->
+                    <div class="card chart-card" style="flex: 0 0 60%;">
+                        <div class="card-header">
+                            <h3 class="card-title">认证趋势</h3>
+                            <div class="time-filter">
+                                <button class="time-btn active" onclick="setTimeRange('7d')">近7天</button>
+                                <button class="time-btn" onclick="setTimeRange('30d')">近30天</button>
+                                <button class="time-btn" onclick="setTimeRange('quarter')">本季度</button>
+                                <button class="time-btn" onclick="setTimeRange('year')">本年度</button>
+                            </div>
                         </div>
-                        <div class="quick-action-title">认证申请</div>
-                        <div class="quick-action-desc">提交商业秘密认证</div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <svg class="line-chart" viewBox="0 0 600 250" preserveAspectRatio="xMidYMid meet">
+                                    <!-- 网格线 -->
+                                    <g class="grid-lines">
+                                        <line x1="60" y1="30" x2="580" y2="30" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="60" y1="80" x2="580" y2="80" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="60" y1="130" x2="580" y2="130" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="60" y1="180" x2="580" y2="180" stroke="#f1f5f9" stroke-width="1"/>
+                                        <line x1="60" y1="230" x2="580" y2="230" stroke="#f1f5f9" stroke-width="1"/>
+                                    </g>
+                                    <!-- Y轴标签 -->
+                                    <g class="y-labels" fill="#94a3b8" font-size="11">
+                                        <text x="50" y="34" text-anchor="end">100</text>
+                                        <text x="50" y="84" text-anchor="end">80</text>
+                                        <text x="50" y="134" text-anchor="end">60</text>
+                                        <text x="50" y="184" text-anchor="end">40</text>
+                                        <text x="50" y="234" text-anchor="end">20</text>
+                                    </g>
+                                    <!-- 申请量线（蓝色） -->
+                                    <polyline 
+                                        class="chart-line apply-line"
+                                        points="80,50 140,60 200,45 260,70 320,55 380,40 440,50 500,35 560,45"
+                                        fill="none" 
+                                        stroke="#2563eb" 
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+                                    <!-- 认证量线（绿色） -->
+                                    <polyline 
+                                        class="chart-line certify-line"
+                                        points="80,130 140,120 200,135 260,115 320,125 380,110 440,120 500,105 560,115"
+                                        fill="none" 
+                                        stroke="#10b981" 
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+                                    <!-- 驳回量线（红色） -->
+                                    <polyline 
+                                        class="chart-line reject-line"
+                                        points="80,200 140,190 200,205 260,185 320,195 380,180 440,190 500,175 560,185"
+                                        fill="none" 
+                                        stroke="#ef4444" 
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+                                    <!-- 数据点 -->
+                                    <g class="data-points">
+                                        <!-- 申请量点 -->
+                                        <circle cx="80" cy="50" r="4" fill="#2563eb"/><circle cx="140" cy="60" r="4" fill="#2563eb"/><circle cx="200" cy="45" r="4" fill="#2563eb"/><circle cx="260" cy="70" r="4" fill="#2563eb"/><circle cx="320" cy="55" r="4" fill="#2563eb"/><circle cx="380" cy="40" r="4" fill="#2563eb"/><circle cx="440" cy="50" r="4" fill="#2563eb"/><circle cx="500" cy="35" r="4" fill="#2563eb"/><circle cx="560" cy="45" r="4" fill="#2563eb"/>
+                                        <!-- 认证量点 -->
+                                        <circle cx="80" cy="130" r="4" fill="#10b981"/><circle cx="140" cy="120" r="4" fill="#10b981"/><circle cx="200" cy="135" r="4" fill="#10b981"/><circle cx="260" cy="115" r="4" fill="#10b981"/><circle cx="320" cy="125" r="4" fill="#10b981"/><circle cx="380" cy="110" r="4" fill="#10b981"/><circle cx="440" cy="120" r="4" fill="#10b981"/><circle cx="500" cy="105" r="4" fill="#10b981"/><circle cx="560" cy="115" r="4" fill="#10b981"/>
+                                        <!-- 驳回量点 -->
+                                        <circle cx="80" cy="200" r="4" fill="#ef4444"/><circle cx="140" cy="190" r="4" fill="#ef4444"/><circle cx="200" cy="205" r="4" fill="#ef4444"/><circle cx="260" cy="185" r="4" fill="#ef4444"/><circle cx="320" cy="195" r="4" fill="#ef4444"/><circle cx="380" cy="180" r="4" fill="#ef4444"/><circle cx="440" cy="190" r="4" fill="#ef4444"/><circle cx="500" cy="175" r="4" fill="#ef4444"/><circle cx="560" cy="185" r="4" fill="#ef4444"/>
+                                    </g>
+                                    <!-- X轴标签 -->
+                                    <g class="x-labels" fill="#94a3b8" font-size="11" text-anchor="middle">
+                                        <text x="80" y="250">周一</text>
+                                        <text x="140" y="250">周二</text>
+                                        <text x="200" y="250">周三</text>
+                                        <text x="260" y="250">周四</text>
+                                        <text x="320" y="250">周五</text>
+                                        <text x="380" y="250">周六</text>
+                                        <text x="440" y="250">周日</text>
+                                        <text x="500" y="250">周一</text>
+                                        <text x="560" y="250">周二</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#2563eb;"></span>
+                                    <span class="legend-text">申请量</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#10b981;"></span>
+                                    <span class="legend-text">认证量</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#ef4444;"></span>
+                                    <span class="legend-text">驳回量</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="quick-action" onclick="navigateTo('evidence')">
-                        <div class="quick-action-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polygon points="10,8 16,12 10,16"/>
-                            </svg>
+
+                    <!-- 数据分类分布 -->
+                    <div class="card chart-card" style="flex: 0 0 calc(40% - 24px);">
+                        <div class="card-header">
+                            <h3 class="card-title">数据分类分布</h3>
                         </div>
-                        <div class="quick-action-title">网页取证</div>
-                        <div class="quick-action-desc">固化电子证据</div>
-                    </div>
-                    <div class="quick-action" onclick="navigateTo('records')">
-                        <div class="quick-action-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
+                        <div class="card-body">
+                            <div class="pie-chart-container">
+                                <svg class="pie-chart" viewBox="0 0 200 200">
+                                    <!-- 外环 -->
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f1f5f9" stroke-width="30"/>
+                                    <!-- 技术秘密 35% -->
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#2563eb" stroke-width="30"
+                                        stroke-dasharray="153.94 307.88" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+                                    <!-- 经营信息 30% -->
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="30"
+                                        stroke-dasharray="131.95 307.88" stroke-dashoffset="-153.94" transform="rotate(-90 100 100)"/>
+                                    <!-- 管理信息 20% -->
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f59e0b" stroke-width="30"
+                                        stroke-dasharray="87.96 307.88" stroke-dashoffset="-285.89" transform="rotate(-90 100 100)"/>
+                                    <!-- 其他 15% -->
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#94a3b8" stroke-width="30"
+                                        stroke-dasharray="65.97 307.88" stroke-dashoffset="-373.85" transform="rotate(-90 100 100)"/>
+                                    <!-- 中心文字 -->
+                                    <text x="100" y="95" text-anchor="middle" fill="#1e293b" font-size="18" font-weight="700">1,856</text>
+                                    <text x="100" y="115" text-anchor="middle" fill="#64748b" font-size="11">总认证数</text>
+                                </svg>
+                            </div>
+                            <div class="pie-legend">
+                                <div class="pie-legend-item">
+                                    <span class="pie-dot" style="background:#2563eb;"></span>
+                                    <span class="pie-label">技术秘密</span>
+                                    <span class="pie-value">35%</span>
+                                </div>
+                                <div class="pie-legend-item">
+                                    <span class="pie-dot" style="background:#10b981;"></span>
+                                    <span class="pie-label">经营信息</span>
+                                    <span class="pie-value">30%</span>
+                                </div>
+                                <div class="pie-legend-item">
+                                    <span class="pie-dot" style="background:#f59e0b;"></span>
+                                    <span class="pie-label">管理信息</span>
+                                    <span class="pie-value">20%</span>
+                                </div>
+                                <div class="pie-legend-item">
+                                    <span class="pie-dot" style="background:#94a3b8;"></span>
+                                    <span class="pie-label">其他</span>
+                                    <span class="pie-value">15%</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="quick-action-title">认证记录</div>
-                        <div class="quick-action-desc">查看历史申请</div>
-                    </div>
-                    <div class="quick-action" onclick="navigateTo('audit')">
-                        <div class="quick-action-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 11l3 3L22 4"/>
-                            </svg>
-                        </div>
-                        <div class="quick-action-title">审核管理</div>
-                        <div class="quick-action-desc">审批认证申请</div>
                     </div>
                 </div>
 
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+                <!-- 第三行：待办事项 + 资讯 -->
+                <div class="bottom-row">
                     <!-- 待办事项 -->
-                    <div class="card">
+                    <div class="card" style="flex: 0 0 calc(50% - 12px);">
                         <div class="card-header">
                             <h3 class="card-title">待办事项</h3>
                             <span class="tag tag-red">5 待处理</span>
@@ -2012,13 +2580,13 @@
                         <div class="card-body" style="padding:0;">
                             <div style="display:flex;flex-direction:column;">
                                 <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('audit')">
-                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(239,68,68,0.1);color:var(--danger);display:flex;align-items:center;justify-content:center;">
+                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(220,38,38,0.1);color:var(--danger);display:flex;align-items:center;justify-content:center;">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M9 11l3 3L22 4"/>
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;">3 条认证申请待审核</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">紧急</span>3 条认证申请待审核</div>
                                         <div style="font-size:12px;color:var(--text-muted);">涉及核心秘密数据</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -2033,7 +2601,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;">2 份证书即将过期</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">提醒</span>2 份证书即将过期</div>
                                         <div style="font-size:12px;color:var(--text-muted);">请及时续期</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -2049,7 +2617,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;">1 份文件待上传</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">待传</span>1 份文件待上传</div>
                                         <div style="font-size:12px;color:var(--text-muted);">智能驾驶算法项目</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -2064,7 +2632,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;">网页取证任务进行中</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">进行中</span>网页取证任务进行中</div>
                                         <div style="font-size:12px;color:var(--text-muted);">预计剩余 15 分钟</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -2076,7 +2644,7 @@
                     </div>
 
                     <!-- 商业秘密资讯 -->
-                    <div class="card">
+                    <div class="card" style="flex: 0 0 calc(50% - 12px);">
                         <div class="card-header">
                             <h3 class="card-title">商业秘密资讯</h3>
                             <button class="btn btn-secondary btn-sm">更多</button>
@@ -2096,8 +2664,8 @@
                                         <span class="tag tag-blue" style="font-size:11px;">动态</span>
                                         <span style="font-size:12px;color:var(--text-muted);">昨天</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">最高法发布知识产权惩罚性赔偿解释</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">5月1日起施行，恶意侵权最高可判5倍赔偿...</div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">最高法惩罚性赔偿解释 5月1日起施行</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);">恶意侵权最高可判5倍赔偿...</div>
                                 </div>
                                 <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
                                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
@@ -2120,82 +2688,75 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">最近动态</h3>
-                        <button class="btn btn-secondary btn-sm" onclick="navigateTo('records')">查看全部</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="activity-icon success">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                        <polyline points="22,4 12,14.01 9,11.01"/>
-                                    </svg>
-                                </div>
-                                <div class="activity-content">
-                                    <div class="activity-text"><strong>李思远</strong> 提交的核心秘密认证申请已通过审核</div>
-                                    <div class="activity-time">10分钟前</div>
-                                </div>
+                <!-- 第四行：快捷入口 -->
+                <div class="quick-access-section">
+                    <h3 class="section-title">快捷操作</h3>
+                    <div class="quick-access-grid">
+                        <div class="quick-access-item" onclick="navigateTo('apply')">
+                            <div class="quick-access-icon" style="background:rgba(37,99,235,0.1);color:var(--primary);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
                             </div>
-                            <div class="activity-item">
-                                <div class="activity-icon info">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="12" y1="8" x2="12" y2="12"/>
-                                        <line x1="12" y1="16" x2="12.01" y2="16"/>
-                                    </svg>
-                                </div>
-                                <div class="activity-content">
-                                    <div class="activity-text"><strong>王芳</strong> 提交了新的网页取证申请</div>
-                                    <div class="activity-time">25分钟前</div>
-                                </div>
+                            <div class="quick-access-text">新建认证申请</div>
+                        </div>
+                        <div class="quick-access-item" onclick="navigateTo('evidence')">
+                            <div class="quick-access-icon" style="background:rgba(16,185,129,0.1);color:var(--success);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                </svg>
                             </div>
-                            <div class="activity-item">
-                                <div class="activity-icon warning">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                        <line x1="12" y1="9" x2="12" y2="13"/>
-                                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                                    </svg>
-                                </div>
-                                <div class="activity-content">
-                                    <div class="activity-text">检测到 <strong>高风险</strong> 泄露预警：研发部核心代码外传</div>
-                                    <div class="activity-time">1小时前</div>
-                                </div>
+                            <div class="quick-access-text">申请取证</div>
+                        </div>
+                        <div class="quick-access-item" onclick="navigateTo('certificates')">
+                            <div class="quick-access-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                    <path d="M9 16l2 2 4-4"/>
+                                </svg>
                             </div>
-                            <div class="activity-item">
-                                <div class="activity-icon success">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                        <polyline points="22,4 12,14.01 9,11.01"/>
-                                    </svg>
-                                </div>
-                                <div class="activity-content">
-                                    <div class="activity-text"><strong>张伟</strong> 的经营信息认证申请已通过</div>
-                                    <div class="activity-time">2小时前</div>
-                                </div>
+                            <div class="quick-access-text">查看证书</div>
+                        </div>
+                        <div class="quick-access-item" onclick="navigateTo('records')">
+                            <div class="quick-access-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"/>
+                                    <line x1="8" y1="12" x2="21" y2="12"/>
+                                    <line x1="8" y1="18" x2="21" y2="18"/>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                                </svg>
                             </div>
-                            <div class="activity-item">
-                                <div class="activity-icon info">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                        <polyline points="17,8 12,3 7,8"/>
-                                        <line x1="12" y1="3" x2="12" y2="15"/>
-                                    </svg>
-                                </div>
-                                <div class="activity-content">
-                                    <div class="activity-text"><strong>陈静</strong> 上传了3份新文件待认证</div>
-                                    <div class="activity-time">3小时前</div>
-                                </div>
+                            <div class="quick-access-text">历史记录</div>
+                        </div>
+                        <div class="quick-access-item" onclick="exportData()">
+                            <div class="quick-access-icon" style="background:rgba(6,182,212,0.1);color:#06b6d4;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
                             </div>
+                            <div class="quick-access-text">数据导出</div>
+                        </div>
+                        <div class="quick-access-item" onclick="navigateTo('help')">
+                            <div class="quick-access-icon" style="background:rgba(100,116,139,0.1);color:#64748b;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="quick-access-text">帮助文档</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- 认证申请页 -->
+            </div>            <!-- 认证申请页 -->
             <div class="page" id="page-apply">
                 <div class="card">
                     <div class="card-header">
@@ -3526,6 +4087,126 @@
     </div>
 
     <script>
+        // 初始化首页
+        document.addEventListener('DOMContentLoaded', function() {
+            initWelcomeDate();
+        });
+
+        // 设置欢迎区的日期
+        function initWelcomeDate() {
+            const dateElement = document.getElementById('welcomeDate');
+            if (dateElement) {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const date = now.getDate();
+                const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+                const weekDay = weekDays[now.getDay()];
+                dateElement.textContent = year + '年' + month + '月' + date + '日 ' + weekDay;
+            }
+        }
+
+        // 切换用户下拉菜单
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+            }
+        }
+
+        // 关闭下拉菜单（点击其他地方）
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('userDropdown');
+            const trigger = document.querySelector('.user-menu-trigger');
+            if (dropdown && trigger && !trigger.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // 切换通知
+        function toggleNotifications() {
+            showToast('您有 3 条新消息', 'info');
+        }
+
+        // 时间维度切换
+        function setTimeRange(range) {
+            // 移除所有active类
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // 添加active类到当前按钮
+            event.target.classList.add('active');
+            
+            // 根据不同时间范围更新图表数据（实际项目中这里会调用API）
+            const labels = document.querySelectorAll('.x-labels text');
+            switch(range) {
+                case '7d':
+                    labels.forEach((label, i) => {
+                        const days = ['一', '二', '三', '四', '五', '六', '日'];
+                        label.textContent = '周' + days[i];
+                    });
+                    break;
+                case '30d':
+                    labels.forEach((label, i) => {
+                        label.textContent = (i + 1) + '日';
+                    });
+                    break;
+                case 'quarter':
+                    labels.forEach((label, i) => {
+                        const months = ['1月', '2月', '', '4月', '', '6月'];
+                        label.textContent = months[i] || '';
+                    });
+                    break;
+                case 'year':
+                    labels.forEach((label, i) => {
+                        const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+                        label.textContent = months[i] || '';
+                    });
+                    break;
+            }
+        }
+
+        // 数据导出功能
+        function exportData() {
+            showToast('正在准备导出数据...', 'info');
+            setTimeout(() => {
+                showToast('数据导出功能开发中', 'info');
+            }, 1000);
+        }
+
+        // 导航函数（扩展支持新页面）
+        function navigateTo(page) {
+            // 关闭下拉菜单
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown) dropdown.classList.remove('show');
+            
+            // 调用原有导航逻辑
+            switch(page) {
+                case 'profile':
+                    showToast('个人中心页面开发中', 'info');
+                    break;
+                case 'settings':
+                    showToast('系统设置页面开发中', 'info');
+                    break;
+                case 'certificates':
+                    showToast('证书查询页面开发中', 'info');
+                    break;
+                case 'help':
+                    showToast('帮助文档页面开发中', 'info');
+                    break;
+                default:
+                    // 调用原有的navigateTo逻辑
+                    if (typeof originalNavigateTo === 'function') {
+                        originalNavigateTo(page);
+                    } else if (document.getElementById('page-' + page)) {
+                        showPage('page-' + page);
+                        updateNavActive(page);
+                        window.scrollTo(0, 0);
+                    }
+            }
+        }
+
+
         // 页面标题映射
         const pageTitles = {
             'dashboard': '首页',
