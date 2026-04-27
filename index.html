@@ -8228,7 +8228,7 @@
                                     <span class="pie-legend-dot-custom" style="background:#10b981;"></span>
                                     <span class="pie-legend-label">有效</span>
                                 </div>
-                                <span class="pie-legend-value" id="pieValid">1,828</span>
+                                <span class="pie-legend-value" id="pieValid">156</span>
                             </div>
                             <div class="pie-legend-item-custom">
                                 <div class="pie-legend-left">
@@ -8242,7 +8242,14 @@
                                     <span class="pie-legend-dot-custom" style="background:#ef4444;"></span>
                                     <span class="pie-legend-label">已过期</span>
                                 </div>
-                                <span class="pie-legend-value" id="pieExpired">0</span>
+                                <span class="pie-legend-value" id="pieExpired">15</span>
+                            </div>
+                            <div class="pie-legend-item-custom">
+                                <div class="pie-legend-left">
+                                    <span class="pie-legend-dot-custom" style="background:#2563eb;"></span>
+                                    <span class="pie-legend-label">审核中</span>
+                                </div>
+                                <span class="pie-legend-value" id="pieProcessing">42</span>
                             </div>
                         </div>
                     </div>
@@ -8923,34 +8930,35 @@
         const mockData = {
             // 部门认证数据
             deptCert: {
-                labels: ['研发部', '市场部', '财务部', '人力资源部', '销售部', '运营部'],
-                cert: [86, 52, 38, 28, 32, 20],
-                evidence: [18, 12, 8, 5, 3, 2]
+                labels: ['研发部', '市场部', '销售部', '行政部', '法务部'],
+                cert: [45, 28, 35, 12, 18],
+                evidence: [32, 15, 22, 8, 25]
             },
-            // 月度趋势数据（近12个月）
+            // 月度趋势数据（近6个月）
             monthlyTrend: {
-                labels: ['2025年5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', '2026年1月', '2月', '3月', '4月'],
-                cert: [180, 195, 210, 188, 220, 235, 248, 260, 245, 230, 242, 256],
-                evidence: [32, 38, 42, 35, 45, 48, 52, 55, 50, 45, 46, 48]
+                labels: ['2026年1月', '2026年2月', '2026年3月', '2026年4月', '2026年5月', '2026年6月'],
+                cert: [85, 92, 78, 105, 98, 115],
+                evidence: [62, 70, 55, 88, 75, 92]
             },
             // 证书状态分布
             certStatus: {
-                valid: 1828,
+                valid: 156,
                 expiring: 28,
-                expired: 0
+                expired: 15,
+                processing: 42
             },
             // 项目存证量排行
             projectRanking: [
-                { name: '智能汽车研发项目', count: 486, level: 'core' },
-                { name: '新能源电池技术', count: 365, level: 'core' },
-                { name: '市场渠道拓展', count: 298, level: 'important' },
-                { name: '客户管理系统', count: 245, level: 'general' },
-                { name: '供应链优化项目', count: 198, level: 'important' },
-                { name: '生产工艺升级', count: 156, level: 'core' },
-                { name: '人力资源系统', count: 124, level: 'general' },
-                { name: '财务共享中心', count: 98, level: 'important' },
-                { name: '数据中心建设', count: 76, level: 'core' },
-                { name: '物流仓储优化', count: 52, level: 'general' }
+                { name: '新能源汽车核心代码项目', count: 1280, level: 'core' },
+                { name: '芯片封装工艺项目', count: 985, level: 'core' },
+                { name: '医疗器械配方项目', count: 876, level: 'core' },
+                { name: '智能制造系统项目', count: 754, level: 'important' },
+                { name: '通信协议算法项目', count: 623, level: 'core' },
+                { name: '材料配方研发项目', count: 598, level: 'important' },
+                { name: '工业设计图纸项目', count: 542, level: 'important' },
+                { name: '客户数据库项目', count: 489, level: 'general' },
+                { name: '营销策略方案项目', count: 356, level: 'general' },
+                { name: '供应链系统项目', count: 298, level: 'general' }
             ]
         };
 
@@ -9236,6 +9244,11 @@
                                 value: mockData.certStatus.expired,
                                 name: '已过期',
                                 itemStyle: { color: '#ef4444' }
+                            },
+                            {
+                                value: mockData.certStatus.processing,
+                                name: '审核中',
+                                itemStyle: { color: '#2563eb' }
                             }
                         ]
                     }
