@@ -3706,6 +3706,929 @@
             color: var(--text-primary);
         }
 
+        /* ========== 报告中心样式 ========== */
+        
+        /* 报告标签页 */
+        .report-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            padding: 8px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+        }
+
+        .report-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .report-tab svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .report-tab:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .report-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .report-tab-content {
+            display: none;
+        }
+
+        .report-tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* 报告类别选择区域 */
+        .report-category-section {
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .report-category-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .report-category-group {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .category-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .category-label svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .category-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        /* 报告选项卡片 */
+        .report-option-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .report-option-card:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .report-option-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .report-option-card input {
+            display: none;
+        }
+
+        .option-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-icon.blue {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .option-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .option-icon.purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .option-icon.yellow {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .option-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .option-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* 报告配置区域 */
+        .report-config-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .config-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .config-label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .date-range-picker {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .date-separator {
+            color: var(--text-secondary);
+        }
+
+        /* 数据模块选择 */
+        .module-selection {
+            margin-bottom: 24px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .module-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .module-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .module-item:hover {
+            border-color: var(--primary);
+        }
+
+        .module-item input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        .module-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .module-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .module-icon.blue {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .module-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .module-icon.purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .module-icon.yellow {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .module-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .module-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* 导出选项 */
+        .export-options {
+            display: flex;
+            gap: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .export-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .export-option input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        /* 操作按钮区域 */
+        .report-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px 0;
+        }
+
+        .btn-lg {
+            padding: 16px 48px;
+            font-size: 16px;
+        }
+
+        /* 历史报告表格 */
+        .report-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .report-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .report-icon.warning {
+            color: var(--warning);
+        }
+
+        /* 报告模板 */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .template-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .template-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .template-preview {
+            height: 140px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .template-preview.annual {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .template-preview.quarterly {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+        }
+
+        .template-preview.monthly {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .template-preview.dept {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .template-preview.risk {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .template-preview.trend {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+        }
+
+        .preview-header {
+            height: 24px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .preview-content {
+            flex: 1;
+        }
+
+        .preview-line {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .preview-line.long { width: 100%; }
+        .preview-line.medium { width: 75%; }
+        .preview-line.short { width: 50%; }
+
+        .preview-chart {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .preview-cell {
+            height: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+        }
+
+        .preview-table {
+            margin-top: 8px;
+        }
+
+        .preview-row {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 2px;
+            margin-bottom: 4px;
+        }
+
+        .preview-columns {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .preview-col {
+            flex: 1;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+        }
+
+        .preview-alert {
+            height: 24px;
+            width: 60%;
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .preview-trend-chart {
+            height: 50px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .preview-legend {
+            display: flex;
+            gap: 12px;
+        }
+
+        .legend-item {
+            width: 40px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+        }
+
+        .template-info {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .template-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .template-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .template-meta {
+            display: flex;
+            gap: 8px;
+        }
+
+        .template-tag {
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .template-use-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .template-use-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* 报告预览模态框 */
+        .modal-lg {
+            max-width: 900px;
+        }
+
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        /* 生成报告的样式 */
+        .generated-report {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: #1e293b;
+        }
+
+        .report-header-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: var(--radius-lg);
+            margin-bottom: 32px;
+        }
+
+        .report-logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .report-system-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .report-system-sub {
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+        }
+
+        .report-main-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .report-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .report-toc-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-toc-section h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toc-list {
+            padding-left: 24px;
+        }
+
+        .toc-list li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+        }
+
+        .report-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .report-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* 数据概览统计卡片 */
+        .overview-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .overview-stat-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .stat-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .stat-icon-wrapper.blue {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .stat-icon-wrapper.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon-wrapper.purple {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .stat-icon-wrapper.yellow {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-info {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stat-change.up { color: var(--success); }
+        .stat-change.down { color: var(--danger); }
+        .stat-change.neutral { color: var(--text-muted); }
+
+        /* 数据表格 */
+        .report-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .report-data-table th,
+        .report-data-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .report-data-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .report-data-table tbody tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
+        .text-danger { color: var(--danger); }
+
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .rank-badge.gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+            color: #92400e;
+        }
+
+        .rank-badge.silver {
+            background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+            color: #475569;
+        }
+
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #fef3c7 0%, #d97706 100%);
+            color: #78350f;
+        }
+
+        /* 风险预警 */
+        .risk-alert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .risk-alert-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            border-radius: var(--radius);
+            border-left: 4px solid;
+        }
+
+        .risk-alert-item.high {
+            background: rgba(239, 68, 68, 0.05);
+            border-left-color: var(--danger);
+        }
+
+        .risk-alert-item.medium {
+            background: rgba(245, 158, 11, 0.05);
+            border-left-color: var(--warning);
+        }
+
+        .risk-alert-item.low {
+            background: rgba(16, 185, 129, 0.05);
+            border-left-color: var(--success);
+        }
+
+        .risk-level {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .risk-alert-item.high .risk-level {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .risk-alert-item.medium .risk-level {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .risk-alert-item.low .risk-level {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .risk-content {
+            flex: 1;
+        }
+
+        .risk-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .risk-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .risk-action {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* 改进建议 */
+        .suggestion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .suggestion-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .suggestion-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .suggestion-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .suggestion-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        .report-footer-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .report-footer-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
     </style>
 </head>
 <body>
@@ -6682,266 +7605,736 @@
             <!-- 报告生成页 -->
             <div class="page" id="page-report">
                 <div style="margin-bottom:32px;">
-                    <h2 style="font-size:24px;font-weight:600;margin-bottom:8px;">报告生成</h2>
-                    <p style="color:var(--text-secondary);">一键生成可用于司法举证的完整报告</p>
+                    <h2 style="font-size:24px;font-weight:600;margin-bottom:8px;">报告中心</h2>
+                    <p style="color:var(--text-secondary);">多维度数据分析报告生成与管理</p>
                 </div>
 
-                <!-- 步骤条 -->
-                <div style="margin-bottom:32px;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;max-width:800px;margin:0 auto;">
-                        <div class="step-item active" data-step="1" onclick="goToStep(1)">
-                            <div class="step-number">1</div>
-                            <div class="step-label">选择商业秘密</div>
+                <!-- 报告类型切换标签 -->
+                <div class="report-tabs">
+                    <button class="report-tab active" data-tab="generator" onclick="switchReportTab('generator')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="15" y2="15"/>
+                        </svg>
+                        报告生成
+                    </button>
+                    <button class="report-tab" data-tab="history" onclick="switchReportTab('history')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        历史报告
+                    </button>
+                    <button class="report-tab" data-tab="templates" onclick="switchReportTab('templates')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                        报告模板
+                    </button>
+                </div>
+
+                <!-- 报告生成区域 -->
+                <div id="reportGenerator" class="report-tab-content active">
+                    <!-- 报告类型选择卡片 -->
+                    <div class="report-category-section">
+                        <div class="section-header">
+                            <h3 class="section-title">选择报告类型</h3>
+                            <p class="section-desc">根据需求选择合适的报告类型</p>
                         </div>
-                        <div class="step-line"></div>
-                        <div class="step-item" data-step="2" onclick="goToStep(2)">
-                            <div class="step-number">2</div>
-                            <div class="step-label">选择报告类型</div>
+                        <div class="report-category-grid">
+                            <!-- 按时间维度 -->
+                            <div class="report-category-group">
+                                <div class="category-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                        <line x1="16" y1="2" x2="16" y2="6"/>
+                                        <line x1="8" y1="2" x2="8" y2="6"/>
+                                        <line x1="3" y1="10" x2="21" y2="10"/>
+                                    </svg>
+                                    按时间维度
+                                </div>
+                                <div class="category-options">
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'annual')">
+                                        <input type="radio" name="timeType" value="annual">
+                                        <div class="option-icon blue">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">年度报告</div>
+                                            <div class="option-desc">全年数据汇总分析</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'quarterly')">
+                                        <input type="radio" name="timeType" value="quarterly">
+                                        <div class="option-icon purple">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <polyline points="12,6 12,12 16,14"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">季度报告</div>
+                                            <div class="option-desc">季度工作成效分析</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'monthly')">
+                                        <input type="radio" name="timeType" value="monthly">
+                                        <div class="option-icon green">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">月度报告</div>
+                                            <div class="option-desc">月度工作数据汇总</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'weekly')">
+                                        <input type="radio" name="timeType" value="weekly">
+                                        <div class="option-icon yellow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M8 2v4"/>
+                                                <path d="M16 2v4"/>
+                                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                                <path d="M3 10h18"/>
+                                                <path d="M8 14h.01"/>
+                                                <path d="M12 14h.01"/>
+                                                <path d="M16 14h.01"/>
+                                                <path d="M8 18h.01"/>
+                                                <path d="M12 18h.01"/>
+                                                <path d="M16 18h.01"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">周报</div>
+                                            <div class="option-desc">快速了解本周动态</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 按分析维度 -->
+                            <div class="report-category-group">
+                                <div class="category-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="20" x2="18" y2="10"/>
+                                        <line x1="12" y1="20" x2="12" y2="4"/>
+                                        <line x1="6" y1="20" x2="6" y2="14"/>
+                                    </svg>
+                                    按分析维度
+                                </div>
+                                <div class="category-options">
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'dept')">
+                                        <input type="radio" name="analysisType" value="dept">
+                                        <div class="option-icon blue">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">部门统计</div>
+                                            <div class="option-desc">研发/市场/销售/行政</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'project')">
+                                        <input type="radio" name="analysisType" value="project">
+                                        <div class="option-icon purple">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">项目维度</div>
+                                            <div class="option-desc">按保密项目统计</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'certType')">
+                                        <input type="radio" name="analysisType" value="certType">
+                                        <div class="option-icon green">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="8" r="7"/>
+                                                <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">证书类型</div>
+                                            <div class="option-desc">版权/商标/专利/公证</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'evidenceType')">
+                                        <input type="radio" name="analysisType" value="evidenceType">
+                                        <div class="option-icon yellow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">取证类型</div>
+                                            <div class="option-desc">网页/文档/API/代码</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 按用途 -->
+                            <div class="report-category-group">
+                                <div class="category-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                        <polyline points="2 17 12 22 22 17"/>
+                                        <polyline points="2 12 12 17 22 12"/>
+                                    </svg>
+                                    按用途
+                                </div>
+                                <div class="category-options">
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'dataAnalysis')">
+                                        <input type="radio" name="usageType" value="dataAnalysis">
+                                        <div class="option-icon blue">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="20" x2="18" y2="10"/>
+                                                <line x1="12" y1="20" x2="12" y2="4"/>
+                                                <line x1="6" y1="20" x2="6" y2="14"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">数据分析</div>
+                                            <div class="option-desc">多维度数据对比分析</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'workSummary')">
+                                        <input type="radio" name="usageType" value="workSummary">
+                                        <div class="option-icon green">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14,2 14,8 20,8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                                <polyline points="10,9 9,9 8,9"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">工作总结</div>
+                                            <div class="option-desc">阶段性工作成效总结</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'monitorAlert')">
+                                        <input type="radio" name="usageType" value="monitorAlert">
+                                        <div class="option-icon red">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">监控预警</div>
+                                            <div class="option-desc">风险监测与预警</div>
+                                        </div>
+                                    </label>
+                                    <label class="report-option-card" onclick="selectReportOption(this, 'trendForecast')">
+                                        <input type="radio" name="usageType" value="trendForecast">
+                                        <div class="option-icon purple">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-content">
+                                            <div class="option-title">趋势预测</div>
+                                            <div class="option-desc">基于历史数据预测</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="step-line"></div>
-                        <div class="step-item" data-step="3" onclick="goToStep(3)">
-                            <div class="step-number">3</div>
-                            <div class="step-label">选择内容</div>
+                    </div>
+
+                    <!-- 报告配置区域 -->
+                    <div class="report-config-section">
+                        <div class="section-header">
+                            <h3 class="section-title">报告配置</h3>
+                            <p class="section-desc">设置报告的时间范围和筛选条件</p>
                         </div>
-                        <div class="step-line"></div>
-                        <div class="step-item" data-step="4" onclick="goToStep(4)">
-                            <div class="step-number">4</div>
-                            <div class="step-label">预览确认</div>
+                        <div class="config-grid">
+                            <div class="config-item">
+                                <label class="config-label">报告标题</label>
+                                <input type="text" class="form-input" id="reportTitle" placeholder="输入报告标题（可选）">
+                            </div>
+                            <div class="config-item">
+                                <label class="config-label">时间范围</label>
+                                <div class="date-range-picker">
+                                    <input type="date" class="form-input" id="dateStart" value="2026-04-01">
+                                    <span class="date-separator">至</span>
+                                    <input type="date" class="form-input" id="dateEnd" value="2026-04-28">
+                                </div>
+                            </div>
+                            <div class="config-item">
+                                <label class="config-label">部门筛选</label>
+                                <select class="form-select" id="deptFilter">
+                                    <option value="">全部部门</option>
+                                    <option value="rd">研发部</option>
+                                    <option value="market">市场部</option>
+                                    <option value="sales">销售部</option>
+                                    <option value="finance">财务部</option>
+                                    <option value="hr">人力资源部</option>
+                                    <option value="legal">法务部</option>
+                                    <option value="admin">行政部</option>
+                                </select>
+                            </div>
+                            <div class="config-item">
+                                <label class="config-label">保密等级</label>
+                                <select class="form-select" id="levelFilter">
+                                    <option value="">全部等级</option>
+                                    <option value="core">核心秘密</option>
+                                    <option value="important">重要秘密</option>
+                                    <option value="general">一般秘密</option>
+                                </select>
+                            </div>
                         </div>
+
+                        <!-- 数据模块选择 -->
+                        <div class="module-selection">
+                            <div class="module-header">
+                                <span class="module-title">选择数据模块</span>
+                                <button class="btn btn-sm btn-secondary" onclick="selectAllModules()">全选</button>
+                            </div>
+                            <div class="module-grid">
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="overview" checked>
+                                    <span class="module-icon blue">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <line x1="3" y1="9" x2="21" y2="9"/>
+                                            <line x1="9" y1="21" x2="9" y2="9"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">数据概览</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="cert" checked>
+                                    <span class="module-icon green">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="8" r="7"/>
+                                            <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">认证数据</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="evidence" checked>
+                                    <span class="module-icon purple">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">取证数据</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="department">
+                                    <span class="module-icon yellow">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">部门分析</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="trend">
+                                    <span class="module-icon blue">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">趋势分析</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="risk">
+                                    <span class="module-icon red">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                            <line x1="12" y1="9" x2="12" y2="13"/>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">风险预警</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="chart">
+                                    <span class="module-icon green">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="20" x2="18" y2="10"/>
+                                            <line x1="12" y1="20" x2="12" y2="4"/>
+                                            <line x1="6" y1="20" x2="6" y2="14"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">数据图表</span>
+                                </label>
+                                <label class="module-item">
+                                    <input type="checkbox" name="module" value="suggestion">
+                                    <span class="module-icon purple">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <line x1="12" y1="16" x2="12" y2="12"/>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                        </svg>
+                                    </span>
+                                    <span class="module-name">改进建议</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 导出选项 -->
+                        <div class="export-options">
+                            <label class="export-option">
+                                <input type="checkbox" id="includeCharts" checked>
+                                <span>包含图表</span>
+                            </label>
+                            <label class="export-option">
+                                <input type="checkbox" id="includeDetail">
+                                <span>包含详细数据附录</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 生成按钮 -->
+                    <div class="report-actions">
+                        <button class="btn btn-secondary" onclick="resetReportConfig()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                <path d="M3 3v5h5"/>
+                            </svg>
+                            重置配置
+                        </button>
+                        <button class="btn btn-primary btn-lg" onclick="generateNewReport()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                            生成报告
+                        </button>
                     </div>
                 </div>
 
-                <!-- Step 1: 选择商业秘密 -->
-                <div class="report-step active" id="reportStep1">
+                <!-- 历史报告区域 -->
+                <div id="reportHistory" class="report-tab-content">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Step 1: 选择商业秘密</h3>
-                            <span style="font-size:13px;color:var(--text-secondary);">从证书列表中选择要生成报告的商业秘密（可多选）</span>
+                            <h3 class="card-title">已生成报告</h3>
+                            <div class="card-actions">
+                                <input type="text" class="form-input" placeholder="搜索报告..." style="width:200px;padding:8px 12px;">
+                            </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="padding:0;">
                             <div class="table-container">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="width:40px;"><input type="checkbox" id="selectAllCerts" onchange="toggleAllCerts()"></th>
-                                            <th>证书编号</th>
-                                            <th>秘密名称</th>
-                                            <th>类型</th>
-                                            <th>保密等级</th>
-                                            <th>认证时间</th>
+                                            <th>报告名称</th>
+                                            <th>报告类型</th>
+                                            <th>时间范围</th>
+                                            <th>生成时间</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="checkbox" class="cert-checkbox" value="TSM-TSA-2026-0428-001" data-name="智能驾驶算法核心代码"></td>
-                                            <td>TSM-TSA-2026-0428-001</td>
-                                            <td>智能驾驶算法核心代码</td>
-                                            <td><span class="tag tag-blue">技术秘密</span></td>
-                                            <td><span class="tag tag-red">核心秘密</span></td>
-                                            <td>2026-04-28</td>
+                                            <td>
+                                                <div class="report-name-cell">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="report-icon">
+                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                        <polyline points="14,2 14,8 20,8"/>
+                                                    </svg>
+                                                    <span>2026年Q1季度商业秘密保护分析报告</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="tag tag-blue">季度报告</span></td>
+                                            <td>2026-01-01 至 2026-03-31</td>
+                                            <td>2026-04-05 14:23</td>
+                                            <td><span class="status-badge success">已完成</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-Q1-001')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="downloadReportFile('RPT-2026-Q1-001', 'pdf')">下载</button>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" class="cert-checkbox" value="TSM-TSA-2026-0427-001" data-name="供应商价格体系文档"></td>
-                                            <td>TSM-TSA-2026-0427-001</td>
-                                            <td>供应商价格体系文档</td>
-                                            <td><span class="tag tag-blue">经营信息</span></td>
-                                            <td><span class="tag tag-yellow">重要秘密</span></td>
-                                            <td>2026-04-27</td>
+                                            <td>
+                                                <div class="report-name-cell">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="report-icon">
+                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                        <polyline points="14,2 14,8 20,8"/>
+                                                    </svg>
+                                                    <span>研发部2026年3月认证数据分析报告</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="tag tag-green">部门统计</span></td>
+                                            <td>2026-03-01 至 2026-03-31</td>
+                                            <td>2026-04-02 09:15</td>
+                                            <td><span class="status-badge success">已完成</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-03-RD-001')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="downloadReportFile('RPT-2026-03-RD-001', 'pdf')">下载</button>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" class="cert-checkbox" value="TSM-TSA-2026-0424-001" data-name="年度财务审计报告"></td>
-                                            <td>TSM-TSA-2026-0424-001</td>
-                                            <td>年度财务审计报告</td>
-                                            <td><span class="tag tag-blue">管理信息</span></td>
-                                            <td><span class="tag tag-red">核心秘密</span></td>
-                                            <td>2026-04-24</td>
+                                            <td>
+                                                <div class="report-name-cell">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="report-icon">
+                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                        <polyline points="14,2 14,8 20,8"/>
+                                                    </svg>
+                                                    <span>2026年第12周工作周报</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="tag tag-yellow">周报</span></td>
+                                            <td>2026-03-18 至 2026-03-24</td>
+                                            <td>2026-03-25 08:30</td>
+                                            <td><span class="status-badge success">已完成</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-W12-001')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="downloadReportFile('RPT-2026-W12-001', 'html')">下载</button>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" class="cert-checkbox" value="TSM-TSA-2026-0423-001" data-name="市场渠道拓展方案"></td>
-                                            <td>TSM-TSA-2026-0423-001</td>
-                                            <td>市场渠道拓展方案</td>
-                                            <td><span class="tag tag-blue">经营信息</span></td>
-                                            <td><span class="tag tag-yellow">重要秘密</span></td>
-                                            <td>2026-04-23</td>
+                                            <td>
+                                                <div class="report-name-cell">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="report-icon warning">
+                                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                                        <line x1="12" y1="9" x2="12" y2="13"/>
+                                                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                                    </svg>
+                                                    <span>2026年3月风险预警监控报告</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="tag tag-red">监控预警</span></td>
+                                            <td>2026-03-01 至 2026-03-31</td>
+                                            <td>2026-04-01 10:00</td>
+                                            <td><span class="status-badge warning">待处理</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-03-RISK-001')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="downloadReportFile('RPT-2026-03-RISK-001', 'pdf')">下载</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="report-name-cell">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="report-icon">
+                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                        <polyline points="14,2 14,8 20,8"/>
+                                                    </svg>
+                                                    <span>2025年度商业秘密保护年度报告</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="tag tag-blue">年度报告</span></td>
+                                            <td>2025-01-01 至 2025-12-31</td>
+                                            <td>2026-01-05 16:45</td>
+                                            <td><span class="status-badge success">已完成</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2025-ANNUAL-001')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="downloadReportFile('RPT-2025-ANNUAL-001', 'pdf')">下载</button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div style="display:flex;justify-content:flex-end;margin-top:24px;">
-                                <button class="btn btn-primary" onclick="nextReportStep(2)">下一步</button>
+                            <div class="pagination">
+                                <div class="pagination-info">共 5 条记录</div>
+                                <div class="pagination-controls">
+                                    <button class="pagination-btn" disabled>&lt;</button>
+                                    <button class="pagination-btn active">1</button>
+                                    <button class="pagination-btn">2</button>
+                                    <button class="pagination-btn">&gt;</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 2: 选择报告类型 -->
-                <div class="report-step" id="reportStep2" style="display:none;">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Step 2: 选择报告类型</h3>
+                <!-- 报告模板区域 -->
+                <div id="reportTemplates" class="report-tab-content">
+                    <div class="template-grid">
+                        <div class="template-card" onclick="useTemplate('annual')">
+                            <div class="template-preview annual">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-chart"></div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4 class="template-name">年度报告模板</h4>
+                                <p class="template-desc">全局视角、历史对比、战略建议</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">年度</span>
+                                    <span class="template-tag">全局</span>
+                                </div>
+                            </div>
+                            <button class="template-use-btn">使用模板</button>
                         </div>
-                        <div class="card-body">
-                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px;">
-                                <div class="report-type-card selected" onclick="selectReportType(this, 'comprehensive')">
-                                    <div class="report-type-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                            <polyline points="14,2 14,8 20,8"/>
-                                            <line x1="16" y1="13" x2="8" y2="13"/>
-                                            <line x1="16" y1="17" x2="8" y2="17"/>
-                                        </svg>
+
+                        <div class="template-card" onclick="useTemplate('quarterly')">
+                            <div class="template-preview quarterly">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-grid">
+                                        <div class="preview-cell"></div>
+                                        <div class="preview-cell"></div>
+                                        <div class="preview-cell"></div>
+                                        <div class="preview-cell"></div>
                                     </div>
-                                    <div class="report-type-title">综合报告</div>
-                                    <div class="report-type-desc">包含所有信息，适用于全面举证</div>
-                                </div>
-                                <div class="report-type-card" onclick="selectReportType(this, 'timeline')">
-                                    <div class="report-type-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <polyline points="12,6 12,12 16,14"/>
-                                        </svg>
-                                    </div>
-                                    <div class="report-type-title">时间线报告</div>
-                                    <div class="report-type-desc">按时间顺序展示，适合追溯</div>
-                                </div>
-                                <div class="report-type-card" onclick="selectReportType(this, 'evidence')">
-                                    <div class="report-type-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="report-type-title">取证报告</div>
-                                    <div class="report-type-desc">侧重取证记录，适用于侵权诉讼</div>
                                 </div>
                             </div>
-                            <div style="display:flex;justify-content:space-between;margin-top:24px;">
-                                <button class="btn btn-secondary" onclick="prevReportStep(1)">上一步</button>
-                                <button class="btn btn-primary" onclick="nextReportStep(3)">下一步</button>
+                            <div class="template-info">
+                                <h4 class="template-name">季度报告模板</h4>
+                                <p class="template-desc">目标达成、问题分析、改进措施</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">季度</span>
+                                    <span class="template-tag">分析</span>
+                                </div>
                             </div>
+                            <button class="template-use-btn">使用模板</button>
+                        </div>
+
+                        <div class="template-card" onclick="useTemplate('monthly')">
+                            <div class="template-preview monthly">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line short"></div>
+                                    <div class="preview-line medium"></div>
+                                    <div class="preview-table">
+                                        <div class="preview-row"></div>
+                                        <div class="preview-row"></div>
+                                        <div class="preview-row"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4 class="template-name">月度报告模板</h4>
+                                <p class="template-desc">执行情况、数据明细、近期计划</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">月度</span>
+                                    <span class="template-tag">明细</span>
+                                </div>
+                            </div>
+                            <button class="template-use-btn">使用模板</button>
+                        </div>
+
+                        <div class="template-card" onclick="useTemplate('dept')">
+                            <div class="template-preview dept">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-columns">
+                                        <div class="preview-col"></div>
+                                        <div class="preview-col"></div>
+                                        <div class="preview-col"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4 class="template-name">部门报告模板</h4>
+                                <p class="template-desc">部门数据、贡献分析、横向对比</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">部门</span>
+                                    <span class="template-tag">对比</span>
+                                </div>
+                            </div>
+                            <button class="template-use-btn">使用模板</button>
+                        </div>
+
+                        <div class="template-card" onclick="useTemplate('risk')">
+                            <div class="template-preview risk">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-alert"></div>
+                                    <div class="preview-line long"></div>
+                                    <div class="preview-line medium"></div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4 class="template-name">风险预警模板</h4>
+                                <p class="template-desc">实时状态、异常预警、处置建议</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">预警</span>
+                                    <span class="template-tag">风险</span>
+                                </div>
+                            </div>
+                            <button class="template-use-btn">使用模板</button>
+                        </div>
+
+                        <div class="template-card" onclick="useTemplate('trend')">
+                            <div class="template-preview trend">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-trend-chart"></div>
+                                    <div class="preview-legend">
+                                        <div class="legend-item"></div>
+                                        <div class="legend-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <h4 class="template-name">趋势分析模板</h4>
+                                <p class="template-desc">趋势展示、预测分析、决策支持</p>
+                                <div class="template-meta">
+                                    <span class="template-tag">趋势</span>
+                                    <span class="template-tag">预测</span>
+                                </div>
+                            </div>
+                            <button class="template-use-btn">使用模板</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3: 选择包含内容 -->
-                <div class="report-step" id="reportStep3" style="display:none;">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Step 3: 选择报告包含内容</h3>
+                <!-- 报告预览模态框 -->
+                <div class="modal-overlay" id="reportPreviewModal">
+                    <div class="modal modal-lg">
+                        <div class="modal-header">
+                            <h3 class="modal-title">报告预览</h3>
+                            <button class="modal-close" onclick="closeReportPreview()">&times;</button>
                         </div>
-                        <div class="card-body">
-                            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-                                <label class="content-check-item">
-                                    <input type="checkbox" checked disabled>
-                                    <span>基本信息</span>
-                                    <span class="check-hint">证书编号、名称、类型、等级等</span>
-                                </label>
-                                <label class="content-check-item">
-                                    <input type="checkbox" checked disabled>
-                                    <span>时间戳信息</span>
-                                    <span class="check-hint">可信时间戳、哈希值等</span>
-                                </label>
-                                <label class="content-check-item">
-                                    <input type="checkbox" checked>
-                                    <span>取证记录</span>
-                                    <span class="check-hint">关联的取证操作记录</span>
-                                </label>
-                                <label class="content-check-item">
-                                    <input type="checkbox" checked>
-                                    <span>证据文件</span>
-                                    <span class="check-hint">文件清单及哈希值</span>
-                                </label>
-                                <label class="content-check-item">
-                                    <input type="checkbox" checked>
-                                    <span>审核记录</span>
-                                    <span class="check-hint">审核流程和时间线</span>
-                                </label>
-                                <label class="content-check-item">
-                                    <input type="checkbox">
-                                    <span>统计分析</span>
-                                    <span class="check-hint">数据汇总图表</span>
-                                </label>
-                            </div>
-                            <div style="display:flex;justify-content:space-between;margin-top:32px;">
-                                <button class="btn btn-secondary" onclick="prevReportStep(2)">上一步</button>
-                                <button class="btn btn-primary" onclick="generateReport()">生成报告</button>
-                            </div>
+                        <div class="modal-body" id="reportPreviewContent">
+                            <!-- 报告内容将通过JS动态生成 -->
                         </div>
-                    </div>
-                </div>
-
-                <!-- Step 4: 预览与生成结果 -->
-                <div class="report-step" id="reportStep4" style="display:none;">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Step 4: 报告预览</h3>
-                        </div>
-                        <div class="card-body" id="reportPreview">
-                            <!-- 报告预览内容 -->
-                            <div class="report-preview">
-                                <div class="report-cover">
-                                    <div class="report-logo">
-                                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="32" height="32" rx="8" fill="#2563eb"/>
-                                            <path d="M10 16L14 20L22 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                    <h1 class="report-title">商业秘密保护证据报告</h1>
-                                    <div class="report-subtitle">联合信任商业秘密保护系统</div>
-                                    <div class="report-meta">
-                                        <div>生成时间：<span id="reportGenTime">2026-04-28 15:30:00</span></div>
-                                        <div>报告编号：<span id="reportId">RPT-2026-0428-001</span></div>
-                                    </div>
-                                </div>
-                                <div class="report-toc">
-                                    <h2>目录</h2>
-                                    <ol>
-                                        <li>基本信息</li>
-                                        <li>可信时间戳信息</li>
-                                        <li>取证记录</li>
-                                        <li>证据文件</li>
-                                        <li>审核记录</li>
-                                    </ol>
-                                </div>
-                                <div class="report-section">
-                                    <h2>一、基本信息</h2>
-                                    <table class="report-table">
-                                        <tr><th>证书编号</th><td>TSM-TSA-2026-0428-001</td></tr>
-                                        <tr><th>秘密名称</th><td>智能驾驶算法核心代码</td></tr>
-                                        <tr><th>秘密类型</th><td>技术秘密</td></tr>
-                                        <tr><th>保密等级</th><td>核心秘密</td></tr>
-                                        <tr><th>所属部门</th><td>研发部</td></tr>
-                                        <tr><th>认证时间</th><td>2026-04-28 14:30:25</td></tr>
-                                        <tr><th>有效期至</th><td>2027-04-28 14:30:25</td></tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer" style="padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-                            <button class="btn btn-secondary" onclick="prevReportStep(3)">上一步</button>
-                            <div style="display:flex;gap:12px;">
-                                <button class="btn btn-secondary" onclick="sendReportToEmail()">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                        <polyline points="22,6 12,13 2,6"/>
-                                    </svg>
-                                    发送至邮箱
-                                </button>
-                                <button class="btn btn-secondary" onclick="downloadReport('html')">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                        <polyline points="7,10 12,15 17,10"/>
-                                        <line x1="12" y1="15" x2="12" y2="3"/>
-                                    </svg>
-                                    下载HTML
-                                </button>
-                                <button class="btn btn-primary" onclick="downloadReport('pdf')">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14,2 14,8 20,8"/>
-                                    </svg>
-                                    下载PDF
-                                </button>
-                            </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="closeReportPreview()">关闭</button>
+                            <button class="btn btn-secondary" onclick="downloadReportFile('current', 'html')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                下载HTML
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadReportFile('current', 'pdf')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                下载PDF
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -10190,6 +11583,550 @@
         
         // ========== M3报告生成页JS ==========
         
+        // 报告标签切换
+        function switchReportTab(tabName) {
+            // 更新标签状态
+            document.querySelectorAll('.report-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.tab === tabName) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // 切换内容
+            document.querySelectorAll('.report-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('report' + capitalize(tabName)).classList.add('active');
+        }
+        
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+        
+        // 选择报告选项卡片
+        function selectReportOption(element, value) {
+            const parent = element.closest('.category-options');
+            parent.querySelectorAll('.report-option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            element.querySelector('input').checked = true;
+        }
+        
+        // 全选数据模块
+        function selectAllModules() {
+            const checkboxes = document.querySelectorAll('input[name="module"]');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allChecked);
+        }
+        
+        // 重置报告配置
+        function resetReportConfig() {
+            document.getElementById('reportTitle').value = '';
+            document.getElementById('dateStart').value = '2026-04-01';
+            document.getElementById('dateEnd').value = '2026-04-28';
+            document.getElementById('deptFilter').value = '';
+            document.getElementById('levelFilter').value = '';
+            
+            document.querySelectorAll('.report-option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelectorAll('input[name="module"]').forEach(cb => {
+                cb.checked = cb.value === 'overview' || cb.value === 'cert' || cb.value === 'evidence';
+            });
+            document.getElementById('includeCharts').checked = true;
+            document.getElementById('includeDetail').checked = false;
+            
+            showToast('配置已重置', 'info');
+        }
+        
+        // 生成报告
+        function generateNewReport() {
+            // 获取选中的报告类型
+            const timeType = document.querySelector('input[name="timeType"]:checked');
+            const analysisType = document.querySelector('input[name="analysisType"]:checked');
+            const usageType = document.querySelector('input[name="usageType"]:checked');
+            
+            if (!timeType && !analysisType && !usageType) {
+                showToast('请至少选择一种报告类型', 'warning');
+                return;
+            }
+            
+            // 获取选中的数据模块
+            const selectedModules = Array.from(document.querySelectorAll('input[name="module"]:checked'))
+                .map(cb => cb.value);
+            
+            if (selectedModules.length === 0) {
+                showToast('请至少选择一个数据模块', 'warning');
+                return;
+            }
+            
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                
+                // 生成报告预览
+                const reportType = timeType?.value || analysisType?.value || usageType?.value;
+                const reportTitle = document.getElementById('reportTitle').value || getReportTitle(reportType);
+                const dateRange = document.getElementById('dateStart').value + ' 至 ' + document.getElementById('dateEnd').value;
+                
+                const reportContent = generateReportContent(reportType, reportTitle, dateRange, selectedModules);
+                document.getElementById('reportPreviewContent').innerHTML = reportContent;
+                
+                // 显示预览模态框
+                document.getElementById('reportPreviewModal').classList.add('active');
+                
+                showToast('报告生成成功', 'success');
+            }, 2000);
+        }
+        
+        function getReportTitle(type) {
+            const titles = {
+                'annual': '年度商业秘密保护分析报告',
+                'quarterly': '季度商业秘密保护分析报告',
+                'monthly': '月度商业秘密保护分析报告',
+                'weekly': '周工作报告',
+                'dept': '部门统计分析报告',
+                'project': '项目维度分析报告',
+                'certType': '证书类型分析报告',
+                'evidenceType': '取证类型分析报告',
+                'dataAnalysis': '数据分析报告',
+                'workSummary': '工作总结报告',
+                'monitorAlert': '风险监控预警报告',
+                'trendForecast': '趋势预测分析报告'
+            };
+            return titles[type] || '商业秘密保护分析报告';
+        }
+        
+        function generateReportContent(type, title, dateRange, modules) {
+            const now = new Date();
+            const genTime = now.getFullYear() + '-' + 
+                String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(now.getDate()).padStart(2, '0') + ' ' + 
+                String(now.getHours()).padStart(2, '0') + ':' + 
+                String(now.getMinutes()).padStart(2, '0');
+            
+            let content = `
+                <div class="generated-report">
+                    <div class="report-header-section">
+                        <div class="report-logo-area">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                                <rect width="48" height="48" rx="12" fill="#2563eb"/>
+                                <path d="M14 24L20 30L34 16" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <div class="report-system-name">联合信任商业秘密保护系统</div>
+                                <div class="report-system-sub">TSM REPORT SYSTEM</div>
+                            </div>
+                        </div>
+                        <h1 class="report-main-title">${title}</h1>
+                        <div class="report-meta-info">
+                            <span>报告编号: RPT-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-001</span>
+                            <span>生成时间: ${genTime}</span>
+                            <span>数据周期: ${dateRange}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="report-toc-section">
+                        <h2>目录</h2>
+                        <ol class="toc-list">
+            `;
+            
+            if (modules.includes('overview')) {
+                content += '<li>一、数据概览</li>';
+            }
+            if (modules.includes('cert')) {
+                content += '<li>二、认证数据分析</li>';
+            }
+            if (modules.includes('evidence')) {
+                content += '<li>三、取证数据分析</li>';
+            }
+            if (modules.includes('department')) {
+                content += '<li>四、部门分析</li>';
+            }
+            if (modules.includes('trend')) {
+                content += '<li>五、趋势分析</li>';
+            }
+            if (modules.includes('risk')) {
+                content += '<li>六、风险预警</li>';
+            }
+            if (modules.includes('suggestion')) {
+                content += '<li>七、改进建议</li>';
+            }
+            
+            content += '</ol></div>';
+            
+            // 数据概览
+            if (modules.includes('overview')) {
+                content += `
+                    <div class="report-section">
+                        <h2>一、数据概览</h2>
+                        <div class="overview-stats-grid">
+                            <div class="overview-stat-card">
+                                <div class="stat-icon-wrapper blue">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="8" r="7"/>
+                                        <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-number">1,247</div>
+                                    <div class="stat-label">认证总数</div>
+                                    <div class="stat-change up">+12.5%</div>
+                                </div>
+                            </div>
+                            <div class="overview-stat-card">
+                                <div class="stat-icon-wrapper green">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-number">3,892</div>
+                                    <div class="stat-label">取证总数</div>
+                                    <div class="stat-change up">+8.3%</div>
+                                </div>
+                            </div>
+                            <div class="overview-stat-card">
+                                <div class="stat-icon-wrapper purple">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-number">156</div>
+                                    <div class="stat-label">涉及部门</div>
+                                    <div class="stat-change neutral">0%</div>
+                                </div>
+                            </div>
+                            <div class="overview-stat-card">
+                                <div class="stat-icon-wrapper yellow">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                        <line x1="12" y1="9" x2="12" y2="13"/>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-number">23</div>
+                                    <div class="stat-label">风险预警</div>
+                                    <div class="stat-change down">-15.2%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 认证数据
+            if (modules.includes('cert')) {
+                content += `
+                    <div class="report-section">
+                        <h2>二、认证数据分析</h2>
+                        <table class="report-data-table">
+                            <thead>
+                                <tr>
+                                    <th>认证类型</th>
+                                    <th>本月新增</th>
+                                    <th>累计总数</th>
+                                    <th>环比增长</th>
+                                    <th>占比</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>技术秘密</td>
+                                    <td>86</td>
+                                    <td>523</td>
+                                    <td class="text-success">+15.2%</td>
+                                    <td>41.9%</td>
+                                </tr>
+                                <tr>
+                                    <td>经营信息</td>
+                                    <td>67</td>
+                                    <td>412</td>
+                                    <td class="text-success">+8.7%</td>
+                                    <td>33.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>管理信息</td>
+                                    <td>45</td>
+                                    <td>198</td>
+                                    <td class="text-warning">+2.3%</td>
+                                    <td>15.9%</td>
+                                </tr>
+                                <tr>
+                                    <td>其他</td>
+                                    <td>18</td>
+                                    <td>114</td>
+                                    <td class="text-success">+5.9%</td>
+                                    <td>9.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // 取证数据
+            if (modules.includes('evidence')) {
+                content += `
+                    <div class="report-section">
+                        <h2>三、取证数据分析</h2>
+                        <table class="report-data-table">
+                            <thead>
+                                <tr>
+                                    <th>取证类型</th>
+                                    <th>本月完成</th>
+                                    <th>累计总数</th>
+                                    <th>成功率</th>
+                                    <th>平均耗时</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>网页截图取证</td>
+                                    <td>156</td>
+                                    <td>1,245</td>
+                                    <td class="text-success">98.2%</td>
+                                    <td>2.3分钟</td>
+                                </tr>
+                                <tr>
+                                    <td>文档保全取证</td>
+                                    <td>89</td>
+                                    <td>876</td>
+                                    <td class="text-success">99.1%</td>
+                                    <td>5.6分钟</td>
+                                </tr>
+                                <tr>
+                                    <td>API接口取证</td>
+                                    <td>34</td>
+                                    <td>267</td>
+                                    <td class="text-warning">96.5%</td>
+                                    <td>12.8分钟</td>
+                                </tr>
+                                <tr>
+                                    <td>代码托管取证</td>
+                                    <td>28</td>
+                                    <td>198</td>
+                                    <td class="text-success">97.8%</td>
+                                    <td>8.2分钟</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // 部门分析
+            if (modules.includes('department')) {
+                content += `
+                    <div class="report-section">
+                        <h2>四、部门分析</h2>
+                        <table class="report-data-table">
+                            <thead>
+                                <tr>
+                                    <th>部门名称</th>
+                                    <th>认证数量</th>
+                                    <th>取证数量</th>
+                                    <th>占比</th>
+                                    <th>排名</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>研发部</td>
+                                    <td>486</td>
+                                    <td>1,234</td>
+                                    <td>38.9%</td>
+                                    <td><span class="rank-badge gold">1</span></td>
+                                </tr>
+                                <tr>
+                                    <td>市场部</td>
+                                    <td>298</td>
+                                    <td>756</td>
+                                    <td>24.1%</td>
+                                    <td><span class="rank-badge silver">2</span></td>
+                                </tr>
+                                <tr>
+                                    <td>销售部</td>
+                                    <td>245</td>
+                                    <td>623</td>
+                                    <td>19.8%</td>
+                                    <td><span class="rank-badge bronze">3</span></td>
+                                </tr>
+                                <tr>
+                                    <td>财务部</td>
+                                    <td>156</td>
+                                    <td>412</td>
+                                    <td>12.6%</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>其他部门</td>
+                                    <td>62</td>
+                                    <td>145</td>
+                                    <td>4.6%</td>
+                                    <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // 风险预警
+            if (modules.includes('risk')) {
+                content += `
+                    <div class="report-section">
+                        <h2>六、风险预警</h2>
+                        <div class="risk-alert-list">
+                            <div class="risk-alert-item high">
+                                <div class="risk-level">高风险</div>
+                                <div class="risk-content">
+                                    <div class="risk-title">敏感数据外泄预警</div>
+                                    <div class="risk-desc">检测到3起疑似数据外泄事件，涉及核心商业秘密，建议立即处理</div>
+                                    <div class="risk-action">建议：启动应急响应流程，联系法务部门</div>
+                                </div>
+                            </div>
+                            <div class="risk-alert-item medium">
+                                <div class="risk-level">中风险</div>
+                                <div class="risk-content">
+                                    <div class="risk-title">证书即将到期提醒</div>
+                                    <div class="risk-desc">12份重要证书将在30天内到期，请及时续期</div>
+                                    <div class="risk-action">建议：制定续期计划，避免证书失效</div>
+                                </div>
+                            </div>
+                            <div class="risk-alert-item low">
+                                <div class="risk-level">低风险</div>
+                                <div class="risk-content">
+                                    <div class="risk-title">部门认证不均衡</div>
+                                    <div class="risk-desc">部分部门商业秘密保护意识较弱，认证数量明显偏低</div>
+                                    <div class="risk-action">建议：加强培训宣传，提升保护意识</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 改进建议
+            if (modules.includes('suggestion')) {
+                content += `
+                    <div class="report-section">
+                        <h2>七、改进建议</h2>
+                        <div class="suggestion-list">
+                            <div class="suggestion-item">
+                                <div class="suggestion-number">01</div>
+                                <div class="suggestion-content">
+                                    <h4>完善制度建设</h4>
+                                    <p>建议制定《商业秘密保护管理办法》，明确各部门职责和保护流程，形成制度化管理体系。</p>
+                                </div>
+                            </div>
+                            <div class="suggestion-item">
+                                <div class="suggestion-number">02</div>
+                                <div class="suggestion-content">
+                                    <h4>加强技术防护</h4>
+                                    <p>建议部署DLP数据防泄漏系统，对核心数据进行实时监控和防护，降低数据外泄风险。</p>
+                                </div>
+                            </div>
+                            <div class="suggestion-item">
+                                <div class="suggestion-number">03</div>
+                                <div class="suggestion-content">
+                                    <h4>提升培训力度</h4>
+                                    <p>建议每季度开展一次商业秘密保护培训，重点覆盖新入职员工和涉密岗位人员。</p>
+                                </div>
+                            </div>
+                            <div class="suggestion-item">
+                                <div class="suggestion-number">04</div>
+                                <div class="suggestion-content">
+                                    <h4>优化资源配置</h4>
+                                    <p>建议向认证数量较少的部门倾斜资源，提升整体保护水平，缩小部门间差距。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 附录
+            content += `
+                    <div class="report-footer-section">
+                        <div class="report-footer-info">
+                            <p>本报告由联合信任商业秘密保护系统自动生成</p>
+                            <p>如有疑问，请联系系统管理员</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return content;
+        }
+        
+        // 关闭报告预览
+        function closeReportPreview() {
+            document.getElementById('reportPreviewModal').classList.remove('active');
+        }
+        
+        // 查看报告
+        function viewReport(reportId) {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                const reportContent = generateReportContent('monthly', '2026年Q1季度商业秘密保护分析报告', '2026-01-01 至 2026-03-31', ['overview', 'cert', 'evidence', 'department', 'risk', 'suggestion']);
+                document.getElementById('reportPreviewContent').innerHTML = reportContent;
+                document.getElementById('reportPreviewModal').classList.add('active');
+            }, 1000);
+        }
+        
+        // 下载报告
+        function downloadReportFile(reportId, format) {
+            showToast('正在生成' + (format === 'pdf' ? 'PDF' : 'HTML') + '报告...', 'info');
+            setTimeout(() => {
+                showToast((format === 'pdf' ? 'PDF' : 'HTML') + '报告下载已开始', 'success');
+            }, 2000);
+        }
+        
+        // 使用模板
+        function useTemplate(templateType) {
+            showToast('已选择模板，正在应用...', 'info');
+            
+            // 切换到报告生成标签
+            switchReportTab('generator');
+            
+            // 根据模板类型预设选择
+            setTimeout(() => {
+                const radioMap = {
+                    'annual': 'input[name="timeType"][value="annual"]',
+                    'quarterly': 'input[name="timeType"][value="quarterly"]',
+                    'monthly': 'input[name="timeType"][value="monthly"]',
+                    'dept': 'input[name="analysisType"][value="dept"]',
+                    'risk': 'input[name="usageType"][value="monitorAlert"]',
+                    'trend': 'input[name="usageType"][value="trendForecast"]'
+                };
+                
+                const selector = radioMap[templateType];
+                if (selector) {
+                    const radio = document.querySelector(selector);
+                    if (radio) {
+                        radio.checked = true;
+                        const card = radio.closest('.report-option-card');
+                        if (card) {
+                            card.classList.add('selected');
+                        }
+                    }
+                }
+            }, 100);
+        }
+        
+        // 发送报告至邮箱
+        function sendReportToEmail() {
+            showToast('报告已发送至您的邮箱', 'success');
+        }
+        
+        // 旧的报告生成函数（保留兼容性）
         let currentReportStep = 1;
         let selectedReportType = 'comprehensive';
         
@@ -10246,34 +12183,11 @@
         }
         
         function generateReport() {
-            showLoading();
-            setTimeout(() => {
-                hideLoading();
-                const now = new Date();
-                const timeStr = now.getFullYear() + '-' + 
-                    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                    String(now.getDate()).padStart(2, '0') + ' ' + 
-                    String(now.getHours()).padStart(2, '0') + ':' + 
-                    String(now.getMinutes()).padStart(2, '0') + ':' + 
-                    String(now.getSeconds()).padStart(2, '0');
-                const genTimeEl = document.getElementById('reportGenTime');
-                const reportIdEl = document.getElementById('reportId');
-                if (genTimeEl) genTimeEl.textContent = timeStr;
-                if (reportIdEl) reportIdEl.textContent = 'RPT-' + timeStr.replace(/[:-]/g, '').replace(' ', '-').substring(0, 15);
-                nextReportStep(4);
-                showToast('报告生成成功！', 'success');
-            }, 2000);
-        }
-        
-        function sendReportToEmail() {
-            showToast('报告已发送至您的邮箱', 'success');
+            generateNewReport();
         }
         
         function downloadReport(format) {
-            showToast('正在生成' + (format === 'pdf' ? 'PDF' : 'HTML') + '报告...', 'info');
-            setTimeout(() => {
-                showToast((format === 'pdf' ? 'PDF' : 'HTML') + '报告下载已开始', 'success');
-            }, 1500);
+            downloadReportFile('current', format);
         }
         
         // ========== M4系统设置页JS ==========
