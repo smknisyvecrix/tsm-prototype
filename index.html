@@ -3086,7 +3086,108 @@
         .drilldown-body {
             padding: 24px;
         }
-</style>
+
+        /* 审核流程页面样式 */
+        .audit-stats-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            flex-wrap: wrap;
+        }
+
+        .audit-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            min-width: 180px;
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+        }
+
+        .audit-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .audit-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .batch-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--primary-light);
+            color: white;
+            border-radius: var(--radius);
+        }
+
+        .batch-actions .btn {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .batch-info {
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .urgency-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .urgency-indicator.high {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .urgency-indicator.medium {
+            background: rgba(100, 116, 139, 0.1);
+            color: var(--secondary);
+        }
+
+        /* 审核流程页面布局优化 */
+        #page-audit-flow {
+            padding: 24px;
+        }
+
+        #page-audit-flow .card {
+            margin-bottom: 0;
+        }
+
+        #page-audit-flow .filter-bar {
+            margin-bottom: 16px;
+        }
+
+        #page-audit-flow .table th,
+        #page-audit-flow .table td {
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        #page-audit-flow .table td:last-child {
+            white-space: nowrap;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Toast 容器 -->
@@ -4284,8 +4385,8 @@
 
                 <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
                     <button class="btn btn-secondary" onclick="navigateTo('records')">返回列表</button>
-                    <button class="btn btn-danger" onclick="showRejectModal()">❌驳回</button>
-                    <button class="btn btn-success" onclick="showToast('认证申请已通过！', 'success')">✅通过</button>
+                    <button class="btn btn-danger" onclick="showRejectModal()">驳回</button>
+                    <button class="btn btn-success" onclick="showToast('认证申请已通过！', 'success')">通过</button>
                 </div>
             </div>
 
@@ -5067,8 +5168,8 @@
                                         <td>李思远</td>
                                         <td>2026-04-28 14:30</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0428')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0428')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0428')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0428')">驳回</button>
                                             <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
                                         </td>
                                     </tr>
@@ -5084,8 +5185,8 @@
                                         <td>张伟</td>
                                         <td>2026-04-27 16:20</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0427')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0427')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0427')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0427')">驳回</button>
                                             <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
                                         </td>
                                     </tr>
@@ -5101,8 +5202,8 @@
                                         <td>王芳</td>
                                         <td>2026-04-26 11:15</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0426')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0426')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0426')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0426')">驳回</button>
                                             <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
                                         </td>
                                     </tr>
@@ -5118,8 +5219,8 @@
                                         <td>陈静</td>
                                         <td>2026-04-25 09:45</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0425')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0425')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0425')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0425')">驳回</button>
                                             <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
                                         </td>
                                     </tr>
@@ -5135,8 +5236,8 @@
                                         <td>刘强</td>
                                         <td>2026-04-24 14:00</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0424')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0424')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0424')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0424')">驳回</button>
                                             <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
                                         </td>
                                     </tr>
@@ -6687,7 +6788,7 @@
                         </div>
                         <div>
                             <div class="audit-stat-value" style="color:var(--danger);">5</div>
-                            <div class="audit-stat-label">⏳待审核</div>
+                            <div class="audit-stat-label">待审核</div>
                         </div>
                     </div>
                     <div class="audit-stat-item">
@@ -6739,7 +6840,7 @@
                         <label>紧急程度</label>
                         <select class="form-select" style="width:120px;" onchange="filterAuditList()">
                             <option value="">全部</option>
-                            <option value="high">🔴紧急</option>
+                            <option value="high">紧急</option>
                             <option value="medium">普通</option>
                         </select>
                     </div>
@@ -6792,11 +6893,11 @@
                                         <td>智能驾驶算法核心代码</td>
                                         <td><span class="tag tag-blue">技术信息</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="urgency-indicator high">🔴紧急</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
                                         <td>2026-04-28 14:30</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0428')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0428')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0428')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0428')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0426" style="cursor:pointer;">
@@ -6809,8 +6910,8 @@
                                         <td><span class="urgency-indicator medium">普通</span></td>
                                         <td>2026-04-26 16:45</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0426')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0426')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0426')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0426')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0424" style="cursor:pointer;">
@@ -6820,11 +6921,11 @@
                                         <td>年度财务审计报告</td>
                                         <td><span class="tag tag-blue">管理信息</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="urgency-indicator high">🔴紧急</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
                                         <td>2026-04-24 14:00</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0424')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0424')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0424')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0424')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0423" style="cursor:pointer;">
@@ -6837,8 +6938,8 @@
                                         <td><span class="urgency-indicator medium">普通</span></td>
                                         <td>2026-04-23 11:20</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0423')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0423')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0423')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0423')">驳回</button>
                                         </td>
                                     </tr>
                                 </tbody>
