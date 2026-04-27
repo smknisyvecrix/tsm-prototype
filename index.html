@@ -3514,6 +3514,67 @@
             font-weight: 500;
         }
 
+        /* 认证流程页面样式 */
+        #page-cert-flow {
+            padding: 24px;
+        }
+
+        .cert-flow-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+
+        .cert-flow-tab {
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+
+        .cert-flow-tab:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .cert-flow-tab.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .cert-flow-tab.active:hover {
+            background: var(--primary-dark);
+        }
+
+        #cert-apply-section,
+        #cert-list-section,
+        #cert-detail-section {
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        #cert-apply-section .card,
+        #cert-list-section .card {
+            margin-bottom: 0;
+        }
+
+        #cert-list-section .filter-bar {
+            margin-bottom: 16px;
+        }
+
+        #cert-detail-section .detail-header {
+            margin-bottom: 24px;
+        }
+
     </style>
 </head>
 <body>
@@ -9979,6 +10040,7 @@
             });
         }
         </script>
-</main>
+        </div>
+    </main>
 </body>
 </html>
