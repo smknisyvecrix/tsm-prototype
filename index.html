@@ -3634,6 +3634,16 @@
                         </svg>
                         <span>取证申请</span>
                     </div>
+                    <div class="nav-item" data-page="evidence-records">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <line x1="10" y1="9" x2="8" y2="9"/>
+                        </svg>
+                        <span>取证记录</span>
+                    </div>
                 </div>
                 <!-- 审核管理 -->
                 <div class="nav-section">
@@ -4714,6 +4724,277 @@
                     <button class="btn btn-secondary" onclick="navigateTo('records')">返回列表</button>
                     <button class="btn btn-danger" onclick="showRejectModal()">驳回</button>
                     <button class="btn btn-success" onclick="showToast('认证申请已通过！', 'success')">通过</button>
+                </div>
+            </div>
+
+            <!-- 取证记录列表 -->
+            <div class="page" id="page-evidence-records">
+                <div class="filter-bar">
+                    <div class="filter-item">
+                        <label>取证状态</label>
+                        <select class="form-select" style="width:120px;">
+                            <option value="">全部</option>
+                            <option value="processing">进行中</option>
+                            <option value="completed">已完成</option>
+                            <option value="failed">失败</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>取证类型</label>
+                        <select class="form-select" style="width:140px;">
+                            <option value="">全部</option>
+                            <option value="web">网页截图取证</option>
+                            <option value="file">文档保全取证</option>
+                            <option value="api">API接口取证</option>
+                            <option value="code">代码托管取证</option>
+                            <option value="db">数据库取证</option>
+                            <option value="original">原创证明</option>
+                            <option value="timestamp">时间戳认证</option>
+                            <option value="identity">身份认证</option>
+                            <option value="ownership">权属认证</option>
+                            <option value="monitor">侵权监测</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>所属项目</label>
+                        <select class="form-select" style="width:160px;">
+                            <option value="">全部</option>
+                            <option value="1">智能汽车研发项目</option>
+                            <option value="2">新能源电池技术</option>
+                            <option value="3">市场渠道拓展</option>
+                            <option value="4">供应链优化项目</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>日期</label>
+                        <input type="date" class="form-input" style="width:150px;">
+                    </div>
+                    <div class="filter-item" style="flex:1;">
+                        <input type="text" class="form-input" placeholder="搜索记录ID或案件名称..." style="width:100%;">
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-secondary btn-sm">重置</button>
+                        <button class="btn btn-primary btn-sm">查询</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">取证记录</h3>
+                        <button class="btn btn-primary btn-sm" onclick="navigateTo('evidence')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            新建取证
+                        </button>
+                    </div>
+                    <div class="card-body" style="padding:0;">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>记录ID</th>
+                                        <th>案件名称</th>
+                                        <th>取证类型</th>
+                                        <th>取证状态</th>
+                                        <th>证据文件</th>
+                                        <th>申请人</th>
+                                        <th>所属项目</th>
+                                        <th>申请时间</th>
+                                        <th>完成时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0501</td>
+                                        <td>竞品网站侵权证据保全</td>
+                                        <td><span class="tag tag-blue">网页截图取证</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>3个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>李思远</td>
+                                        <td>智能汽车研发项目</td>
+                                        <td>2026-05-01 09:15</td>
+                                        <td>2026-05-01 09:18</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('正在下载证据文件...', 'success')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0430</td>
+                                        <td>源代码权属认证</td>
+                                        <td><span class="tag tag-blue">代码托管取证</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>5个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>张伟</td>
+                                        <td>新能源电池技术</td>
+                                        <td>2026-04-30 14:22</td>
+                                        <td>2026-04-30 14:35</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('正在下载证据文件...', 'success')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0429</td>
+                                        <td>数据库变更追溯</td>
+                                        <td><span class="tag tag-blue">数据库取证</span></td>
+                                        <td><span class="status-badge processing"><span class="status-dot"></span>进行中</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>0个文件</span>
+                                                <span style="color:var(--text-muted);">-</span>
+                                            </div>
+                                        </td>
+                                        <td>王芳</td>
+                                        <td>供应链优化项目</td>
+                                        <td>2026-04-29 16:45</td>
+                                        <td>-</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" disabled>等待完成</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0428</td>
+                                        <td>API接口泄露监测</td>
+                                        <td><span class="tag tag-blue">API接口取证</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>8个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>陈静</td>
+                                        <td>智能汽车研发项目</td>
+                                        <td>2026-04-28 11:30</td>
+                                        <td>2026-04-28 11:42</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('正在下载证据文件...', 'success')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0427</td>
+                                        <td>文档原创性证明</td>
+                                        <td><span class="tag tag-green">原创证明</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>2个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>刘强</td>
+                                        <td>市场渠道拓展</td>
+                                        <td>2026-04-27 10:00</td>
+                                        <td>2026-04-27 10:15</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('正在下载证据文件...', 'success')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0426</td>
+                                        <td>侵权内容时间戳认证</td>
+                                        <td><span class="tag tag-green">时间戳认证</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>4个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>赵敏</td>
+                                        <td>新能源电池技术</td>
+                                        <td>2026-04-26 15:20</td>
+                                        <td>2026-04-26 15:22</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('正在下载证据文件...', 'success')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0425</td>
+                                        <td>用户数据权属认证</td>
+                                        <td><span class="tag tag-green">权属认证</span></td>
+                                        <td><span class="status-badge rejected"><span class="status-dot"></span>失败</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>0个文件</span>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2">
+                                                    <circle cx="12" cy="12" r="10"/>
+                                                    <line x1="15" y1="9" x2="9" y2="15"/>
+                                                    <line x1="9" y1="9" x2="15" y2="15"/>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                        <td>孙磊</td>
+                                        <td>供应链优化项目</td>
+                                        <td>2026-04-25 09:00</td>
+                                        <td>2026-04-25 09:05</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showToast('取证失败，请重新申请', 'error')">重试</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="cursor:pointer;">
+                                        <td>EV-2026-0424</td>
+                                        <td>设计图纸侵权监测</td>
+                                        <td><span class="tag tag-green">侵权监测</span></td>
+                                        <td><span class="status-badge processing"><span class="status-dot"></span>进行中</span></td>
+                                        <td>
+                                            <div style="display:flex;align-items:center;gap:8px;">
+                                                <span>1个文件</span>
+                                                <span style="color:var(--warning);">进行中</span>
+                                            </div>
+                                        </td>
+                                        <td>周杰</td>
+                                        <td>智能汽车研发项目</td>
+                                        <td>2026-04-24 13:30</td>
+                                        <td>-</td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" disabled>等待完成</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination" style="padding:16px 24px;">
+                            <div class="pagination-info">共 248 条记录，第 1/25 页</div>
+                            <div class="pagination-controls">
+                                <button class="pagination-btn" disabled>上一页</button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn">2</button>
+                                <button class="pagination-btn">3</button>
+                                <button class="pagination-btn">4</button>
+                                <button class="pagination-btn">5</button>
+                                <button class="pagination-btn">...</button>
+                                <button class="pagination-btn">25</button>
+                                <button class="pagination-btn">下一页</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -8177,6 +8458,7 @@
             'records': '认证记录',
             'detail': '认证详情',
             'evidence': '取证申请',
+            'evidence-records': '取证记录',
             'audit': '审核工作台',
             'analysis': '数据分析',
             'databoard': '数据看板',
