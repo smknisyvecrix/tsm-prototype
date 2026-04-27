@@ -3575,6 +3575,137 @@
             margin-bottom: 24px;
         }
 
+        /* ========== 证书分类Tab样式 ========== */
+        .cert-category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .cert-tab-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .cert-tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .cert-tab-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .cert-tab-btn .tab-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-tab-btn .tab-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cert-tab-btn .tab-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .cert-tab-btn:not(.active) .tab-count {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        /* 证书类型颜色标签 */
+        .cert-type-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .cert-type-tag.copyright {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .cert-type-tag.trademark {
+            background: rgba(245, 158, 11, 0.1);
+            color: #ca8a04;
+        }
+
+        .cert-type-tag.patent {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .cert-type-tag.notary {
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--secret-green);
+        }
+
+        .cert-type-tag.timestamp {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--info);
+        }
+
+        /* 证书列表统计栏 */
+        .cert-stats-bar {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.02) 100%);
+            border-radius: var(--radius);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .cert-stats-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .cert-stats-item .stats-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .cert-stats-item .stats-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
     </style>
 </head>
 <body>
@@ -4600,17 +4731,11 @@
                             </table>
                         </div>
                         <div class="pagination" style="padding:16px 24px;">
-                            <div class="pagination-info">共 1856 条记录，第 1/186 页</div>
+                            <div class="pagination-info" id="certPaginationInfo">共 12 条记录，第 1/1 页</div>
                             <div class="pagination-controls">
                                 <button class="pagination-btn" disabled>上一页</button>
                                 <button class="pagination-btn active">1</button>
-                                <button class="pagination-btn">2</button>
-                                <button class="pagination-btn">3</button>
-                                <button class="pagination-btn">4</button>
-                                <button class="pagination-btn">5</button>
-                                <button class="pagination-btn">...</button>
-                                <button class="pagination-btn">186</button>
-                                <button class="pagination-btn">下一页</button>
+                                <button class="pagination-btn" disabled>下一页</button>
                             </div>
                         </div>
                     </div>
@@ -5933,19 +6058,19 @@
                 </div>
 
                 <!-- 统计卡片 -->
-                <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;">
+                <div class="stats-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:24px;">
                     <div class="stat-card-new blue hover-lift">
                         <div class="stat-header">
                             <span class="stat-label">证书总数</span>
                         </div>
                         <div class="stat-value-row">
-                            <span class="stat-value">1,856</span>
+                            <span class="stat-value" id="totalCertCount">12</span>
                             <span class="stat-unit">份</span>
                         </div>
                         <div class="stat-compare">
                             <span class="compare-item up">
-                                <span class="compare-icon">↑</span>
-                                本月新增 28 份
+                                <span class="compare-icon">-</span>
+                                测试数据
                             </span>
                         </div>
                     </div>
@@ -5954,12 +6079,12 @@
                             <span class="stat-label">有效证书</span>
                         </div>
                         <div class="stat-value-row">
-                            <span class="stat-value">1,828</span>
+                            <span class="stat-value" id="validCertCount">11</span>
                             <span class="stat-unit">份</span>
                         </div>
                         <div class="stat-compare">
                             <span class="compare-item neutral">
-                                占比 98.5%
+                                占比 91.7%
                             </span>
                         </div>
                     </div>
@@ -5969,7 +6094,7 @@
                             <span class="stat-badge urgent">30天内</span>
                         </div>
                         <div class="stat-value-row">
-                            <span class="stat-value">28</span>
+                            <span class="stat-value">1</span>
                             <span class="stat-unit">份</span>
                         </div>
                         <div class="stat-compare">
@@ -5989,11 +6114,93 @@
                         </div>
                         <div class="stat-compare">
                             <span class="compare-item up">
-                                <span class="compare-icon">✓</span>
+                                <span class="compare-icon">-</span>
                                 无过期证书
                             </span>
                         </div>
                     </div>
+                    <div class="stat-card-new green hover-lift">
+                        <div class="stat-header">
+                            <span class="stat-label">本月新增</span>
+                        </div>
+                        <div class="stat-value-row">
+                            <span class="stat-value">12</span>
+                            <span class="stat-unit">份</span>
+                        </div>
+                        <div class="stat-compare">
+                            <span class="compare-item up">
+                                <span class="compare-icon">-</span>
+                                全部测试数据
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 证书分类Tab -->
+                <div class="cert-category-tabs" id="certCategoryTabs">
+                    <button class="cert-tab-btn active" data-category="all" onclick="switchCertTab('all')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </span>
+                        全部证书
+                        <span class="tab-count" id="count-all">12</span>
+                    </button>
+                    <button class="cert-tab-btn" data-category="copyright" onclick="switchCertTab('copyright')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </span>
+                        版权登记证
+                        <span class="tab-count" id="count-copyright">2</span>
+                    </button>
+                    <button class="cert-tab-btn" data-category="trademark" onclick="switchCertTab('trademark')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                        </span>
+                        商标证
+                        <span class="tab-count" id="count-trademark">2</span>
+                    </button>
+                    <button class="cert-tab-btn" data-category="patent" onclick="switchCertTab('patent')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14,2 14,8 20,8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </span>
+                        专利证书
+                        <span class="tab-count" id="count-patent">2</span>
+                    </button>
+                    <button class="cert-tab-btn" data-category="notary" onclick="switchCertTab('notary')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                            </svg>
+                        </span>
+                        公证书
+                        <span class="tab-count" id="count-notary">2</span>
+                    </button>
+                    <button class="cert-tab-btn" data-category="timestamp" onclick="switchCertTab('timestamp')">
+                        <span class="tab-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                        </span>
+                        可信时间戳认证证书
+                        <span class="tab-count" id="count-timestamp">2</span>
+                    </button>
                 </div>
 
                 <!-- 筛选栏 -->
@@ -6008,36 +6215,31 @@
                         </select>
                     </div>
                     <div class="filter-item">
-                        <label>类型</label>
-                        <select class="form-select" style="width:120px;" id="certTypeFilter" onchange="filterCertificates()">
-                            <option value="">全部</option>
-                            <option value="tech">技术秘密</option>
-                            <option value="business">经营信息</option>
-                            <option value="manage">管理信息</option>
+                        <label>所属项目</label>
+                        <select class="form-select" style="width:140px;" id="certProjectFilter">
+                            <option value="">全部项目</option>
+                            <option value="smartcar">智能汽车研发项目</option>
+                            <option value="ai">AI智能算法项目</option>
+                            <option value="brand">品牌形象建设项目</option>
+                            <option value="legal">法务合规项目</option>
+                            <option value="admin">行政管理项目</option>
                         </select>
                     </div>
                     <div class="filter-item">
-                        <label>密级</label>
-                        <select class="form-select" style="width:120px;" id="certLevelFilter" onchange="filterCertificates()">
-                            <option value="">全部</option>
-                            <option value="core">核心秘密</option>
-                            <option value="important">重要秘密</option>
-                            <option value="general">一般秘密</option>
-                        </select>
-                    </div>
-                    <div class="filter-item">
-                        <label>部门</label>
+                        <label>申请人</label>
                         <select class="form-select" style="width:120px;">
                             <option value="">全部部门</option>
                             <option value="rd">研发部</option>
+                            <option value="design">设计部</option>
                             <option value="market">市场部</option>
-                            <option value="finance">财务部</option>
-                            <option value="hr">人力资源部</option>
-                            <option value="sales">销售部</option>
+                            <option value="brand">品牌部</option>
+                            <option value="legal">法务部</option>
+                            <option value="tech">技术部</option>
+                            <option value="admin">行政部</option>
                         </select>
                     </div>
                     <div class="filter-item" style="flex:1;">
-                        <input type="text" class="form-input" placeholder="搜索证书编号或秘密名称..." style="width:100%;" id="certSearchInput">
+                        <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="width:100%;" id="certSearchInput" oninput="searchCertificates()">
                     </div>
                     <div class="filter-actions">
                         <button class="btn btn-secondary btn-sm" onclick="resetCertFilters()">重置</button>
@@ -6066,101 +6268,172 @@
                                 <thead>
                                     <tr>
                                         <th>证书编号</th>
-                                        <th>秘密名称</th>
-                                        <th>类型</th>
-                                        <th>保密等级</th>
-                                        <th>认证时间</th>
-                                        <th>有效期至</th>
+                                        <th>证书名称</th>
+                                        <th>证书类型</th>
+                                        <th>所属项目</th>
+                                        <th>申请人</th>
+                                        <th>颁发机构</th>
+                                        <th>有效期</th>
                                         <th>状态</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr onclick="navigateTo('certdetail')" style="cursor:pointer;">
-                                        <td>TSM-TSA-2026-0428-001</td>
-                                        <td>智能驾驶算法核心代码</td>
-                                        <td><span class="tag tag-blue">技术秘密</span></td>
-                                        <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td>2026-04-28</td>
+                                <tbody id="certTableBody">
+                                    <!-- 版权登记证 -->
+                                    <tr data-category="copyright" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>CR-2026-001</td>
+                                        <td>智能算法软件V2.0</td>
+                                        <td><span class="cert-type-tag copyright">版权登记证</span></td>
+                                        <td>AI智能算法项目</td>
+                                        <td>研发部</td>
+                                        <td>国家版权局</td>
+                                        <td>2031-04-15</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('CR-2026-001')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('CR-2026-001')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr data-category="copyright" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>CR-2026-002</td>
+                                        <td>产品设计图纸</td>
+                                        <td><span class="cert-type-tag copyright">版权登记证</span></td>
+                                        <td>智能汽车研发项目</td>
+                                        <td>设计部</td>
+                                        <td>国家版权局</td>
+                                        <td>2031-05-20</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('CR-2026-002')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('CR-2026-002')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <!-- 商标证 -->
+                                    <tr data-category="trademark" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>TM-2026-001</td>
+                                        <td>TSM商标</td>
+                                        <td><span class="cert-type-tag trademark">商标证</span></td>
+                                        <td>品牌形象建设项目</td>
+                                        <td>市场部</td>
+                                        <td>国家知识产权局</td>
+                                        <td>2036-03-10</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TM-2026-001')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TM-2026-001')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr data-category="trademark" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>TM-2026-002</td>
+                                        <td>产品Logo</td>
+                                        <td><span class="cert-type-tag trademark">商标证</span></td>
+                                        <td>品牌形象建设项目</td>
+                                        <td>品牌部</td>
+                                        <td>国家知识产权局</td>
+                                        <td>2036-04-18</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TM-2026-002')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TM-2026-002')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <!-- 专利证书 -->
+                                    <tr data-category="patent" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>PT-2026-001</td>
+                                        <td>一种数据加密方法</td>
+                                        <td><span class="cert-type-tag patent">专利证书</span></td>
+                                        <td>AI智能算法项目</td>
+                                        <td>研发部</td>
+                                        <td>国家知识产权局</td>
+                                        <td>2041-02-28</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('PT-2026-001')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('PT-2026-001')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <tr data-category="patent" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>PT-2026-002</td>
+                                        <td>新型结构设计</td>
+                                        <td><span class="cert-type-tag patent">专利证书</span></td>
+                                        <td>智能汽车研发项目</td>
+                                        <td>技术部</td>
+                                        <td>国家知识产权局</td>
+                                        <td>2041-03-15</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('PT-2026-002')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('PT-2026-002')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <!-- 公证书 -->
+                                    <tr data-category="notary" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>NC-2026-001</td>
+                                        <td>源代码公证</td>
+                                        <td><span class="cert-type-tag notary">公证书</span></td>
+                                        <td>法务合规项目</td>
+                                        <td>法务部</td>
+                                        <td>公证处</td>
+                                        <td>2027-01-15</td>
+                                        <td><span class="status-badge pending"><span class="status-dot"></span>即将到期</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('NC-2026-001')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('NC-2026-001')">下载</button>
+                                            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();renewCert('NC-2026-001')">续期</button>
+                                        </td>
+                                    </tr>
+                                    <tr data-category="notary" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>NC-2026-002</td>
+                                        <td>商业秘密保全公证</td>
+                                        <td><span class="cert-type-tag notary">公证书</span></td>
+                                        <td>法务合规项目</td>
+                                        <td>法务部</td>
+                                        <td>公证处</td>
+                                        <td>2028-06-30</td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
+                                        <td>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('NC-2026-002')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('NC-2026-002')">下载</button>
+                                        </td>
+                                    </tr>
+                                    <!-- 可信时间戳认证证书 -->
+                                    <tr data-category="timestamp" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>TSA-2026-001</td>
+                                        <td>合同文档认证</td>
+                                        <td><span class="cert-type-tag timestamp">可信时间戳认证证书</span></td>
+                                        <td>行政管理项目</td>
+                                        <td>行政部</td>
+                                        <td>联合信任时间戳服务中心</td>
                                         <td>2027-04-28</td>
                                         <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
                                         <td>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-TSA-2026-0428-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSM-TSA-2026-0428-001')">下载</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();renewCert('TSM-TSA-2026-0428-001')">续期</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSA-2026-001')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSA-2026-001')">下载</button>
                                         </td>
                                     </tr>
-                                    <tr onclick="navigateTo('certdetail')" style="cursor:pointer;">
-                                        <td>TSM-TSA-2026-0427-001</td>
-                                        <td>供应商价格体系文档</td>
-                                        <td><span class="tag tag-blue">经营信息</span></td>
-                                        <td><span class="tag tag-yellow">重要秘密</span></td>
-                                        <td>2026-04-27</td>
-                                        <td>2026-05-27</td>
-                                        <td><span class="status-badge pending"><span class="status-dot"></span>即将到期</span></td>
-                                        <td>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-TSA-2026-0427-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSM-TSA-2026-0427-001')">下载</button>
-                                            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();renewCert('TSM-TSA-2026-0427-001')">续期</button>
-                                        </td>
-                                    </tr>
-                                    <tr onclick="navigateTo('certdetail')" style="cursor:pointer;">
-                                        <td>TSM-TSA-2026-0424-001</td>
-                                        <td>年度财务审计报告</td>
-                                        <td><span class="tag tag-blue">管理信息</span></td>
-                                        <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td>2026-04-24</td>
-                                        <td>2027-04-24</td>
+                                    <tr data-category="timestamp" onclick="navigateTo('certdetail')" style="cursor:pointer;">
+                                        <td>TSA-2026-002</td>
+                                        <td>创意文档存证</td>
+                                        <td><span class="cert-type-tag timestamp">可信时间戳认证证书</span></td>
+                                        <td>品牌形象建设项目</td>
+                                        <td>市场部</td>
+                                        <td>联合信任时间戳服务中心</td>
+                                        <td>2027-05-10</td>
                                         <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
                                         <td>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-TSA-2026-0424-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSM-TSA-2026-0424-001')">下载</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();renewCert('TSM-TSA-2026-0424-001')">续期</button>
-                                        </td>
-                                    </tr>
-                                    <tr onclick="navigateTo('certdetail')" style="cursor:pointer;">
-                                        <td>TSM-TSA-2026-0423-001</td>
-                                        <td>市场渠道拓展方案</td>
-                                        <td><span class="tag tag-blue">经营信息</span></td>
-                                        <td><span class="tag tag-yellow">重要秘密</span></td>
-                                        <td>2026-04-23</td>
-                                        <td>2027-04-23</td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
-                                        <td>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-TSA-2026-0423-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSM-TSA-2026-0423-001')">下载</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();renewCert('TSM-TSA-2026-0423-001')">续期</button>
-                                        </td>
-                                    </tr>
-                                    <tr onclick="navigateTo('certdetail')" style="cursor:pointer;">
-                                        <td>TSM-TSA-2026-0422-001</td>
-                                        <td>研发人员绩效考核表</td>
-                                        <td><span class="tag tag-blue">管理信息</span></td>
-                                        <td><span class="tag tag-green">一般秘密</span></td>
-                                        <td>2026-04-22</td>
-                                        <td>2027-04-22</td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
-                                        <td>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-TSA-2026-0422-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSM-TSA-2026-0422-001')">下载</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();revokeCert('TSM-TSA-2026-0422-001')">撤销</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSA-2026-002')">查看</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('TSA-2026-002')">下载</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="pagination" style="padding:16px 24px;">
-                            <div class="pagination-info">共 1856 条记录，第 1/186 页</div>
+                            <div class="pagination-info" id="certPaginationInfo">共 12 条记录，第 1/1 页</div>
                             <div class="pagination-controls">
                                 <button class="pagination-btn" disabled>上一页</button>
                                 <button class="pagination-btn active">1</button>
-                                <button class="pagination-btn">2</button>
-                                <button class="pagination-btn">3</button>
-                                <button class="pagination-btn">4</button>
-                                <button class="pagination-btn">5</button>
-                                <button class="pagination-btn">...</button>
-                                <button class="pagination-btn">186</button>
-                                <button class="pagination-btn">下一页</button>
+                                <button class="pagination-btn" disabled>下一页</button>
                             </div>
                         </div>
                     </div>
@@ -6175,7 +6448,7 @@
                         <div style="display:flex;gap:16px;align-items:flex-end;">
                             <div class="form-group" style="flex:1;margin-bottom:0;">
                                 <label class="form-label">输入证书编号或时间戳值</label>
-                                <input type="text" class="form-input" placeholder="例如：TSM-TSA-2026-0428-001" id="verifyInput">
+                                <input type="text" class="form-input" placeholder="例如：CR-2026-001" id="verifyInput">
                             </div>
                             <button class="btn btn-primary" onclick="verifyCertificate()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -9762,25 +10035,124 @@
 
 
 
+        // ========== 证书分类Tab切换 ==========
+        let currentCertTab = 'all';
+        
+        function switchCertTab(category) {
+            currentCertTab = category;
+            
+            // 更新Tab按钮状态
+            const tabs = document.querySelectorAll('.cert-tab-btn');
+            tabs.forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // 筛选表格行
+            const rows = document.querySelectorAll('#certTableBody tr');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const rowCategory = row.dataset.category;
+                if (category === 'all' || rowCategory === category) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // 更新统计信息
+            updateCertStats(category);
+            
+            // 更新分页信息
+            const paginationInfo = document.getElementById('certPaginationInfo');
+            if (paginationInfo) {
+                paginationInfo.textContent = `共 ${visibleCount} 条记录，第 1/1 页`;
+            }
+        }
+        
+        function updateCertStats(category) {
+            const rows = document.querySelectorAll('#certTableBody tr');
+            let total = 0;
+            let valid = 0;
+            let expiring = 0;
+            
+            rows.forEach(row => {
+                const rowCategory = row.dataset.category;
+                if (category === 'all' || rowCategory === category) {
+                    total++;
+                    const statusBadge = row.querySelector('.status-badge');
+                    if (statusBadge) {
+                        if (statusBadge.classList.contains('approved')) {
+                            valid++;
+                        } else if (statusBadge.classList.contains('pending')) {
+                            expiring++;
+                        }
+                    }
+                }
+            });
+            
+            // 更新统计卡片
+            const totalEl = document.getElementById('totalCertCount');
+            const validEl = document.getElementById('validCertCount');
+            
+            if (totalEl) totalEl.textContent = total;
+            if (validEl) validEl.textContent = valid;
+        }
+        
+        function searchCertificates() {
+            const searchInput = document.getElementById('certSearchInput');
+            const searchText = searchInput?.value.toLowerCase() || '';
+            const rows = document.querySelectorAll('#certTableBody tr');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const rowCategory = row.dataset.category;
+                const certId = row.cells[0]?.textContent.toLowerCase() || '';
+                const certName = row.cells[1]?.textContent.toLowerCase() || '';
+                
+                // 根据Tab筛选
+                const tabMatch = currentCertTab === 'all' || rowCategory === currentCertTab;
+                // 根据搜索词筛选
+                const searchMatch = certId.includes(searchText) || certName.includes(searchText);
+                
+                if (tabMatch && searchMatch) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // 更新分页信息
+            const paginationInfo = document.getElementById('certPaginationInfo');
+            if (paginationInfo) {
+                paginationInfo.textContent = `共 ${visibleCount} 条记录，第 1/1 页`;
+            }
+        }
+
         // ========== M3证书管理页JS ==========
         
         function filterCertificates() {
             const status = document.getElementById('certStatusFilter')?.value;
-            const type = document.getElementById('certTypeFilter')?.value;
-            const level = document.getElementById('certLevelFilter')?.value;
+            const project = document.getElementById('certProjectFilter')?.value;
             const search = document.getElementById('certSearchInput')?.value;
             showToast('筛选条件已更新', 'info');
         }
         
         function resetCertFilters() {
             const el1 = document.getElementById('certStatusFilter');
-            const el2 = document.getElementById('certTypeFilter');
-            const el3 = document.getElementById('certLevelFilter');
-            const el4 = document.getElementById('certSearchInput');
+            const el2 = document.getElementById('certProjectFilter');
+            const el3 = document.getElementById('certSearchInput');
             if (el1) el1.value = '';
             if (el2) el2.value = '';
             if (el3) el3.value = '';
-            if (el4) el4.value = '';
+            // 重置Tab到全部
+            switchCertTab('all');
             showToast('筛选条件已重置', 'info');
         }
         
