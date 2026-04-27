@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSM商业秘密保护系统 - 联合信任</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
         :root {
             --primary: #2563eb;
@@ -2279,6 +2280,492 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* ========== 数据看板页面样式 ========== */
+        .dashboard-page {
+            background: var(--bg-primary);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .dashboard-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .dashboard-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-controls select {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 14px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            min-width: 140px;
+        }
+
+        .dashboard-controls select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .dept-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .dept-tag {
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            background: var(--bg-secondary);
+            transition: all 0.2s;
+        }
+
+        .dept-tag:hover {
+            border-color: var(--primary);
+        }
+
+        .dept-tag.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* 统计卡片区域 */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .dashboard-stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+        }
+
+        .dashboard-stat-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .dashboard-stat-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .dashboard-stat-icon.blue {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .dashboard-stat-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .dashboard-stat-icon.yellow {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .dashboard-stat-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .dashboard-stat-info {
+            flex: 1;
+        }
+
+        .dashboard-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .dashboard-stat-change {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dashboard-stat-change.up {
+            color: var(--success);
+        }
+
+        .dashboard-stat-change.down {
+            color: var(--danger);
+        }
+
+        /* 图表区域 */
+        .dashboard-charts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .dashboard-chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .dashboard-chart-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dashboard-chart-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .dashboard-chart-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chart-toggle-btn {
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chart-toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .chart-toggle-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .dashboard-chart-body {
+            padding: 20px;
+        }
+
+        .chart-container-wrapper {
+            width: 100%;
+            height: 320px;
+        }
+
+        .chart-container-wrapper.small {
+            height: 280px;
+        }
+
+        /* 排行榜样式 */
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .ranking-rank {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .ranking-rank.top1 {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .ranking-rank.top2 {
+            background: rgba(100, 116, 139, 0.15);
+            color: #64748b;
+        }
+
+        .ranking-rank.top3 {
+            background: rgba(180, 83, 9, 0.15);
+            color: #b45309;
+        }
+
+        .ranking-rank.normal {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .ranking-info {
+            flex: 1;
+        }
+
+        .ranking-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ranking-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .ranking-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .ranking-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* 待审核任务表格 */
+        .pending-table {
+            width: 100%;
+        }
+
+        .pending-table th,
+        .pending-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .pending-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .pending-table td {
+            font-size: 14px;
+        }
+
+        .pending-table tbody tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .urgent-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .urgent-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--danger);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1400px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-charts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* 饼图图例 */
+        .pie-legend-custom {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .pie-legend-item-custom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+        }
+
+        .pie-legend-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pie-legend-dot-custom {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .pie-legend-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .pie-legend-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* 下钻弹窗 */
+        .drilldown-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drilldown-modal.active {
+            display: flex;
+        }
+
+        .drilldown-content {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .drilldown-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .drilldown-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .drilldown-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drilldown-close:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .drilldown-body {
+            padding: 24px;
+        }
 </style>
 </head>
 <body>
@@ -2359,6 +2846,35 @@
                         <span>认证记录</span>
                     </div>
                 </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">核心流程</div>
+                    <div class="nav-item" data-page="cert-flow" onclick="navigateTo('cert-flow')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        <span>认证流程</span>
+                    </div>
+                    <div class="nav-item" data-page="audit-flow" onclick="navigateTo('audit-flow')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                        <span>审核流程</span>
+                        <span class="nav-badge">5</span>
+                    </div>
+                    <div class="nav-item" data-page="evidence-flow" onclick="navigateTo('evidence-flow')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        <span>取证流程</span>
+                    </div>
+                </div>
+
                 <div class="nav-section">
                     <div class="nav-section-title">电子取证</div>
                     <div class="nav-item" data-page="evidence">
@@ -4250,6 +4766,1280 @@
         </main>
     </div>
 
+    
+            <!-- M2页面1: 认证流程页 -->
+            <div class="page" id="page-cert-flow">
+                <div class="cert-flow-tabs">
+                    <div class="cert-flow-tab active" onclick="switchCertTab(this, 'cert-apply')">认证申请</div>
+                    <div class="cert-flow-tab" onclick="switchCertTab(this, 'cert-list')">我的申请</div>
+                    <div class="cert-flow-tab" onclick="switchCertTab(this, 'cert-detail')">申请详情</div>
+                </div>
+                
+                <!-- 认证申请表单 -->
+                <div id="cert-apply-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">商业秘密认证申请</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="certApplyForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label required">商业秘密名称</label>
+                                        <input type="text" class="form-input" id="certName" placeholder="请输入商业秘密名称" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label required">商业秘密类型</label>
+                                        <select class="form-select" id="certType" required>
+                                            <option value="">请选择类型</option>
+                                            <option value="tech">技术信息</option>
+                                            <option value="business">经营信息</option>
+                                            <option value="other">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label required">所属部门</label>
+                                        <select class="form-select" id="certDept" required>
+                                            <option value="">请选择部门</option>
+                                            <option value="rd">研发部</option>
+                                            <option value="market">市场部</option>
+                                            <option value="finance">财务部</option>
+                                            <option value="hr">人力资源部</option>
+                                            <option value="sales">销售部</option>
+                                            <option value="ops">运营部</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label required">所属项目</label>
+                                        <select class="form-select" id="certProject" required>
+                                            <option value="">请选择项目</option>
+                                            <option value="1">智能汽车研发项目</option>
+                                            <option value="2">新能源电池技术</option>
+                                            <option value="3">市场渠道拓展</option>
+                                            <option value="4">客户管理系统</option>
+                                            <option value="5">供应链优化项目</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label required">保密等级</label>
+                                        <select class="form-select" id="certLevel" required>
+                                            <option value="">请选择保密等级</option>
+                                            <option value="core">核心秘密</option>
+                                            <option value="important">重要秘密</option>
+                                            <option value="general">一般秘密</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label required">保密期限</label>
+                                        <input type="date" class="form-input" id="certDeadline" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label required">描述说明</label>
+                                    <textarea class="form-textarea" id="certDesc" placeholder="请详细描述该商业秘密的内容、价值及保护必要性（至少20字）" required minlength="20" style="min-height:120px;"></textarea>
+                                    <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">已输入 <span id="descCharCount">0</span> 字（至少20字）</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label required">附件上传</label>
+                                    <div class="upload-area" id="certUploadArea">
+                                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            <polyline points="17,8 12,3 7,8"/>
+                                            <line x1="12" y1="3" x2="12" y2="15"/>
+                                        </svg>
+                                        <p class="upload-text">拖拽文件到此处，或 <span style="color:var(--primary);">点击上传</span></p>
+                                        <p class="upload-hint">支持 PDF、Word、Excel、图片等格式，单文件不超过100MB</p>
+                                    </div>
+                                    <div class="file-list" id="certFileList"></div>
+                                </div>
+                                
+                                <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:32px;">
+                                    <button type="button" class="btn btn-secondary" onclick="saveCertDraft()">保存草稿</button>
+                                    <button type="button" class="btn btn-secondary" onclick="switchCertTab(null, 'cert-list')">取消</button>
+                                    <button type="submit" class="btn btn-primary">提交申请</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 我的申请列表 -->
+                <div id="cert-list-section" style="display:none;">
+                    <div class="filter-bar">
+                        <div class="filter-item">
+                            <label>状态</label>
+                            <select class="form-select" style="width:120px;" onchange="filterCertList()">
+                                <option value="">全部</option>
+                                <option value="draft">草稿</option>
+                                <option value="pending">待审核</option>
+                                <option value="processing">审核中</option>
+                                <option value="approved">已认证</option>
+                                <option value="rejected">已驳回</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>保密等级</label>
+                            <select class="form-select" style="width:120px;" onchange="filterCertList()">
+                                <option value="">全部</option>
+                                <option value="core">核心秘密</option>
+                                <option value="important">重要秘密</option>
+                                <option value="general">一般秘密</option>
+                            </select>
+                        </div>
+                        <div class="filter-item" style="flex:1;">
+                            <input type="text" class="form-input" placeholder="搜索商业秘密名称..." style="width:100%;" onkeyup="filterCertList()">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary btn-sm" onclick="switchCertTab(null, 'cert-apply')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                新建申请
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body" style="padding:0;">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>申请编号</th>
+                                            <th>商业秘密名称</th>
+                                            <th>类型</th>
+                                            <th>保密等级</th>
+                                            <th>状态</th>
+                                            <th>申请时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="certListTable">
+                                        <tr class="clickable" onclick="showCertDetail('TSM-2026-0428')">
+                                            <td>TSM-2026-0428</td>
+                                            <td>智能驾驶算法核心代码</td>
+                                            <td><span class="tag tag-blue">技术信息</span></td>
+                                            <td><span class="tag tag-red">核心秘密</span></td>
+                                            <td><span class="status-badge processing"><span class="status-dot"></span>审核中</span></td>
+                                            <td>2026-04-28 14:30</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-2026-0428')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();withdrawCert('TSM-2026-0428')">撤回</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="clickable" onclick="showCertDetail('TSM-2026-0427')">
+                                            <td>TSM-2026-0427</td>
+                                            <td>供应商价格体系文档</td>
+                                            <td><span class="tag tag-blue">经营信息</span></td>
+                                            <td><span class="tag tag-yellow">重要秘密</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>已认证</span></td>
+                                            <td>2026-04-27 10:15</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-2026-0427')">查看</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="clickable" onclick="showCertDetail('TSM-2026-0426')">
+                                            <td>TSM-2026-0426</td>
+                                            <td>客户画像分析报告V3</td>
+                                            <td><span class="tag tag-blue">经营信息</span></td>
+                                            <td><span class="tag tag-green">一般秘密</span></td>
+                                            <td><span class="status-badge pending"><span class="status-dot"></span>待审核</span></td>
+                                            <td>2026-04-26 16:45</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-2026-0426')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();resubmitCert('TSM-2026-0426')">重新提交</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="clickable" onclick="showCertDetail('TSM-2026-0425')">
+                                            <td>TSM-2026-0425</td>
+                                            <td>生产工艺参数文件</td>
+                                            <td><span class="tag tag-blue">技术信息</span></td>
+                                            <td><span class="tag tag-red">核心秘密</span></td>
+                                            <td><span class="status-badge rejected"><span class="status-dot"></span>已驳回</span></td>
+                                            <td>2026-04-25 09:20</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-2026-0425')">查看</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination" style="padding:16px 24px;">
+                                <div class="pagination-info">共 4 条记录</div>
+                                <div class="pagination-controls">
+                                    <button class="pagination-btn" disabled>上一页</button>
+                                    <button class="pagination-btn active">1</button>
+                                    <button class="pagination-btn" disabled>下一页</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 申请详情 -->
+                <div id="cert-detail-section" style="display:none;">
+                    <div class="detail-header">
+                        <div>
+                            <div class="detail-id">申请编号：<span id="detailCertId">TSM-2026-0428</span></div>
+                            <h2 class="detail-title"><span id="detailCertName">智能驾驶算法核心代码</span></h2>
+                            <span class="status-badge processing" id="detailCertStatus"><span class="status-dot"></span>审核中</span>
+                        </div>
+                        <div style="display:flex;gap:12px;">
+                            <button class="btn btn-secondary" onclick="switchCertTab(null, 'cert-list')">返回列表</button>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">基本信息</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <div class="detail-item-label">商业秘密类型</div>
+                                <div class="detail-item-value"><span class="tag tag-blue">技术信息</span></div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item-label">所属部门</div>
+                                <div class="detail-item-value">研发部</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item-label">所属项目</div>
+                                <div class="detail-item-value">智能汽车研发项目</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item-label">保密等级</div>
+                                <div class="detail-item-value"><span class="tag tag-red">核心秘密</span></div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item-label">保密期限</div>
+                                <div class="detail-item-value">2027-04-28</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-item-label">申请时间</div>
+                                <div class="detail-item-value">2026-04-28 14:30:22</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">描述说明</h3>
+                        <div style="padding:16px;background:var(--bg-tertiary);border-radius:var(--radius);line-height:1.8;">
+                            该商业秘密涉及智能驾驶系统的核心算法，包括路径规划、决策控制、感知融合等关键技术模块。算法经过大量实际道路测试验证，具有极高的商业价值和技术领先性，一旦泄露将对公司竞争力造成重大影响。
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">附件文件</h3>
+                        <div class="file-list" style="gap:16px;">
+                            <div class="file-item">
+                                <div class="file-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                    </svg>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">自动驾驶算法核心模块_v2.3.pdf</div>
+                                    <div class="file-size">2.4 MB · PDF文档</div>
+                                </div>
+                                <button class="btn btn-secondary btn-sm">预览</button>
+                                <button class="btn btn-secondary btn-sm">下载</button>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                    </svg>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">传感器融合技术说明.docx</div>
+                                    <div class="file-size">856 KB · Word文档</div>
+                                </div>
+                                <button class="btn btn-secondary btn-sm">预览</button>
+                                <button class="btn btn-secondary btn-sm">下载</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">时间戳证书</h3>
+                        <div class="certificate-box">
+                            <div class="certificate-header">
+                                <div class="certificate-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="certificate-title">联合信任电子证据凭证</div>
+                                    <div class="certificate-subtitle" id="detailCertHash">TSM-TSA-2026-0428-001</div>
+                                </div>
+                            </div>
+                            <div class="certificate-content">
+                                <div class="certificate-item">
+                                    <div class="certificate-item-label">时间戳</div>
+                                    <div class="certificate-item-value">2026-04-28 14:30:25</div>
+                                </div>
+                                <div class="certificate-item">
+                                    <div class="certificate-item-label">证据来源</div>
+                                    <div class="certificate-item-value">用户上传</div>
+                                </div>
+                                <div class="certificate-item">
+                                    <div class="certificate-item-label">哈希算法</div>
+                                    <div class="certificate-item-value">SHA-256</div>
+                                </div>
+                                <div class="certificate-item">
+                                    <div class="certificate-item-label">可信时间源</div>
+                                    <div class="certificate-item-value">国家授时中心</div>
+                                </div>
+                            </div>
+                            <div class="certificate-hash">
+                                文件哈希值：a7f3c8d9e2b4f5a6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">审核记录</h3>
+                        <div class="audit-timeline">
+                            <div class="audit-item">
+                                <div class="audit-header">
+                                    <span class="audit-action">提交申请</span>
+                                    <span class="audit-time">2026-04-28 14:30:22</span>
+                                </div>
+                                <div class="audit-person">申请人：李思远</div>
+                            </div>
+                            <div class="audit-item">
+                                <div class="audit-header">
+                                    <span class="audit-action">材料完整性检测</span>
+                                    <span class="audit-time">2026-04-28 14:30:25</span>
+                                </div>
+                                <div class="audit-person">系统自动处理</div>
+                                <div class="audit-comment">检测通过：文件完整，格式正确</div>
+                            </div>
+                            <div class="audit-item">
+                                <div class="audit-header">
+                                    <span class="audit-action">初审中</span>
+                                    <span class="audit-time">2026-04-28 15:00:00</span>
+                                </div>
+                                <div class="audit-person">审核人：王建国（部门主管）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M2页面2: 审核流程页 -->
+            <div class="page" id="page-audit-flow">
+                <div class="audit-stats-bar">
+                    <div class="audit-stat-item">
+                        <div style="color:var(--danger);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="audit-stat-value" style="color:var(--danger);">5</div>
+                            <div class="audit-stat-label">待审核</div>
+                        </div>
+                    </div>
+                    <div class="audit-stat-item">
+                        <div style="color:var(--warning);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="audit-stat-value">3</div>
+                            <div class="audit-stat-label">审核中</div>
+                        </div>
+                    </div>
+                    <div class="audit-stat-item">
+                        <div style="color:var(--success);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="audit-stat-value">28</div>
+                            <div class="audit-stat-label">本月已审核</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-item">
+                        <label>部门</label>
+                        <select class="form-select" style="width:120px;" onchange="filterAuditList()">
+                            <option value="">全部部门</option>
+                            <option value="rd">研发部</option>
+                            <option value="market">市场部</option>
+                            <option value="finance">财务部</option>
+                            <option value="hr">人力资源部</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>类型</label>
+                        <select class="form-select" style="width:120px;" onchange="filterAuditList()">
+                            <option value="">全部</option>
+                            <option value="tech">技术信息</option>
+                            <option value="business">经营信息</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>紧急程度</label>
+                        <select class="form-select" style="width:120px;" onchange="filterAuditList()">
+                            <option value="">全部</option>
+                            <option value="high">紧急</option>
+                            <option value="medium">普通</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>申请时间</label>
+                        <input type="date" class="form-input" style="width:150px;" onchange="filterAuditList()">
+                    </div>
+                    <div class="filter-item" style="flex:1;">
+                        <input type="text" class="form-input" placeholder="搜索申请人或秘密名称..." style="width:100%;" onkeyup="filterAuditList()">
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-secondary btn-sm">重置</button>
+                    </div>
+                </div>
+                
+                <div class="batch-actions" id="batchActions" style="display:none;">
+                    <div class="batch-info">
+                        已选择 <strong id="selectedCount">0</strong> 项
+                    </div>
+                    <button class="btn btn-success btn-sm" onclick="batchApprove()">批量通过</button>
+                    <button class="btn btn-danger btn-sm" onclick="batchReject()">批量驳回</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">待审核列表</h3>
+                        <button class="btn btn-secondary btn-sm">导出</button>
+                    </div>
+                    <div class="card-body" style="padding:0;">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:40px;"><input type="checkbox" id="selectAllAudit" onchange="toggleSelectAll()"></th>
+                                        <th>申请人</th>
+                                        <th>部门</th>
+                                        <th>秘密名称</th>
+                                        <th>类型</th>
+                                        <th>保密等级</th>
+                                        <th>紧急程度</th>
+                                        <th>申请时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="auditListTable">
+                                    <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0428" style="cursor:pointer;">
+                                        <td><input type="checkbox" onclick="event.stopPropagation();toggleSelect(this)"></td>
+                                        <td>李思远</td>
+                                        <td>研发部</td>
+                                        <td>智能驾驶算法核心代码</td>
+                                        <td><span class="tag tag-blue">技术信息</span></td>
+                                        <td><span class="tag tag-red">核心秘密</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
+                                        <td>2026-04-28 14:30</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0428')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0428')">驳回</button>
+                                        </td>
+                                    </tr>
+                                    <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0426" style="cursor:pointer;">
+                                        <td><input type="checkbox" onclick="event.stopPropagation();toggleSelect(this)"></td>
+                                        <td>王芳</td>
+                                        <td>销售部</td>
+                                        <td>客户画像分析报告V3</td>
+                                        <td><span class="tag tag-blue">经营信息</span></td>
+                                        <td><span class="tag tag-green">一般秘密</span></td>
+                                        <td><span class="urgency-indicator medium">普通</span></td>
+                                        <td>2026-04-26 16:45</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0426')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0426')">驳回</button>
+                                        </td>
+                                    </tr>
+                                    <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0424" style="cursor:pointer;">
+                                        <td><input type="checkbox" onclick="event.stopPropagation();toggleSelect(this)"></td>
+                                        <td>刘强</td>
+                                        <td>财务部</td>
+                                        <td>年度财务审计报告</td>
+                                        <td><span class="tag tag-blue">管理信息</span></td>
+                                        <td><span class="tag tag-red">核心秘密</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
+                                        <td>2026-04-24 14:00</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0424')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0424')">驳回</button>
+                                        </td>
+                                    </tr>
+                                    <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0423" style="cursor:pointer;">
+                                        <td><input type="checkbox" onclick="event.stopPropagation();toggleSelect(this)"></td>
+                                        <td>陈静</td>
+                                        <td>研发部</td>
+                                        <td>生产工艺参数文件</td>
+                                        <td><span class="tag tag-blue">技术信息</span></td>
+                                        <td><span class="tag tag-yellow">重要秘密</span></td>
+                                        <td><span class="urgency-indicator medium">普通</span></td>
+                                        <td>2026-04-23 11:20</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0423')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0423')">驳回</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination" style="padding:16px 24px;">
+                            <div class="pagination-info">共 5 条待审核记录</div>
+                            <div class="pagination-controls">
+                                <button class="pagination-btn" disabled>上一页</button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn" disabled>下一页</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M2页面3: 取证流程页 -->
+            <div class="page" id="page-evidence-flow">
+                <div class="evidence-flow-tabs">
+                    <div class="evidence-flow-tab active" onclick="switchEvidenceTab(this, 'evidence-apply')">取证申请</div>
+                    <div class="evidence-flow-tab" onclick="switchEvidenceTab(this, 'evidence-list')">取证任务</div>
+                    <div class="evidence-flow-tab" onclick="switchEvidenceTab(this, 'evidence-detail')">取证详情</div>
+                </div>
+                
+                <!-- 取证申请表单 -->
+                <div id="evidence-apply-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">电子取证申请</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="evidence-type-cards">
+                                <div class="evidence-type-card selected" onclick="selectEvidenceCard(this, 'web')">
+                                    <div class="evidence-type-card-header">
+                                        <div class="evidence-type-card-icon" style="background:rgba(37,99,235,0.1);color:var(--primary);">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="evidence-type-card-title">网页取证</div>
+                                    </div>
+                                    <div class="evidence-type-card-desc">对指定网页进行证据固化，生成网页快照和源代码</div>
+                                    <div class="evidence-type-card-features">
+                                        <span class="evidence-feature-tag">自动快照</span>
+                                        <span class="evidence-feature-tag">源码记录</span>
+                                        <span class="evidence-feature-tag">时间戳</span>
+                                    </div>
+                                </div>
+                                <div class="evidence-type-card" onclick="selectEvidenceCard(this, 'file')">
+                                    <div class="evidence-type-card-header">
+                                        <div class="evidence-type-card-icon" style="background:rgba(16,185,129,0.1);color:var(--success);">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14,2 14,8 20,8"/>
+                                            </svg>
+                                        </div>
+                                        <div class="evidence-type-card-title">文件取证</div>
+                                    </div>
+                                    <div class="evidence-type-card-desc">对指定文件进行哈希计算，生成文件数字指纹</div>
+                                    <div class="evidence-type-card-features">
+                                        <span class="evidence-feature-tag">哈希计算</span>
+                                        <span class="evidence-feature-tag">完整性校验</span>
+                                        <span class="evidence-feature-tag">批量处理</span>
+                                    </div>
+                                </div>
+                                <div class="evidence-type-card" onclick="selectEvidenceCard(this, 'process')">
+                                    <div class="evidence-type-card-header">
+                                        <div class="evidence-type-card-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                                <line x1="12" y1="17" x2="12" y2="21"/>
+                                            </svg>
+                                        </div>
+                                        <div class="evidence-type-card-title">过程取证</div>
+                                    </div>
+                                    <div class="evidence-type-card-desc">录制操作过程视频，保存关键操作节点</div>
+                                    <div class="evidence-type-card-features">
+                                        <span class="evidence-feature-tag">录屏录制</span>
+                                        <span class="evidence-feature-tag">节点标记</span>
+                                        <span class="evidence-feature-tag">日志记录</span>
+                                    </div>
+                                </div>
+                                <div class="evidence-type-card" onclick="selectEvidenceCard(this, 'download')">
+                                    <div class="evidence-type-card-header">
+                                        <div class="evidence-type-card-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                <polyline points="7,10 12,15 17,10"/>
+                                                <line x1="12" y1="15" x2="12" y2="3"/>
+                                            </svg>
+                                        </div>
+                                        <div class="evidence-type-card-title">下载取证</div>
+                                    </div>
+                                    <div class="evidence-type-card-desc">记录文件下载行为，固化下载源和目标信息</div>
+                                    <div class="evidence-type-card-features">
+                                        <span class="evidence-feature-tag">下载记录</span>
+                                        <span class="evidence-feature-tag">来源追踪</span>
+                                        <span class="evidence-feature-tag">目标固化</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <form id="evidenceApplyForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label required">选择商业秘密</label>
+                                        <select class="form-select" id="evidenceSecret" required>
+                                            <option value="">请选择已认证的商业秘密</option>
+                                            <option value="1">智能驾驶算法核心代码 (TSM-2026-0427)</option>
+                                            <option value="2">供应商价格体系文档 (TSM-2026-0427)</option>
+                                            <option value="3">客户画像分析报告V2 (TSM-2026-0420)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label required">取证类型</label>
+                                        <select class="form-select" id="evidenceTypeSelect" required>
+                                            <option value="web">网页取证</option>
+                                            <option value="file">文件取证</option>
+                                            <option value="process">过程取证</option>
+                                            <option value="download">下载取证</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label required">取证描述</label>
+                                    <textarea class="form-textarea" id="evidenceDesc" placeholder="请描述需要取证的内容、原因及预期目标" required style="min-height:100px;"></textarea>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">取证范围开始日期</label>
+                                        <input type="date" class="form-input" id="evidenceStartDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">取证范围结束日期</label>
+                                        <input type="date" class="form-input" id="evidenceEndDate">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">指定文件（可选）</label>
+                                    <div class="upload-area" id="evidenceUploadArea" style="padding:32px;">
+                                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:48px;height:48px;">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            <polyline points="17,8 12,3 7,8"/>
+                                            <line x1="12" y1="3" x2="12" y2="15"/>
+                                        </svg>
+                                        <p class="upload-text">拖拽文件到此处上传，或 <span style="color:var(--primary);">点击选择</span></p>
+                                        <p class="upload-hint">支持所有常见文件格式</p>
+                                    </div>
+                                    <div class="file-list" id="evidenceFileList"></div>
+                                </div>
+                                
+                                <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:32px;">
+                                    <button type="button" class="btn btn-secondary" onclick="switchEvidenceTab(null, 'evidence-list')">取消</button>
+                                    <button type="submit" class="btn btn-primary">提交取证申请</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 取证任务列表 -->
+                <div id="evidence-list-section" style="display:none;">
+                    <div class="filter-bar">
+                        <div class="filter-item">
+                            <label>状态</label>
+                            <select class="form-select" style="width:120px;" onchange="filterEvidenceList()">
+                                <option value="">全部</option>
+                                <option value="processing">生成中</option>
+                                <option value="completed">已完成</option>
+                                <option value="failed">失败</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>取证类型</label>
+                            <select class="form-select" style="width:120px;" onchange="filterEvidenceList()">
+                                <option value="">全部</option>
+                                <option value="web">网页取证</option>
+                                <option value="file">文件取证</option>
+                                <option value="process">过程取证</option>
+                                <option value="download">下载取证</option>
+                            </select>
+                        </div>
+                        <div class="filter-item" style="flex:1;">
+                            <input type="text" class="form-input" placeholder="搜索任务ID或秘密名称..." style="width:100%;" onkeyup="filterEvidenceList()">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary btn-sm" onclick="switchEvidenceTab(null, 'evidence-apply')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                新建取证
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body" style="padding:0;">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>任务ID</th>
+                                            <th>商业秘密名称</th>
+                                            <th>取证类型</th>
+                                            <th>状态</th>
+                                            <th>申请时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr onclick="showEvidenceDetail('EV-2026-042801')" style="cursor:pointer;">
+                                            <td>EV-2026-042801</td>
+                                            <td>智能驾驶算法核心代码</td>
+                                            <td><span class="tag tag-blue">网页取证</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                            <td>2026-04-28 10:15</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042801')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert()">下载证书</button>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="showEvidenceDetail('EV-2026-042802')" style="cursor:pointer;">
+                                            <td>EV-2026-042802</td>
+                                            <td>供应商价格体系文档</td>
+                                            <td><span class="tag tag-green">文件取证</span></td>
+                                            <td><span class="status-badge processing"><span class="status-dot"></span>生成中</span></td>
+                                            <td>2026-04-28 09:30</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042802')">查看</button>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="showEvidenceDetail('EV-2026-042701')" style="cursor:pointer;">
+                                            <td>EV-2026-042701</td>
+                                            <td>客户画像分析报告V3</td>
+                                            <td><span class="tag tag-yellow">过程取证</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                            <td>2026-04-27 16:20</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042701')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert()">下载证书</button>
+                                            </td>
+                                        </tr>
+                                        <tr onclick="showEvidenceDetail('EV-2026-042601')" style="cursor:pointer;">
+                                            <td>EV-2026-042601</td>
+                                            <td>生产工艺参数文件</td>
+                                            <td><span class="tag tag-blue">下载取证</span></td>
+                                            <td><span class="status-badge rejected"><span class="status-dot"></span>失败</span></td>
+                                            <td>2026-04-26 14:00</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042601')">查看</button>
+                                                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();retryEvidence('EV-2026-042601')">重新取证</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination" style="padding:16px 24px;">
+                                <div class="pagination-info">共 4 条记录</div>
+                                <div class="pagination-controls">
+                                    <button class="pagination-btn" disabled>上一页</button>
+                                    <button class="pagination-btn active">1</button>
+                                    <button class="pagination-btn" disabled>下一页</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 取证详情/出证页 -->
+                <div id="evidence-detail-section" style="display:none;">
+                    <div class="detail-header">
+                        <div>
+                            <div class="detail-id">取证任务ID：<span id="evidenceTaskId">EV-2026-042801</span></div>
+                            <h2 class="detail-title">智能驾驶算法核心代码 - <span id="evidenceTypeName">网页取证</span></h2>
+                            <span class="status-badge approved" id="evidenceStatus"><span class="status-dot"></span>已完成</span>
+                        </div>
+                        <div style="display:flex;gap:12px;">
+                            <button class="btn btn-secondary" onclick="switchEvidenceTab(null, 'evidence-list')">返回列表</button>
+                            <button class="btn btn-primary" onclick="downloadCert()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                下载证书
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 取证进度 -->
+                    <div class="status-flow">
+                        <div class="status-flow-item completed">
+                            <div class="status-flow-circle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20,6 9,17 4,12"/>
+                                </svg>
+                            </div>
+                            <div class="status-flow-label">提交申请</div>
+                        </div>
+                        <div class="status-flow-item completed">
+                            <div class="status-flow-circle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20,6 9,17 4,12"/>
+                                </svg>
+                            </div>
+                            <div class="status-flow-label">系统检测</div>
+                        </div>
+                        <div class="status-flow-item completed">
+                            <div class="status-flow-circle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20,6 9,17 4,12"/>
+                                </svg>
+                            </div>
+                            <div class="status-flow-label">证据固化</div>
+                        </div>
+                        <div class="status-flow-item completed">
+                            <div class="status-flow-circle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20,6 9,17 4,12"/>
+                                </svg>
+                            </div>
+                            <div class="status-flow-label">生成证书</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">取证任务信息</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-item-label">关联商业秘密</div>
+                                    <div class="detail-item-value">智能驾驶算法核心代码 (TSM-2026-0427)</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-item-label">取证类型</div>
+                                    <div class="detail-item-value"><span class="tag tag-blue">网页取证</span></div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-item-label">申请时间</div>
+                                    <div class="detail-item-value">2026-04-28 10:15:22</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-item-label">完成时间</div>
+                                    <div class="detail-item-value">2026-04-28 10:18:35</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-item-label">取证范围</div>
+                                    <div class="detail-item-value">2026-04-01 至 2026-04-28</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-item-label">处理时长</div>
+                                    <div class="detail-item-value">3分13秒</div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top:24px;">
+                                <h4 style="font-size:14px;font-weight:600;margin-bottom:12px;">取证描述</h4>
+                                <div style="padding:16px;background:var(--bg-tertiary);border-radius:var(--radius);line-height:1.8;">
+                                    对智能驾驶算法核心代码相关的技术文档进行网页取证，固化相关技术博客、论文引用及开源代码仓库页面的历史版本。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top:24px;">
+                        <div class="card-header">
+                            <h3 class="card-title">证据文件列表</h3>
+                            <button class="btn btn-secondary btn-sm" onclick="downloadEvidencePackage()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                下载证据包
+                            </button>
+                        </div>
+                        <div class="card-body" style="padding:0;">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>文件名称</th>
+                                            <th>类型</th>
+                                            <th>大小</th>
+                                            <th>哈希值</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>网页快照_github_20260428.html</td>
+                                            <td>HTML</td>
+                                            <td>2.4 MB</td>
+                                            <td style="font-family:monospace;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;">a7f3c8d9e2b4...</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm">预览</button>
+                                                <button class="btn btn-secondary btn-sm">下载</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>网页源码_github_20260428.txt</td>
+                                            <td>TXT</td>
+                                            <td>856 KB</td>
+                                            <td style="font-family:monospace;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;">b8c4d5e6f7a8...</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm">预览</button>
+                                                <button class="btn btn-secondary btn-sm">下载</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>证据固化日志.json</td>
+                                            <td>JSON</td>
+                                            <td>24 KB</td>
+                                            <td style="font-family:monospace;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;">c9d0e1f2a3b4...</td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm">预览</button>
+                                                <button class="btn btn-secondary btn-sm">下载</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 可信时间戳证书 -->
+                    <div class="evidence-certificate">
+                        <div class="evidence-cert-header">
+                            <div class="evidence-cert-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="evidence-cert-title">联合信任电子证据凭证</div>
+                                <div class="evidence-cert-subtitle">TSA-2026-042801-001</div>
+                            </div>
+                        </div>
+                        <div class="evidence-cert-body">
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">可信时间戳</div>
+                                <div class="evidence-cert-item-value">2026-04-28 10:16:45</div>
+                            </div>
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">证据来源</div>
+                                <div class="evidence-cert-item-value">网页取证</div>
+                            </div>
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">哈希算法</div>
+                                <div class="evidence-cert-item-value">SHA-256</div>
+                            </div>
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">可信时间源</div>
+                                <div class="evidence-cert-item-value">国家授时中心</div>
+                            </div>
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">证书有效期</div>
+                                <div class="evidence-cert-item-value">2026-04-28 至 2036-04-28</div>
+                            </div>
+                            <div class="evidence-cert-item">
+                                <div class="evidence-cert-item-label">TSA服务器</div>
+                                <div class="evidence-cert-item-value">tsa.unitrust.cn</div>
+                            </div>
+                            <div class="evidence-cert-hash">
+                                <div style="font-size:11px;color:var(--text-secondary);margin-bottom:4px;">证据包哈希值：</div>
+                                a7f3c8d9e2b4f5a6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 数据看板页面 -->
+    <div class="page" id="page-analysis">
+        <div class="dashboard-page">
+            <!-- 页面标题和筛选控件 -->
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">数据看板</h2>
+                <div class="dashboard-controls">
+                    <select id="dashboardTimeRange" onchange="updateDashboardData()">
+                        <option value="month">本月</option>
+                        <option value="quarter">本季度</option>
+                        <option value="year">本年</option>
+                        <option value="custom">自定义</option>
+                    </select>
+                    <div class="dept-filter" id="deptFilter">
+                        <span class="dept-tag active" data-dept="all">全部部门</span>
+                        <span class="dept-tag" data-dept="rd">研发部</span>
+                        <span class="dept-tag" data-dept="market">市场部</span>
+                        <span class="dept-tag" data-dept="finance">财务部</span>
+                        <span class="dept-tag" data-dept="hr">人力资源部</span>
+                        <span class="dept-tag" data-dept="sales">销售部</span>
+                        <span class="dept-tag" data-dept="ops">运营部</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 统计概览卡片 -->
+            <div class="dashboard-stats">
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <path d="M9 15l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="dashboard-stat-info">
+                        <div class="dashboard-stat-label">本月认证总数</div>
+                        <div class="dashboard-stat-value" id="statCertTotal">256</div>
+                        <div class="dashboard-stat-change up">
+                            <span>↑</span> 12% vs上月
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="dashboard-stat-info">
+                        <div class="dashboard-stat-label">本月取证总数</div>
+                        <div class="dashboard-stat-value" id="statEvidenceTotal">48</div>
+                        <div class="dashboard-stat-change up">
+                            <span>↑</span> 18% vs上月
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon yellow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                            <path d="M9 16l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="dashboard-stat-info">
+                        <div class="dashboard-stat-label">证书有效总数</div>
+                        <div class="dashboard-stat-value" id="statValidCert">1,856</div>
+                        <div class="dashboard-stat-change up">
+                            <span>↑</span> 98.5% 有效率
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon red">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <div class="dashboard-stat-info">
+                        <div class="dashboard-stat-label">待审核任务</div>
+                        <div class="dashboard-stat-value" id="statPending">12</div>
+                        <div class="dashboard-stat-change down">
+                            <span class="urgent-tag" style="padding:2px 6px;font-size:11px;">紧急 3 个</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第一行图表：柱状图 + 折线图 -->
+            <div class="dashboard-charts">
+                <div class="dashboard-chart-card">
+                    <div class="dashboard-chart-header">
+                        <h3 class="dashboard-chart-title">各部门认证/取证数量对比</h3>
+                        <div class="dashboard-chart-actions">
+                            <button class="chart-toggle-btn active" onclick="toggleBarChart('all')">全部</button>
+                            <button class="chart-toggle-btn" onclick="toggleBarChart('cert')">仅认证</button>
+                            <button class="chart-toggle-btn" onclick="toggleBarChart('evidence')">仅取证</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-chart-body">
+                        <div class="chart-container-wrapper" id="barChart"></div>
+                    </div>
+                </div>
+                <div class="dashboard-chart-card">
+                    <div class="dashboard-chart-header">
+                        <h3 class="dashboard-chart-title">月度趋势走势</h3>
+                        <div class="dashboard-chart-actions">
+                            <button class="chart-toggle-btn active" onclick="toggleLineChart('all')">全部</button>
+                            <button class="chart-toggle-btn" onclick="toggleLineChart('cert')">仅认证</button>
+                            <button class="chart-toggle-btn" onclick="toggleLineChart('evidence')">仅取证</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-chart-body">
+                        <div class="chart-container-wrapper" id="lineChart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二行图表：饼图 + 排行榜 -->
+            <div class="dashboard-charts">
+                <div class="dashboard-chart-card">
+                    <div class="dashboard-chart-header">
+                        <h3 class="dashboard-chart-title">证书状态分布</h3>
+                    </div>
+                    <div class="dashboard-chart-body" style="display:flex;gap:20px;">
+                        <div class="chart-container-wrapper small" id="pieChart" style="flex:0 0 50%;"></div>
+                        <div class="pie-legend-custom" style="flex:1;">
+                            <div class="pie-legend-item-custom">
+                                <div class="pie-legend-left">
+                                    <span class="pie-legend-dot-custom" style="background:#10b981;"></span>
+                                    <span class="pie-legend-label">有效</span>
+                                </div>
+                                <span class="pie-legend-value" id="pieValid">1,828</span>
+                            </div>
+                            <div class="pie-legend-item-custom">
+                                <div class="pie-legend-left">
+                                    <span class="pie-legend-dot-custom" style="background:#f59e0b;"></span>
+                                    <span class="pie-legend-label">即将到期（30天内）</span>
+                                </div>
+                                <span class="pie-legend-value" id="pieExpiring">28</span>
+                            </div>
+                            <div class="pie-legend-item-custom">
+                                <div class="pie-legend-left">
+                                    <span class="pie-legend-dot-custom" style="background:#ef4444;"></span>
+                                    <span class="pie-legend-label">已过期</span>
+                                </div>
+                                <span class="pie-legend-value" id="pieExpired">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-chart-card">
+                    <div class="dashboard-chart-header">
+                        <h3 class="dashboard-chart-title">项目存证量排行 TOP 10</h3>
+                    </div>
+                    <div class="dashboard-chart-body">
+                        <div class="ranking-list" id="rankingList">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 待审核任务分布 -->
+            <div class="dashboard-chart-card">
+                <div class="dashboard-chart-header">
+                    <h3 class="dashboard-chart-title">待审核任务分布</h3>
+                    <button class="btn btn-primary btn-sm" onclick="navigateTo('audit')">查看全部</button>
+                </div>
+                <div class="dashboard-chart-body" style="padding:0;">
+                    <table class="pending-table">
+                        <thead>
+                            <tr>
+                                <th>申请编号</th>
+                                <th>申请标题</th>
+                                <th>所属部门</th>
+                                <th>密级</th>
+                                <th>申请人</th>
+                                <th>申请时间</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingTableBody">
+                            <tr>
+                                <td>TSM-2026-0428</td>
+                                <td>智能驾驶算法核心代码</td>
+                                <td>研发部</td>
+                                <td><span class="tag tag-red">核心秘密</span></td>
+                                <td>李思远</td>
+                                <td>2026-04-28 14:30</td>
+                                <td><span class="urgent-tag">紧急</span></td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0427</td>
+                                <td>供应商价格体系文档</td>
+                                <td>市场部</td>
+                                <td><span class="tag tag-yellow">重要秘密</span></td>
+                                <td>张伟</td>
+                                <td>2026-04-27 16:20</td>
+                                <td><span class="urgent-tag">紧急</span></td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0426</td>
+                                <td>客户画像分析报告V3</td>
+                                <td>销售部</td>
+                                <td><span class="tag tag-green">一般秘密</span></td>
+                                <td>王芳</td>
+                                <td>2026-04-26 11:15</td>
+                                <td>普通</td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0425</td>
+                                <td>生产工艺参数文件</td>
+                                <td>研发部</td>
+                                <td><span class="tag tag-red">核心秘密</span></td>
+                                <td>陈静</td>
+                                <td>2026-04-25 09:45</td>
+                                <td><span class="urgent-tag">紧急</span></td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0424</td>
+                                <td>年度财务审计报告</td>
+                                <td>财务部</td>
+                                <td><span class="tag tag-red">核心秘密</span></td>
+                                <td>刘强</td>
+                                <td>2026-04-24 14:00</td>
+                                <td>普通</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部门下钻弹窗 -->
+    <div class="drilldown-modal" id="drilldownModal">
+        <div class="drilldown-content">
+            <div class="drilldown-header">
+                <h3 class="drilldown-title" id="drilldownTitle">部门详情</h3>
+                <button class="drilldown-close" onclick="closeDrilldown()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="drilldown-body" id="drilldownBody">
+                <!-- 动态内容 -->
+            </div>
+        </div>
+    </div>
+
     <!-- 驳回原因 Modal -->
     <div class="modal-overlay" id="rejectModal">
         <div class="modal">
@@ -4452,6 +6242,9 @@
             'evidence': '取证申请',
             'audit': '审核管理',
             'analysis': '数据看板',
+            'cert-flow': '认证流程',
+            'audit-flow': '审核流程',
+            'evidence-flow': '取证流程',
             'settings': '系统设置'
         };
 
@@ -4831,6 +6624,830 @@
             event.target.classList.remove('btn-secondary');
             event.target.classList.add('btn-primary');
         }
+
+        // ========== 数据看板相关代码 ==========
+        
+        // ECharts图表实例
+        let barChart, lineChart, pieChart;
+        let currentBarType = 'all';
+        let currentLineType = 'all';
+        
+        // 模拟数据
+        const mockData = {
+            // 部门认证数据
+            deptCert: {
+                labels: ['研发部', '市场部', '财务部', '人力资源部', '销售部', '运营部'],
+                cert: [86, 52, 38, 28, 32, 20],
+                evidence: [18, 12, 8, 5, 3, 2]
+            },
+            // 月度趋势数据（近12个月）
+            monthlyTrend: {
+                labels: ['2025年5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', '2026年1月', '2月', '3月', '4月'],
+                cert: [180, 195, 210, 188, 220, 235, 248, 260, 245, 230, 242, 256],
+                evidence: [32, 38, 42, 35, 45, 48, 52, 55, 50, 45, 46, 48]
+            },
+            // 证书状态分布
+            certStatus: {
+                valid: 1828,
+                expiring: 28,
+                expired: 0
+            },
+            // 项目存证量排行
+            projectRanking: [
+                { name: '智能汽车研发项目', count: 486, level: 'core' },
+                { name: '新能源电池技术', count: 365, level: 'core' },
+                { name: '市场渠道拓展', count: 298, level: 'important' },
+                { name: '客户管理系统', count: 245, level: 'general' },
+                { name: '供应链优化项目', count: 198, level: 'important' },
+                { name: '生产工艺升级', count: 156, level: 'core' },
+                { name: '人力资源系统', count: 124, level: 'general' },
+                { name: '财务共享中心', count: 98, level: 'important' },
+                { name: '数据中心建设', count: 76, level: 'core' },
+                { name: '物流仓储优化', count: 52, level: 'general' }
+            ]
+        };
+
+        // 页面标题映射更新
+        pageTitles['analysis'] = '数据看板';
+
+        // 初始化数据看板
+        function initDashboard() {
+            initBarChart();
+            initLineChart();
+            initPieChart();
+            initRankingList();
+            initDeptFilter();
+        }
+
+        // 初始化柱状图
+        function initBarChart() {
+            const chartDom = document.getElementById('barChart');
+            if (!chartDom) return;
+            
+            barChart = echarts.init(chartDom);
+            updateBarChart();
+            
+            // 点击事件 - 下钻
+            barChart.on('click', function(params) {
+                if (params.componentType === 'series') {
+                    const deptIndex = params.dataIndex;
+                    const deptName = mockData.deptCert.labels[deptIndex];
+                    showDeptDrilldown(deptName);
+                }
+            });
+        }
+
+        // 更新柱状图
+        function updateBarChart() {
+            if (!barChart) return;
+            
+            const certData = currentBarType === 'evidence' ? [] : mockData.deptCert.cert;
+            const evidenceData = currentBarType === 'cert' ? [] : mockData.deptCert.evidence;
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'shadow' },
+                    formatter: function(params) {
+                        let result = params[0].axisValue + '<br/>';
+                        params.forEach(p => {
+                            if (p.value > 0) {
+                                result += p.marker + p.seriesName + ': ' + p.value + '件<br/>';
+                            }
+                        });
+                        return result;
+                    }
+                },
+                legend: {
+                    data: currentBarType === 'all' ? ['认证数量', '取证数量'] : [currentBarType === 'cert' ? '认证数量' : '取证数量'],
+                    bottom: 0
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '15%',
+                    top: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: mockData.deptCert.labels,
+                    axisLabel: { rotate: 0, fontSize: 12 }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '数量（件）',
+                    nameTextStyle: { fontSize: 12 }
+                },
+                series: [
+                    {
+                        name: '认证数量',
+                        type: 'bar',
+                        data: certData,
+                        itemStyle: { color: '#2563eb' },
+                        barWidth: '30%',
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    },
+                    {
+                        name: '取证数量',
+                        type: 'bar',
+                        data: evidenceData,
+                        itemStyle: { color: '#10b981' },
+                        barWidth: '30%',
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            
+            barChart.setOption(option);
+        }
+
+        // 切换柱状图类型
+        function toggleBarChart(type) {
+            currentBarType = type;
+            document.querySelectorAll('#barChart').closest('.dashboard-chart-card').querySelectorAll('.chart-toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (type === 'all' ? '全部' : type === 'cert' ? '仅认证' : '仅取证')) {
+                    btn.classList.add('active');
+                }
+            });
+            updateBarChart();
+        }
+
+        // 初始化折线图
+        function initLineChart() {
+            const chartDom = document.getElementById('lineChart');
+            if (!chartDom) return;
+            
+            lineChart = echarts.init(chartDom);
+            updateLineChart();
+        }
+
+        // 更新折线图
+        function updateLineChart() {
+            if (!lineChart) return;
+            
+            const certData = currentLineType === 'evidence' ? [] : mockData.monthlyTrend.cert;
+            const evidenceData = currentLineType === 'cert' ? [] : mockData.monthlyTrend.evidence;
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'cross' },
+                    formatter: function(params) {
+                        let result = params[0].axisValue + '<br/>';
+                        params.forEach(p => {
+                            if (p.value > 0) {
+                                result += p.marker + p.seriesName + ': ' + p.value + '件<br/>';
+                            }
+                        });
+                        return result;
+                    }
+                },
+                legend: {
+                    data: currentLineType === 'all' ? ['认证量', '取证量'] : [currentLineType === 'cert' ? '认证量' : '取证量'],
+                    bottom: 0
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '15%',
+                    top: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: mockData.monthlyTrend.labels,
+                    axisLabel: { rotate: 30, fontSize: 11 }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '数量（件）',
+                    nameTextStyle: { fontSize: 12 }
+                },
+                series: [
+                    {
+                        name: '认证量',
+                        type: 'line',
+                        data: certData,
+                        smooth: true,
+                        itemStyle: { color: '#2563eb' },
+                        lineStyle: { width: 3 },
+                        areaStyle: currentLineType !== 'evidence' ? {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(37, 99, 235, 0.3)' },
+                                { offset: 1, color: 'rgba(37, 99, 235, 0.05)' }
+                            ])
+                        } : null,
+                        emphasis: { focus: 'series' }
+                    },
+                    {
+                        name: '取证量',
+                        type: 'line',
+                        data: evidenceData,
+                        smooth: true,
+                        itemStyle: { color: '#10b981' },
+                        lineStyle: { width: 3 },
+                        areaStyle: currentLineType !== 'cert' ? {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(16, 185, 129, 0.3)' },
+                                { offset: 1, color: 'rgba(16, 185, 129, 0.05)' }
+                            ])
+                        } : null,
+                        emphasis: { focus: 'series' }
+                    }
+                ]
+            };
+            
+            lineChart.setOption(option);
+        }
+
+        // 切换折线图类型
+        function toggleLineChart(type) {
+            currentLineType = type;
+            document.querySelectorAll('#lineChart').closest('.dashboard-chart-card').querySelectorAll('.chart-toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (type === 'all' ? '全部' : type === 'cert' ? '仅认证' : '仅取证')) {
+                    btn.classList.add('active');
+                }
+            });
+            updateLineChart();
+        }
+
+        // 初始化饼图
+        function initPieChart() {
+            const chartDom = document.getElementById('pieChart');
+            if (!chartDom) return;
+            
+            pieChart = echarts.init(chartDom);
+            updatePieChart();
+        }
+
+        // 更新饼图
+        function updatePieChart() {
+            if (!pieChart) return;
+            
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}: {c} ({d}%)'
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: ['50%', '80%'],
+                        center: ['50%', '50%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            show: true,
+                            position: 'outside',
+                            formatter: '{d}%',
+                            fontSize: 12
+                        },
+                        labelLine: {
+                            show: true,
+                            length: 10,
+                            length2: 15
+                        },
+                        data: [
+                            {
+                                value: mockData.certStatus.valid,
+                                name: '有效',
+                                itemStyle: { color: '#10b981' }
+                            },
+                            {
+                                value: mockData.certStatus.expiring,
+                                name: '即将到期',
+                                itemStyle: { color: '#f59e0b' }
+                            },
+                            {
+                                value: mockData.certStatus.expired,
+                                name: '已过期',
+                                itemStyle: { color: '#ef4444' }
+                            }
+                        ]
+                    }
+                ]
+            };
+            
+            pieChart.setOption(option);
+        }
+
+        // 初始化排行榜
+        function initRankingList() {
+            const rankingList = document.getElementById('rankingList');
+            if (!rankingList) return;
+            
+            const maxCount = mockData.projectRanking[0].count;
+            
+            let html = '';
+            mockData.projectRanking.forEach((project, index) => {
+                const rankClass = index === 0 ? 'top1' : index === 1 ? 'top2' : index === 2 ? 'top3' : 'normal';
+                const barWidth = (project.count / maxCount * 100).toFixed(1);
+                const barColor = project.level === 'core' ? '#dc2626' : project.level === 'important' ? '#f59e0b' : '#10b981';
+                const levelTag = project.level === 'core' ? '<span class="tag tag-red" style="font-size:10px;padding:1px 4px;">核心</span>' : 
+                                 project.level === 'important' ? '<span class="tag tag-yellow" style="font-size:10px;padding:1px 4px;">重要</span>' : 
+                                 '<span class="tag tag-green" style="font-size:10px;padding:1px 4px;">一般</span>';
+                
+                html += `
+                    <div class="ranking-item">
+                        <div class="ranking-rank ${rankClass}">${index + 1}</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">
+                                ${project.name}
+                                ${levelTag}
+                            </div>
+                            <div class="ranking-bar-container">
+                                <div class="ranking-bar" style="width:${barWidth}%;background:${barColor};"></div>
+                            </div>
+                        </div>
+                        <div class="ranking-value">${project.count} 件</div>
+                    </div>
+                `;
+            });
+            
+            rankingList.innerHTML = html;
+        }
+
+        // 初始化部门筛选
+        function initDeptFilter() {
+            const deptFilter = document.getElementById('deptFilter');
+            if (!deptFilter) return;
+            
+            deptFilter.querySelectorAll('.dept-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    deptFilter.querySelectorAll('.dept-tag').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    updateDashboardData();
+                });
+            });
+        }
+
+        // 更新看板数据（根据筛选条件）
+        function updateDashboardData() {
+            const timeRange = document.getElementById('dashboardTimeRange').value;
+            const activeDept = document.querySelector('.dept-tag.active')?.dataset.dept || 'all';
+            
+            // 模拟数据更新
+            const multipliers = {
+                'month': { cert: 1, evidence: 1, valid: 1 },
+                'quarter': { cert: 3, evidence: 2.8, valid: 3 },
+                'year': { cert: 12, evidence: 10.5, valid: 12 },
+                'custom': { cert: 1, evidence: 1, valid: 1 }
+            };
+            
+            const multi = multipliers[timeRange] || multipliers['month'];
+            
+            // 更新统计数据
+            document.getElementById('statCertTotal').textContent = Math.round(256 * multi.cert);
+            document.getElementById('statEvidenceTotal').textContent = Math.round(48 * multi.evidence);
+            document.getElementById('statValidCert').textContent = (1856 * multi.valid).toLocaleString();
+            
+            // 更新图表
+            if (barChart) updateBarChart();
+            if (lineChart) updateLineChart();
+            if (pieChart) updatePieChart();
+            
+            // 更新排行榜图例
+            if (activeDept !== 'all') {
+                // 模拟部门筛选后的数据
+                showToast('已筛选 ' + getDeptName(activeDept) + ' 数据', 'info');
+            }
+        }
+
+        // 获取部门名称
+        function getDeptName(deptCode) {
+            const names = {
+                'rd': '研发部',
+                'market': '市场部',
+                'finance': '财务部',
+                'hr': '人力资源部',
+                'sales': '销售部',
+                'ops': '运营部'
+            };
+            return names[deptCode] || deptCode;
+        }
+
+        // 显示部门下钻弹窗
+        function showDeptDrilldown(deptName) {
+            const modal = document.getElementById('drilldownModal');
+            const title = document.getElementById('drilldownTitle');
+            const body = document.getElementById('drilldownBody');
+            
+            title.textContent = deptName + ' - 详细数据';
+            
+            // 模拟详细数据
+            body.innerHTML = `
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;">
+                    <div style="background:var(--bg-tertiary);padding:20px;border-radius:var(--radius);text-align:center;">
+                        <div style="font-size:24px;font-weight:700;color:var(--primary);">86</div>
+                        <div style="font-size:13px;color:var(--text-secondary);">本月认证数</div>
+                    </div>
+                    <div style="background:var(--bg-tertiary);padding:20px;border-radius:var(--radius);text-align:center;">
+                        <div style="font-size:24px;font-weight:700;color:var(--success);">18</div>
+                        <div style="font-size:13px;color:var(--text-secondary);">本月取证数</div>
+                    </div>
+                    <div style="background:var(--bg-tertiary);padding:20px;border-radius:var(--radius);text-align:center;">
+                        <div style="font-size:24px;font-weight:700;color:var(--warning);">3</div>
+                        <div style="font-size:13px;color:var(--text-secondary);">待审核数</div>
+                    </div>
+                </div>
+                <div style="margin-bottom:24px;">
+                    <h4 style="font-size:14px;font-weight:600;margin-bottom:12px;">认证类型分布</h4>
+                    <div style="display:flex;gap:16px;">
+                        <div style="flex:1;background:var(--bg-tertiary);padding:16px;border-radius:var(--radius);">
+                            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">技术秘密</div>
+                            <div style="font-size:20px;font-weight:600;">45 件</div>
+                        </div>
+                        <div style="flex:1;background:var(--bg-tertiary);padding:16px;border-radius:var(--radius);">
+                            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">经营信息</div>
+                            <div style="font-size:20px;font-weight:600;">28 件</div>
+                        </div>
+                        <div style="flex:1;background:var(--bg-tertiary);padding:16px;border-radius:var(--radius);">
+                            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;">管理信息</div>
+                            <div style="font-size:20px;font-weight:600;">13 件</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size:14px;font-weight:600;margin-bottom:12px;">最近认证记录</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>申请编号</th>
+                                <th>标题</th>
+                                <th>类型</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TSM-2026-0428</td>
+                                <td>智能驾驶算法核心代码</td>
+                                <td><span class="tag tag-blue">技术秘密</span></td>
+                                <td><span class="status-badge pending"><span class="status-dot"></span>待审核</span></td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0425</td>
+                                <td>生产工艺参数文件</td>
+                                <td><span class="tag tag-blue">技术秘密</span></td>
+                                <td><span class="status-badge processing"><span class="status-dot"></span>认证中</span></td>
+                            </tr>
+                            <tr>
+                                <td>TSM-2026-0422</td>
+                                <td>研发人员绩效考核表</td>
+                                <td><span class="tag tag-blue">管理信息</span></td>
+                                <td><span class="status-badge approved"><span class="status-dot"></span>已认证</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // 关闭下钻弹窗
+        function closeDrilldown() {
+            document.getElementById('drilldownModal').classList.remove('active');
+        }
+
+        // 点击弹窗背景关闭
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('drilldownModal');
+            if (e.target === modal) {
+                closeDrilldown();
+            }
+        });
+
+        // 监听页面切换，初始化图表
+        const originalNavigateTo = navigateTo;
+        navigateTo = function(page) {
+            originalNavigateTo(page);
+            if (page === 'analysis') {
+                setTimeout(() => {
+                    initDashboard();
+                    // 响应窗口大小变化
+                    window.addEventListener('resize', function() {
+                        if (barChart) barChart.resize();
+                        if (lineChart) lineChart.resize();
+                        if (pieChart) pieChart.resize();
+                    });
+                }, 100);
+            }
+        };
+
+        
+        // ========== M2核心流程页面JS ==========
+        
+        // M2页面1: 认证流程页
+        function switchCertTab(tabEl, section) {
+            // 更新标签状态
+            document.querySelectorAll('.cert-flow-tab').forEach(t => t.classList.remove('active'));
+            if (tabEl) tabEl.classList.add('active');
+            
+            // 切换内容
+            document.getElementById('cert-apply-section').style.display = section === 'cert-apply' ? 'block' : 'none';
+            document.getElementById('cert-list-section').style.display = section === 'cert-list' ? 'block' : 'none';
+            document.getElementById('cert-detail-section').style.display = section === 'cert-detail' ? 'block' : 'none';
+        }
+        
+        // 描述字数统计
+        document.getElementById('certDesc')?.addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('descCharCount').textContent = count;
+            if (count < 20) {
+                document.getElementById('descCharCount').style.color = 'var(--danger)';
+            } else {
+                document.getElementById('descCharCount').style.color = 'var(--success)';
+            }
+        });
+        
+        // 保存草稿
+        function saveCertDraft() {
+            showToast('草稿已保存', 'success');
+        }
+        
+        // 认证申请表单提交
+        document.getElementById('certApplyForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const desc = document.getElementById('certDesc').value;
+            if (desc.length < 20) {
+                showToast('描述说明至少需要20字', 'warning');
+                return;
+            }
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showToast('认证申请提交成功！', 'success');
+                switchCertTab(null, 'cert-list');
+            }, 1000);
+        });
+        
+        // 筛选认证列表
+        function filterCertList() {
+            showToast('列表已筛选', 'info');
+        }
+        
+        // 显示认证详情
+        function showCertDetail(id) {
+            document.getElementById('detailCertId').textContent = id;
+            switchCertTab(null, 'cert-detail');
+        }
+        
+        function viewCertDetail(id) {
+            showCertDetail(id);
+        }
+        
+        function withdrawCert(id) {
+            if (confirm('确定要撤回该申请吗？')) {
+                showToast('申请已撤回', 'info');
+            }
+        }
+        
+        function resubmitCert(id) {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showToast('申请已重新提交', 'success');
+            }, 500);
+        }
+        
+        // 认证文件上传
+        const certUploadArea = document.getElementById('certUploadArea');
+        if (certUploadArea) {
+            certUploadArea.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.multiple = true;
+                input.accept = '.pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip';
+                input.onchange = (e) => {
+                    const fileList = document.getElementById('certFileList');
+                    Array.from(e.target.files).forEach(file => {
+                        const item = document.createElement('div');
+                        item.className = 'file-item';
+                        item.innerHTML = `
+                            <div class="file-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                            </div>
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${(file.size / 1024).toFixed(1)} KB</div>
+                            </div>
+                            <button class="file-remove" onclick="this.parentElement.remove()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </button>
+                        `;
+                        fileList.appendChild(item);
+                    });
+                };
+                input.click();
+            });
+            
+            certUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                certUploadArea.classList.add('dragover');
+            });
+            certUploadArea.addEventListener('dragleave', () => {
+                certUploadArea.classList.remove('dragover');
+            });
+            certUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                certUploadArea.classList.remove('dragover');
+                const fileList = document.getElementById('certFileList');
+                Array.from(e.dataTransfer.files).forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = 'file-item';
+                    item.innerHTML = `
+                        <div class="file-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${(file.size / 1024).toFixed(1)} KB</div>
+                        </div>
+                        <button class="file-remove" onclick="this.parentElement.remove()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    `;
+                    fileList.appendChild(item);
+                });
+            });
+        }
+        
+        // M2页面2: 审核流程页
+        let selectedItems = [];
+        
+        function filterAuditList() {
+            showToast('列表已筛选', 'info');
+        }
+        
+        function showAuditDetail(row) {
+            const id = row.dataset.id;
+            showToast('查看审核详情: ' + id, 'info');
+        }
+        
+        function toggleSelectAll() {
+            const checked = document.getElementById('selectAllAudit').checked;
+            const checkboxes = document.querySelectorAll('#auditListTable input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = checked);
+            updateBatchActions();
+        }
+        
+        function toggleSelect(cb) {
+            updateBatchActions();
+        }
+        
+        function updateBatchActions() {
+            const checked = document.querySelectorAll('#auditListTable input[type="checkbox"]:checked');
+            const count = checked.length;
+            document.getElementById('selectedCount').textContent = count;
+            document.getElementById('batchActions').style.display = count > 0 ? 'flex' : 'none';
+        }
+        
+        function auditAction(action, id) {
+            if (action === 'approve') {
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    showToast('申请 ' + id + ' 已通过', 'success');
+                }, 500);
+            } else if (action === 'reject') {
+                document.getElementById('rejectModal').dataset.targetId = id;
+                showRejectModal();
+            }
+        }
+        
+        function batchApprove() {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showToast('已批量通过 ' + selectedItems.length + ' 项申请', 'success');
+                document.getElementById('batchActions').style.display = 'none';
+            }, 500);
+        }
+        
+        function batchReject() {
+            showToast('请逐条驳回并填写原因', 'info');
+        }
+        
+        // M2页面3: 取证流程页
+        function switchEvidenceTab(tabEl, section) {
+            document.querySelectorAll('.evidence-flow-tab').forEach(t => t.classList.remove('active'));
+            if (tabEl) tabEl.classList.add('active');
+            
+            document.getElementById('evidence-apply-section').style.display = section === 'evidence-apply' ? 'block' : 'none';
+            document.getElementById('evidence-list-section').style.display = section === 'evidence-list' ? 'block' : 'none';
+            document.getElementById('evidence-detail-section').style.display = section === 'evidence-detail' ? 'block' : 'none';
+        }
+        
+        function selectEvidenceCard(card, type) {
+            document.querySelectorAll('.evidence-type-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            document.getElementById('evidenceTypeSelect').value = type;
+        }
+        
+        function filterEvidenceList() {
+            showToast('列表已筛选', 'info');
+        }
+        
+        function showEvidenceDetail(id) {
+            document.getElementById('evidenceTaskId').textContent = id;
+            switchEvidenceTab(null, 'evidence-detail');
+        }
+        
+        function downloadCert() {
+            showToast('正在生成并下载证书...', 'info');
+            setTimeout(() => {
+                showToast('证书下载成功', 'success');
+            }, 1500);
+        }
+        
+        function downloadEvidencePackage() {
+            showToast('正在打包下载证据包...', 'info');
+            setTimeout(() => {
+                showToast('证据包下载成功', 'success');
+            }, 1500);
+        }
+        
+        function retryEvidence(id) {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showToast('取证任务已重新提交', 'success');
+            }, 1000);
+        }
+        
+        // 取证申请表单提交
+        document.getElementById('evidenceApplyForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showToast('取证申请已提交，请等待系统处理', 'success');
+                switchEvidenceTab(null, 'evidence-list');
+            }, 1000);
+        });
+        
+        // 取证文件上传
+        const evidenceUploadArea = document.getElementById('evidenceUploadArea');
+        if (evidenceUploadArea) {
+            evidenceUploadArea.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.multiple = true;
+                input.onchange = (e) => {
+                    const fileList = document.getElementById('evidenceFileList');
+                    Array.from(e.target.files).forEach(file => {
+                        const item = document.createElement('div');
+                        item.className = 'file-item';
+                        item.innerHTML = `
+                            <div class="file-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                            </div>
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${(file.size / 1024).toFixed(1)} KB</div>
+                            </div>
+                            <button class="file-remove" onclick="this.parentElement.remove()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </button>
+                        `;
+                        fileList.appendChild(item);
+                    });
+                };
+                input.click();
+            });
+        }
+
     </script>
 </body>
 </html>
