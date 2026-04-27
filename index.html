@@ -4270,17 +4270,29 @@
         /* 报告预览模态框 */
         .modal-lg {
             max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .modal-body {
-            max-height: 70vh;
+        .modal-lg .modal-body {
+            max-height: calc(90vh - 130px);
             overflow-y: auto;
+            flex: 1;
         }
 
         /* 生成报告的样式 */
         .generated-report {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
             color: #1e293b;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .generated-report * {
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .report-header-section {
@@ -10713,6 +10725,7 @@
         
         // ECharts图表实例
         let barChart, lineChart, pieChart;
+        let currentPage = 'dashboard';
         let currentBarType = 'all';
         let currentLineType = 'all';
         
@@ -11238,7 +11251,25 @@
         // 监听页面切换，初始化图表
         const originalNavigateTo = navigateTo;
         navigateTo = function(page) {
+            // 离开数据看板页面时清理图表实例
+            if (currentPage === 'databoard' || currentPage === 'dashboard') {
+                if (barChart) {
+                    barChart.dispose();
+                    barChart = null;
+                }
+                if (lineChart) {
+                    lineChart.dispose();
+                    lineChart = null;
+                }
+                if (pieChart) {
+                    pieChart.dispose();
+                    pieChart = null;
+                }
+            }
+            
             originalNavigateTo(page);
+            currentPage = page;
+            
             if (page === 'databoard' || page === 'dashboard') {
                 setTimeout(() => {
                     initDashboard();
