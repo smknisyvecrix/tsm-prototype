@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSM商业秘密保护系统 - 联合信任</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js">
+        // 导航事件委托：给所有nav-item绑定点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            var sidebar = document.querySelector('.sidebar-nav');
+            if (sidebar) {
+                sidebar.addEventListener('click', function(e) {
+                    var navItem = e.target.closest('.nav-item');
+                    if (navItem && navItem.dataset.page) {
+                        navigateTo(navItem.dataset.page);
+                    }
+                });
+            }
+        });
+    </script>
     <style>
         :root {
             --primary: #2563eb;
@@ -2898,7 +2911,7 @@
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">数据分析</div>
-                    <div class="nav-item" data-page="analysis">
+                    <div class="nav-item" data-page="databoard">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="20" x2="18" y2="10"/>
                             <line x1="12" y1="20" x2="12" y2="4"/>
@@ -2971,7 +2984,7 @@
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">数据分析</div>
-                    <div class="nav-item" data-page="analysis">
+                    <div class="nav-item" data-page="databoard">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="20" x2="18" y2="10"/>
                             <line x1="12" y1="20" x2="12" y2="4"/>
@@ -4121,7 +4134,7 @@
             </div>
 
             <!-- 数据看板 -->
-            <div class="page" id="page-analysis">
+            <div class="page" id="page-dashboard-old">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
                     <div>
                         <h2 style="font-size:24px;font-weight:600;margin-bottom:8px;">数据看板</h2>
@@ -7025,7 +7038,7 @@
 
 
             <!-- 数据看板页面 -->
-    <div class="page" id="page-analysis">
+    <div class="page" id="page-databoard">
         <div class="dashboard-page">
             <!-- 页面标题和筛选控件 -->
             <div class="dashboard-header">
@@ -7442,37 +7455,7 @@
             }, 1000);
         }
 
-        // 导航函数（扩展支持新页面）
-        function navigateTo(page) {
-            // 关闭下拉菜单
-            const dropdown = document.getElementById('userDropdown');
-            if (dropdown) dropdown.classList.remove('show');
-            
-            // 调用原有导航逻辑
-            switch(page) {
-                case 'profile':
-                    showToast('个人中心页面开发中', 'info');
-                    break;
-                case 'settings':
-                    showToast('系统设置页面开发中', 'info');
-                    break;
-                case 'certificates':
-                    showToast('证书查询页面开发中', 'info');
-                    break;
-                case 'help':
-                    showToast('帮助文档页面开发中', 'info');
-                    break;
-                default:
-                    // 调用原有的navigateTo逻辑
-                    if (typeof originalNavigateTo === 'function') {
-                        originalNavigateTo(page);
-                    } else if (document.getElementById('page-' + page)) {
-                        showPage('page-' + page);
-                        updateNavActive(page);
-                        window.scrollTo(0, 0);
-                    }
-            }
-        }
+        // 第一个navigateTo已移除，由第二个统一处理
 
 
         // 页面标题映射
@@ -7482,12 +7465,19 @@
             'records': '认证记录',
             'detail': '认证详情',
             'evidence': '取证申请',
-            'audit': '审核管理',
-            'analysis': '数据看板',
+            'audit': '审核工作台',
+            'analysis': '数据分析',
+            'databoard': '数据看板',
+            'certificates': '证书列表',
+            'certdetail': '证书详情',
+            'report': '报告生成',
             'cert-flow': '认证流程',
             'audit-flow': '审核流程',
             'evidence-flow': '取证流程',
-            'settings': '系统设置'
+            'settings': '系统设置',
+            'systemsettings': '系统管理',
+            'profile': '个人中心',
+            'help': '帮助中心'
         };
 
         // 数据类型选项（根据行业联动）
@@ -8882,6 +8872,19 @@
             showToast('通知设置已保存', 'success');
         }
 
+    
+        // 导航事件委托：给所有nav-item绑定点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            var sidebar = document.querySelector('.sidebar-nav');
+            if (sidebar) {
+                sidebar.addEventListener('click', function(e) {
+                    var navItem = e.target.closest('.nav-item');
+                    if (navItem && navItem.dataset.page) {
+                        navigateTo(navItem.dataset.page);
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
