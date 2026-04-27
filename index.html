@@ -4,20 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSM商业秘密保护系统 - 联合信任</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js">
-        // 导航事件委托：给所有nav-item绑定点击事件
-        document.addEventListener('DOMContentLoaded', function() {
-            var sidebar = document.querySelector('.sidebar-nav');
-            if (sidebar) {
-                sidebar.addEventListener('click', function(e) {
-                    var navItem = e.target.closest('.nav-item');
-                    if (navItem && navItem.dataset.page) {
-                        navigateTo(navItem.dataset.page);
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
         :root {
             --primary: #2563eb;
@@ -3164,7 +3151,7 @@
                             <path d="M9 11l3 3L22 4"/>
                             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
                         </svg>
-                        <span>⏳待审核</span>
+                        <span>待审核</span>
                         <span class="nav-badge">5</span>
                     </div>
                 </div>
@@ -3440,7 +3427,7 @@
                     <!-- 待审核 -->
                     <div class="stat-card-new yellow hover-lift">
                         <div class="stat-header">
-                            <span class="stat-label">⏳待审核</span>
+                            <span class="stat-label">待审核</span>
                             <span class="stat-badge urgent">紧急 3 个</span>
                         </div>
                         <div class="stat-value-row">
@@ -3671,7 +3658,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">🔴紧急</span>3 条认证申请待审核</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">紧急</span>3 条认证申请待审核</div>
                                         <div style="font-size:12px;color:var(--text-muted);">涉及核心秘密数据</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -3686,7 +3673,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">⚠️提醒</span>2 份证书即将过期</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">提醒</span>2 份证书即将过期</div>
                                         <div style="font-size:12px;color:var(--text-muted);">请及时续期</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -3702,7 +3689,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳待传</span>1 份文件待上传</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">待传</span>1 份文件待上传</div>
                                         <div style="font-size:12px;color:var(--text-muted);">智能驾驶算法项目</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -3717,7 +3704,7 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳进行中</span>网页取证任务进行中</div>
+                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">进行中</span>网页取证任务进行中</div>
                                         <div style="font-size:12px;color:var(--text-muted);">预计剩余 15 分钟</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
@@ -3951,9 +3938,9 @@
                         <label>状态</label>
                         <select class="form-select" style="width:120px;">
                             <option value="">全部</option>
-                            <option value="processing">⏳认证中</option>
-                            <option value="approved">✅认证成功</option>
-                            <option value="failed">❌认证失败</option>
+                            <option value="processing">认证中</option>
+                            <option value="approved">认证成功</option>
+                            <option value="failed">认证失败</option>
                         </select>
                     </div>
                     <div class="filter-item">
@@ -4035,7 +4022,7 @@
                                         <td><span class="tag tag-gray">PLM</span></td>
                                         <td><span class="tag tag-blue">技术秘密</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="status-badge processing"><span class="status-dot"></span>⏳认证中</span></td>
+                                        <td><span class="status-badge processing"><span class="status-dot"></span>认证中</span></td>
                                         <td>-</td>
                                         <td>李思远</td>
                                         <td>2026-04-28 14:30</td>
@@ -4047,7 +4034,7 @@
                                         <td><span class="tag tag-gray">ERP</span></td>
                                         <td><span class="tag tag-blue">经营信息</span></td>
                                         <td><span class="tag tag-yellow">重要秘密</span></td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>✅认证成功</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>认证成功</span></td>
                                         <td>2026-04-27 10:35</td>
                                         <td>张伟</td>
                                         <td>2026-04-27 10:15</td>
@@ -4059,7 +4046,7 @@
                                         <td><span class="tag tag-gray">OA</span></td>
                                         <td><span class="tag tag-blue">经营信息</span></td>
                                         <td><span class="tag tag-green">一般秘密</span></td>
-                                        <td><span class="status-badge processing"><span class="status-dot"></span>⏳认证中</span></td>
+                                        <td><span class="status-badge processing"><span class="status-dot"></span>认证中</span></td>
                                         <td>-</td>
                                         <td>王芳</td>
                                         <td>2026-04-26 16:45</td>
@@ -4071,7 +4058,7 @@
                                         <td><span class="tag tag-gray">MES</span></td>
                                         <td><span class="tag tag-blue">技术秘密</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="status-badge rejected"><span class="status-dot"></span>❌认证失败</span></td>
+                                        <td><span class="status-badge rejected"><span class="status-dot"></span>认证失败</span></td>
                                         <td>2026-04-25 09:35</td>
                                         <td>陈静</td>
                                         <td>2026-04-25 09:20</td>
@@ -4083,7 +4070,7 @@
                                         <td><span class="tag tag-gray">财务系统</span></td>
                                         <td><span class="tag tag-blue">管理信息</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>✅认证成功</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>认证成功</span></td>
                                         <td>2026-04-24 11:25</td>
                                         <td>刘强</td>
                                         <td>2026-04-24 11:00</td>
@@ -4095,7 +4082,7 @@
                                         <td><span class="tag tag-gray">OA</span></td>
                                         <td><span class="tag tag-blue">经营信息</span></td>
                                         <td><span class="tag tag-yellow">重要秘密</span></td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>✅认证成功</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>认证成功</span></td>
                                         <td>2026-04-23 14:55</td>
                                         <td>赵敏</td>
                                         <td>2026-04-23 14:30</td>
@@ -4107,7 +4094,7 @@
                                         <td><span class="tag tag-gray">HR系统</span></td>
                                         <td><span class="tag tag-blue">管理信息</span></td>
                                         <td><span class="tag tag-green">一般秘密</span></td>
-                                        <td><span class="status-badge approved"><span class="status-dot"></span>✅认证成功</span></td>
+                                        <td><span class="status-badge approved"><span class="status-dot"></span>认证成功</span></td>
                                         <td>2026-04-22 16:20</td>
                                         <td>孙磊</td>
                                         <td>2026-04-22 16:00</td>
@@ -4140,7 +4127,7 @@
                     <div>
                         <div class="detail-id">申请编号：TSM-2026-0428</div>
                         <h2 class="detail-title">智能驾驶算法核心代码</h2>
-                        <span class="status-badge pending"><span class="status-dot"></span>⏳待审核</span>
+                        <span class="status-badge pending"><span class="status-dot"></span>待审核</span>
                     </div>
                     <div style="display:flex;gap:12px;">
                         <button class="btn btn-secondary" onclick="navigateTo('records')">返回列表</button>
@@ -4230,7 +4217,7 @@
                         </div>
                         <div class="detail-item">
                             <div class="detail-item-label">认证状态</div>
-                            <div class="detail-item-value"><span class="status-badge processing"><span class="status-dot"></span>⏳认证中</span></div>
+                            <div class="detail-item-value"><span class="status-badge processing"><span class="status-dot"></span>认证中</span></div>
                         </div>
                         <div class="detail-item">
                             <div class="detail-item-label">存证数量</div>
@@ -4300,8 +4287,8 @@
 
                 <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
                     <button class="btn btn-secondary" onclick="navigateTo('records')">返回列表</button>
-                    <button class="btn btn-danger" onclick="showRejectModal()">❌驳回</button>
-                    <button class="btn btn-success" onclick="showToast('认证申请已通过！', 'success')">✅通过</button>
+                    <button class="btn btn-danger" onclick="showRejectModal()">驳回</button>
+                    <button class="btn btn-success" onclick="showToast('认证申请已通过！', 'success')">通过</button>
                 </div>
             </div>
 
@@ -4480,7 +4467,7 @@
                             </svg>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">⏳待审核</div>
+                            <div class="stat-label">待审核</div>
                             <div class="stat-value">24</div>
                             <div class="stat-change down">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -4695,7 +4682,7 @@
                                             <td>张明华</td>
                                             <td>信息技术部</td>
                                             <td><span class="tag tag-red">系统管理员</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>2026-04-28 14:30</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
@@ -4707,11 +4694,11 @@
                                             <td>李思远</td>
                                             <td>研发部</td>
                                             <td><span class="tag tag-blue">部门管理员</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>2026-04-28 10:15</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -4719,11 +4706,11 @@
                                             <td>张伟</td>
                                             <td>市场部</td>
                                             <td><span class="tag tag-gray">普通用户</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>2026-04-27 16:45</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -4731,11 +4718,11 @@
                                             <td>王芳</td>
                                             <td>财务部</td>
                                             <td><span class="tag tag-gray">普通用户</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>2026-04-27 09:30</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -4743,11 +4730,11 @@
                                             <td>陈静</td>
                                             <td>人力资源部</td>
                                             <td><span class="tag tag-yellow">审计员</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>2026-04-26 17:20</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr style="color:var(--text-muted);">
@@ -4755,11 +4742,11 @@
                                             <td>刘强</td>
                                             <td>销售部</td>
                                             <td><span class="tag tag-gray">普通用户</span></td>
-                                            <td><span class="status-badge rejected"><span class="status-dot"></span>❌禁用</span></td>
+                                            <td><span class="status-badge rejected"><span class="status-dot"></span>禁用</span></td>
                                             <td>2026-04-20 11:00</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-primary btn-sm">✅启用</button>
+                                                <button class="btn btn-primary btn-sm">启用</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -5083,9 +5070,9 @@
                                         <td>李思远</td>
                                         <td>2026-04-28 14:30</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0428')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0428')">❌驳回</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0428')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0428')">驳回</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">详情</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -5100,9 +5087,9 @@
                                         <td>张伟</td>
                                         <td>2026-04-27 16:20</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0427')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0427')">❌驳回</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0427')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0427')">驳回</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">详情</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -5117,9 +5104,9 @@
                                         <td>王芳</td>
                                         <td>2026-04-26 11:15</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0426')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0426')">❌驳回</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0426')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0426')">驳回</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">详情</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -5134,9 +5121,9 @@
                                         <td>陈静</td>
                                         <td>2026-04-25 09:45</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0425')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0425')">❌驳回</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0425')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0425')">驳回</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">详情</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -5151,9 +5138,9 @@
                                         <td>刘强</td>
                                         <td>2026-04-24 14:00</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0424')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0424')">❌驳回</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">📋详情</button>
+                                            <button class="btn btn-success btn-sm" onclick="handleAudit('approve', 'TSM-2026-0424')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="handleAudit('reject', 'TSM-2026-0424')">驳回</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('detail')">详情</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -5170,8 +5157,7 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
 
             <!-- 证书列表页 -->
             <div class="page" id="page-certificates">
@@ -5568,14 +5554,14 @@
                                     <td>EV-2026-0428-001</td>
                                     <td>网页取证</td>
                                     <td>2026-04-28 14:25:10</td>
-                                    <td><span class="status-badge approved"><span class="status-dot"></span>✅已完成</span></td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
                                     <td><button class="btn btn-secondary btn-sm">查看详情</button></td>
                                 </tr>
                                 <tr>
                                     <td>EV-2026-0425-002</td>
                                     <td>文件存证</td>
                                     <td>2026-04-25 10:30:00</td>
-                                    <td><span class="status-badge approved"><span class="status-dot"></span>✅已完成</span></td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
                                     <td><button class="btn btn-secondary btn-sm">查看详情</button></td>
                                 </tr>
                             </tbody>
@@ -6060,10 +6046,10 @@
                                             <td>信息技术部</td>
                                             <td><span class="tag tag-red">管理员</span></td>
                                             <td>35</td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6071,10 +6057,10 @@
                                             <td>研发部</td>
                                             <td><span class="tag tag-blue">审核员</span></td>
                                             <td>48</td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6082,10 +6068,10 @@
                                             <td>市场部</td>
                                             <td><span class="tag tag-gray">普通员工</span></td>
                                             <td>22</td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6093,10 +6079,10 @@
                                             <td>财务部</td>
                                             <td><span class="tag tag-gray">普通员工</span></td>
                                             <td>18</td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6104,10 +6090,10 @@
                                             <td>人力资源部</td>
                                             <td><span class="tag tag-blue">审核员</span></td>
                                             <td>12</td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅启用</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>启用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-secondary btn-sm">❌禁用</button>
+                                                <button class="btn btn-secondary btn-sm">禁用</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6115,10 +6101,10 @@
                                             <td>销售部</td>
                                             <td><span class="tag tag-gray">普通员工</span></td>
                                             <td>15</td>
-                                            <td><span class="status-badge rejected"><span class="status-dot"></span>❌禁用</span></td>
+                                            <td><span class="status-badge rejected"><span class="status-dot"></span>禁用</span></td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm">编辑</button>
-                                                <button class="btn btn-primary btn-sm">✅启用</button>
+                                                <button class="btn btn-primary btn-sm">启用</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -6436,7 +6422,7 @@
                             <select class="form-select" style="width:120px;" onchange="filterCertList()">
                                 <option value="">全部</option>
                                 <option value="draft">草稿</option>
-                                <option value="pending">⏳待审核</option>
+                                <option value="pending">待审核</option>
                                 <option value="processing">审核中</option>
                                 <option value="approved">已认证</option>
                                 <option value="rejected">已驳回</option>
@@ -6508,7 +6494,7 @@
                                             <td>客户画像分析报告V3</td>
                                             <td><span class="tag tag-blue">经营信息</span></td>
                                             <td><span class="tag tag-green">一般秘密</span></td>
-                                            <td><span class="status-badge pending"><span class="status-dot"></span>⏳待审核</span></td>
+                                            <td><span class="status-badge pending"><span class="status-dot"></span>待审核</span></td>
                                             <td>2026-04-26 16:45</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('TSM-2026-0426')">查看</button>
@@ -6705,7 +6691,7 @@
                         </div>
                         <div>
                             <div class="audit-stat-value" style="color:var(--danger);">5</div>
-                            <div class="audit-stat-label">⏳待审核</div>
+                            <div class="audit-stat-label">待审核</div>
                         </div>
                     </div>
                     <div class="audit-stat-item">
@@ -6757,7 +6743,7 @@
                         <label>紧急程度</label>
                         <select class="form-select" style="width:120px;" onchange="filterAuditList()">
                             <option value="">全部</option>
-                            <option value="high">🔴紧急</option>
+                            <option value="high">紧急</option>
                             <option value="medium">普通</option>
                         </select>
                     </div>
@@ -6810,11 +6796,11 @@
                                         <td>智能驾驶算法核心代码</td>
                                         <td><span class="tag tag-blue">技术信息</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="urgency-indicator high">🔴紧急</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
                                         <td>2026-04-28 14:30</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0428')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0428')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0428')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0428')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0426" style="cursor:pointer;">
@@ -6827,8 +6813,8 @@
                                         <td><span class="urgency-indicator medium">普通</span></td>
                                         <td>2026-04-26 16:45</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0426')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0426')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0426')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0426')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0424" style="cursor:pointer;">
@@ -6838,11 +6824,11 @@
                                         <td>年度财务审计报告</td>
                                         <td><span class="tag tag-blue">管理信息</span></td>
                                         <td><span class="tag tag-red">核心秘密</span></td>
-                                        <td><span class="urgency-indicator high">🔴紧急</span></td>
+                                        <td><span class="urgency-indicator high">紧急</span></td>
                                         <td>2026-04-24 14:00</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0424')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0424')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0424')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0424')">驳回</button>
                                         </td>
                                     </tr>
                                     <tr onclick="showAuditDetail(this)" data-id="TSM-2026-0423" style="cursor:pointer;">
@@ -6855,8 +6841,8 @@
                                         <td><span class="urgency-indicator medium">普通</span></td>
                                         <td>2026-04-23 11:20</td>
                                         <td>
-                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0423')">✅通过</button>
-                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0423')">❌驳回</button>
+                                            <button class="btn btn-success btn-sm" onclick="event.stopPropagation();auditAction('approve', 'TSM-2026-0423')">通过</button>
+                                            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();auditAction('reject', 'TSM-2026-0423')">驳回</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -7032,7 +7018,7 @@
                             <select class="form-select" style="width:120px;" onchange="filterEvidenceList()">
                                 <option value="">全部</option>
                                 <option value="processing">生成中</option>
-                                <option value="completed">✅已完成</option>
+                                <option value="completed">已完成</option>
                                 <option value="failed">失败</option>
                             </select>
                         </div>
@@ -7078,7 +7064,7 @@
                                             <td>EV-2026-042801</td>
                                             <td>智能驾驶算法核心代码</td>
                                             <td><span class="tag tag-blue">网页取证</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅已完成</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
                                             <td>2026-04-28 10:15</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042801')">查看</button>
@@ -7099,7 +7085,7 @@
                                             <td>EV-2026-042701</td>
                                             <td>客户画像分析报告V3</td>
                                             <td><span class="tag tag-yellow">过程取证</span></td>
-                                            <td><span class="status-badge approved"><span class="status-dot"></span>✅已完成</span></td>
+                                            <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
                                             <td>2026-04-27 16:20</td>
                                             <td>
                                                 <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();showEvidenceDetail('EV-2026-042701')">查看</button>
@@ -7138,7 +7124,7 @@
                         <div>
                             <div class="detail-id">取证任务ID：<span id="evidenceTaskId">EV-2026-042801</span></div>
                             <h2 class="detail-title">智能驾驶算法核心代码 - <span id="evidenceTypeName">网页取证</span></h2>
-                            <span class="status-badge approved" id="evidenceStatus"><span class="status-dot"></span>✅已完成</span>
+                            <span class="status-badge approved" id="evidenceStatus"><span class="status-dot"></span>已完成</span>
                         </div>
                         <div style="display:flex;gap:12px;">
                             <button class="btn btn-secondary" onclick="switchEvidenceTab(null, 'evidence-list')">返回列表</button>
@@ -7534,7 +7520,7 @@
                                 <td><span class="tag tag-red">核心秘密</span></td>
                                 <td>李思远</td>
                                 <td>2026-04-28 14:30</td>
-                                <td><span class="urgent-tag">🔴紧急</span></td>
+                                <td><span class="urgent-tag">紧急</span></td>
                             </tr>
                             <tr>
                                 <td>TSM-2026-0427</td>
@@ -7543,7 +7529,7 @@
                                 <td><span class="tag tag-yellow">重要秘密</span></td>
                                 <td>张伟</td>
                                 <td>2026-04-27 16:20</td>
-                                <td><span class="urgent-tag">🔴紧急</span></td>
+                                <td><span class="urgent-tag">紧急</span></td>
                             </tr>
                             <tr>
                                 <td>TSM-2026-0426</td>
@@ -7561,7 +7547,7 @@
                                 <td><span class="tag tag-red">核心秘密</span></td>
                                 <td>陈静</td>
                                 <td>2026-04-25 09:45</td>
-                                <td><span class="urgent-tag">🔴紧急</span></td>
+                                <td><span class="urgent-tag">紧急</span></td>
                             </tr>
                             <tr>
                                 <td>TSM-2026-0424</td>
@@ -8644,13 +8630,13 @@
                                 <td>TSM-2026-0428</td>
                                 <td>智能驾驶算法核心代码</td>
                                 <td><span class="tag tag-blue">技术秘密</span></td>
-                                <td><span class="status-badge pending"><span class="status-dot"></span>⏳待审核</span></td>
+                                <td><span class="status-badge pending"><span class="status-dot"></span>待审核</span></td>
                             </tr>
                             <tr>
                                 <td>TSM-2026-0425</td>
                                 <td>生产工艺参数文件</td>
                                 <td><span class="tag tag-blue">技术秘密</span></td>
-                                <td><span class="status-badge processing"><span class="status-dot"></span>⏳认证中</span></td>
+                                <td><span class="status-badge processing"><span class="status-dot"></span>认证中</span></td>
                             </tr>
                             <tr>
                                 <td>TSM-2026-0422</td>
@@ -9200,5 +9186,7 @@
             }
         });
     </script>
+</main>
+</div>
 </body>
 </html>
