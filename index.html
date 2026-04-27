@@ -9449,7 +9449,7 @@
         const originalNavigateTo = navigateTo;
         navigateTo = function(page) {
             originalNavigateTo(page);
-            if (page === 'analysis') {
+            if (page === 'databoard' || page === 'dashboard') {
                 setTimeout(() => {
                     initDashboard();
                     // 响应窗口大小变化
