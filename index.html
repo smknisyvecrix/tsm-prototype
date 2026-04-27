@@ -3136,6 +3136,7 @@
                 </div>
             </div>
             <nav class="sidebar-nav">
+                <!-- 工作台 -->
                 <div class="nav-section">
                     <div class="nav-section-title">工作台</div>
                     <div class="nav-item active" data-page="dashboard">
@@ -3148,6 +3149,7 @@
                         <span>首页</span>
                     </div>
                 </div>
+                <!-- 认证管理 -->
                 <div class="nav-section">
                     <div class="nav-section-title">认证管理</div>
                     <div class="nav-item" data-page="apply">
@@ -3166,19 +3168,19 @@
                         <span>认证记录</span>
                     </div>
                 </div>
+                <!-- 核心流程 -->
                 <div class="nav-section">
                     <div class="nav-section-title">核心流程</div>
-                    <div class="nav-item" data-page="cert-flow" onclick="navigateTo('cert-flow')">
+                    <div class="nav-item" data-page="cert-flow">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <polyline points="14,2 14,8 20,8"/>
                             <line x1="16" y1="13" x2="8" y2="13"/>
                             <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10,9 9,9 8,9"/>
                         </svg>
                         <span>认证流程</span>
                     </div>
-                    <div class="nav-item" data-page="audit-flow" onclick="navigateTo('audit-flow')">
+                    <div class="nav-item" data-page="audit-flow">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 11l3 3L22 4"/>
                             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
@@ -3186,7 +3188,7 @@
                         <span>审核流程</span>
                         <span class="nav-badge">5</span>
                     </div>
-                    <div class="nav-item" data-page="evidence-flow" onclick="navigateTo('evidence-flow')">
+                    <div class="nav-item" data-page="evidence-flow">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                             <circle cx="12" cy="13" r="4"/>
@@ -3194,7 +3196,7 @@
                         <span>取证流程</span>
                     </div>
                 </div>
-
+                <!-- 电子取证 -->
                 <div class="nav-section">
                     <div class="nav-section-title">电子取证</div>
                     <div class="nav-item" data-page="evidence">
@@ -3205,6 +3207,7 @@
                         <span>取证申请</span>
                     </div>
                 </div>
+                <!-- 审核管理 -->
                 <div class="nav-section">
                     <div class="nav-section-title">审核管理</div>
                     <div class="nav-item" data-page="audit">
@@ -3212,10 +3215,11 @@
                             <path d="M9 11l3 3L22 4"/>
                             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
                         </svg>
-                        <span>⏳待审核</span>
+                        <span>待审核</span>
                         <span class="nav-badge">5</span>
                     </div>
                 </div>
+                <!-- 数据分析 -->
                 <div class="nav-section">
                     <div class="nav-section-title">数据分析</div>
                     <div class="nav-item" data-page="databoard">
@@ -3227,47 +3231,9 @@
                         <span>数据看板</span>
                     </div>
                 </div>
+                <!-- 证书管理 -->
                 <div class="nav-section">
-                    <div class="nav-section-title">认证流程</div>
-                    <div class="nav-item" data-page="apply">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                        <span>认证申请</span>
-                    </div>
-                    <div class="nav-item" data-page="records">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14,2 14,8 20,8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                        </svg>
-                        <span>认证记录</span>
-                    </div>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-section-title">取证流程</div>
-                    <div class="nav-item" data-page="evidence">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                            <circle cx="12" cy="13" r="4"/>
-                        </svg>
-                        <span>取证申请</span>
-                    </div>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-section-title">审核流程</div>
-                    <div class="nav-item" data-page="audit">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 11l3 3L22 4"/>
-                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                        </svg>
-                        <span>审核工作台</span>
-                        <span class="nav-badge">5</span>
-                    </div>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-section-title">证据管理</div>
+                    <div class="nav-section-title">证书管理</div>
                     <div class="nav-item" data-page="certificates">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -3284,22 +3250,11 @@
                             <polyline points="14,2 14,8 20,8"/>
                             <line x1="16" y1="13" x2="8" y2="13"/>
                             <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10,9 9,9 8,9"/>
                         </svg>
                         <span>报告生成</span>
                     </div>
                 </div>
-                <div class="nav-section">
-                    <div class="nav-section-title">数据分析</div>
-                    <div class="nav-item" data-page="databoard">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="20" x2="18" y2="10"/>
-                            <line x1="12" y1="20" x2="12" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="14"/>
-                        </svg>
-                        <span>数据看板</span>
-                    </div>
-                </div>
+                <!-- 系统管理 -->
                 <div class="nav-section">
                     <div class="nav-section-title">系统管理</div>
                     <div class="nav-item" data-page="settings">
@@ -3309,9 +3264,6 @@
                         </svg>
                         <span>系统设置</span>
                     </div>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-section-title">数据管理</div>
                     <div class="nav-item" data-page="systemsettings">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -3322,12 +3274,6 @@
                         <span>部门/员工</span>
                     </div>
                 </div>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                        </svg>
-                        <span>系统设置</span>
-                    </div>
             </nav>
             <div class="sidebar-footer">
                 <div style="font-size:11px;color:var(--text-muted);padding:4px 16px;border-top:1px solid var(--border-light);margin-top:8px;">
