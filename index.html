@@ -2927,6 +2927,67 @@
             }
         }
 
+        /* ========== 快捷入口区样式 ========== */
+        .quick-entry-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-entry-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .quick-entry-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .quick-entry-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg-primary);
+        }
+
+        .quick-entry-item:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .quick-entry-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-entry-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .quick-entry-text {
+            font-size: 13px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+    
         /* 饼图图例 */
         .pie-legend-custom {
             display: flex;
@@ -3321,49 +3382,6 @@
                         <div class="welcome-date" id="welcomeDate"></div>
                     </div>
                     <div class="welcome-right">
-                        <!-- 快捷操作按钮 -->
-                        <div class="header-quick-actions">
-                            <button class="btn btn-primary" onclick="navigateTo('apply')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 5v14M5 12h14"/>
-                                </svg>
-                                认证申请
-                            </button>
-                            <button class="btn btn-success" onclick="navigateTo('evidence')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                                    <circle cx="12" cy="13" r="4"/>
-                                </svg>
-                                取证申请
-                            </button>
-                        </div>
-                        <!-- 快捷操作按钮 - 6个入口 -->
-                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                            <button class="btn btn-primary btn-sm" onclick="navigateTo('apply')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
-                                新建认证
-                            </button>
-                            <button class="btn btn-success btn-sm" onclick="navigateTo('evidence')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/></svg>
-                                申请取证
-                            </button>
-                            <button class="btn btn-warning btn-sm" onclick="navigateTo('certificates')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                查看证书
-                            </button>
-                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('records')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-                                查看记录
-                            </button>
-                            <button class="btn btn-secondary btn-sm" onclick="exportData()">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                导出数据
-                            </button>
-                            <button class="btn btn-secondary btn-sm" onclick="alert('帮助功能开发中')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                                帮助
-                            </button>
-                        </div>
                         <!-- 时间选择器 -->
                         <div class="time-selector">
                             <div class="time-selector-group">
@@ -3424,6 +3442,75 @@
                                 </svg>
                                 退出登录
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 快捷入口区 -->
+                <div class="quick-entry-section">
+                    <div class="quick-entry-title">快捷操作</div>
+                    <div class="quick-entry-grid">
+                        <div class="quick-entry-item" onclick="navigateTo('apply')">
+                            <div class="quick-entry-icon" style="background:rgba(37,99,235,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">新建认证</div>
+                        </div>
+                        <div class="quick-entry-item" onclick="navigateTo('evidence')">
+                            <div class="quick-entry-icon" style="background:rgba(16,185,129,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">申请取证</div>
+                        </div>
+                        <div class="quick-entry-item" onclick="navigateTo('certificates')">
+                            <div class="quick-entry-icon" style="background:rgba(245,158,11,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                    <path d="M9 16l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">查看证书</div>
+                        </div>
+                        <div class="quick-entry-item" onclick="navigateTo('records')">
+                            <div class="quick-entry-icon" style="background:rgba(139,92,246,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"/>
+                                    <line x1="8" y1="12" x2="21" y2="12"/>
+                                    <line x1="8" y1="18" x2="21" y2="18"/>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">查看记录</div>
+                        </div>
+                        <div class="quick-entry-item" onclick="exportData()">
+                            <div class="quick-entry-icon" style="background:rgba(6,182,212,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">导出数据</div>
+                        </div>
+                        <div class="quick-entry-item" onclick="navigateTo('help')">
+                            <div class="quick-entry-icon" style="background:rgba(100,116,139,0.1);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="quick-entry-text">帮助文档</div>
                         </div>
                     </div>
                 </div>
@@ -3789,74 +3876,6 @@
                     </div>
                 </div>
 
-                <!-- 第四行：快捷入口 -->
-                <div class="quick-access-section">
-                    <h3 class="section-title">快捷操作</h3>
-                    <div class="quick-access-grid">
-                        <div class="quick-access-item" onclick="navigateTo('apply')">
-                            <div class="quick-access-icon" style="background:rgba(37,99,235,0.1);color:var(--primary);">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 5v14M5 12h14"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">新建认证申请</div>
-                        </div>
-                        <div class="quick-access-item" onclick="navigateTo('evidence')">
-                            <div class="quick-access-icon" style="background:rgba(16,185,129,0.1);color:var(--success);">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                                    <circle cx="12" cy="13" r="4"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">申请取证</div>
-                        </div>
-                        <div class="quick-access-item" onclick="navigateTo('certificates')">
-                            <div class="quick-access-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                    <path d="M9 16l2 2 4-4"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">查看证书</div>
-                        </div>
-                        <div class="quick-access-item" onclick="navigateTo('records')">
-                            <div class="quick-access-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="8" y1="6" x2="21" y2="6"/>
-                                    <line x1="8" y1="12" x2="21" y2="12"/>
-                                    <line x1="8" y1="18" x2="21" y2="18"/>
-                                    <line x1="3" y1="6" x2="3.01" y2="6"/>
-                                    <line x1="3" y1="12" x2="3.01" y2="12"/>
-                                    <line x1="3" y1="18" x2="3.01" y2="18"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">历史记录</div>
-                        </div>
-                        <div class="quick-access-item" onclick="exportData()">
-                            <div class="quick-access-icon" style="background:rgba(6,182,212,0.1);color:#06b6d4;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7,10 12,15 17,10"/>
-                                    <line x1="12" y1="15" x2="12" y2="3"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">数据导出</div>
-                        </div>
-                        <div class="quick-access-item" onclick="navigateTo('help')">
-                            <div class="quick-access-icon" style="background:rgba(100,116,139,0.1);color:#64748b;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                                </svg>
-                            </div>
-                            <div class="quick-access-text">帮助文档</div>
-                        </div>
-                    </div>
-                </div>
             </div>            <!-- 认证申请页 -->
             <div class="page" id="page-apply">
                 <div class="card">
