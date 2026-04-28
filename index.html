@@ -5056,36 +5056,7 @@
         .detail-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
         .detail-value { font-size: 14px; font-weight: 500; color: var(--text-primary); }
         .detail-value.mono { font-family: monospace; font-size: 12px; word-break: break-all; background: var(--bg-secondary); padding: 8px 12px; border-radius: var(--radius-sm); }
-
-        /* ========== 报告列表页优化样式 ========== */
-        .report-list-table tbody tr {
-            height: 56px;
-            transition: background-color 0.2s;
-        }
-        .report-list-table tbody tr:hover {
-            background-color: var(--bg-secondary);
-        }
-        .report-list-table td {
-            padding: 14px 16px;
-            vertical-align: middle;
-        }
-        .report-list-table .btn-sm {
-            padding: 6px 14px;
-            font-size: 13px;
-            min-width: 56px;
-        }
-        .report-list-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .report-list-pagination {
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-light);
-        }
-        </style>
+</style>
 </head>
 <body>
     <!-- Toast 容器 -->
@@ -7686,8 +7657,17 @@
                         </select>
                     </div>
                     <div class="filter-item" style="flex:1;">
-                        <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="margin-left:0;width:100%;" id="certSearchInput" oninput="searchCertificates()">
+                        <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="width:100%;" id="certSearchInput" oninput="searchCertificates()">
                     </div>
+                    <!-- 证书上传按钮 -->
+                    <button class="btn btn-primary" onclick="showUploadModal()" style="margin-left:auto;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        上传证书
+                    </button>
                     <div class="filter-actions">
                         <button class="btn btn-secondary btn-sm" onclick="resetCertFilters()">重置</button>
                         <button class="btn btn-primary btn-sm" onclick="filterCertificates()">查询</button>
@@ -7738,12 +7718,7 @@
                                         <td><span class="status-badge approved"><span class="status-dot"></span>有效</span></td>
                                         <td>
                                             <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();viewCertDetail('CR-2026-001')">查看</button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();shareCert('CR-2026-001')" title="分享">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                                            </button>
-                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();verifyCertFromList('CR-2026-001')" title="验证">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                            </button>
+                                            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();downloadCert('CR-2026-001')">下载</button>
                                         </td>
                                     </tr>
                                     <tr data-category="copyright" onclick="navigateTo('certdetail')" style="cursor:pointer;">
@@ -7902,182 +7877,67 @@
                     </div>
                 </div>
 
-                <!-- 证书类型选择 - 6种卡片横向排列 -->
-                <div class="card" style="margin-bottom:24px;">
-                    <div class="card-header">
-                        <h3 class="card-title">选择证书类型</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="cert-type-grid">
-                            <div class="cert-type-card" data-type="copyright" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(37,99,235,0.1);color:var(--primary);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">作品登记证</div>
-                            </div>
-                            <div class="cert-type-card" data-type="trademark" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(16,185,129,0.1);color:var(--success);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">商标证书</div>
-                            </div>
-                            <div class="cert-type-card" data-type="patent" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14,2 14,8 20,8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">专利证书</div>
-                                <!-- 专利子类型选择 -->
-                                <div class="patent-subtype" id="patentSubtype" style="display:none;">
-                                    <label><input type="radio" name="patentType" value="invention" onchange="updatePatentLabel(this)"> 发明专利</label>
-                                    <label><input type="radio" name="patentType" value="utility" onchange="updatePatentLabel(this)"> 实用新型专利</label>
-                                    <label><input type="radio" name="patentType" value="design" onchange="updatePatentLabel(this)"> 外观设计专利</label>
-                                </div>
-                            </div>
-                            <div class="cert-type-card" data-type="software" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">软件著作权证书</div>
-                            </div>
-                            <div class="cert-type-card" data-type="icp" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(6,182,212,0.1);color:var(--info);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">ICP备案证书</div>
-                            </div>
-                            <div class="cert-type-card" data-type="other" onclick="selectUploadCertType(this)">
-                                <div class="cert-type-icon" style="background:rgba(100,116,139,0.1);color:var(--secondary);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">其他证书</div>
-                                <!-- 其他证书自定义名称输入 -->
-                                <div class="other-cert-name" id="otherCertName" style="display:none;">
-                                    <input type="text" class="form-input" placeholder="请输入证书名称" style="font-size:12px;padding:8px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 文件上传区域 -->
-                <div class="card" style="margin-bottom:24px;">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">上传证书文件</h3>
                     </div>
                     <div class="card-body">
-                        <div class="upload-area" id="uploadArea" onclick="document.getElementById('certFileInput').click()"
-                             ondragover="event.preventDefault();this.style.borderColor='var(--primary)';this.style.background='rgba(37,99,235,0.05)';"
-                             ondragleave="this.style.borderColor='var(--border)';this.style.background='var(--bg-secondary)';"
-                             ondrop="handleDrop(event)">
+                        <div class="upload-area" id="uploadArea" onclick="document.getElementById('certFileInput').click()">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted);">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                 <polyline points="17,8 12,3 7,8"/>
                                 <line x1="12" y1="3" x2="12" y2="15"/>
                             </svg>
                             <p style="margin-top:16px;color:var(--text-secondary);">点击或拖拽文件到此处上传</p>
-                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">支持 PDF、PNG、JPG 格式，文件不超过10MB</p>
-                            <input type="file" id="certFileInput" style="display:none;" accept=".pdf,.png,.jpg,.jpeg" onchange="handleCertFileUploadNew(this)">
-                        </div>
-                        <!-- 文件预览 -->
-                        <div class="file-preview" id="filePreview" style="display:none;">
-                            <div class="file-info">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14,2 14,8 20,8"></polyline>
-                                </svg>
-                                <div class="file-details">
-                                    <span class="file-name" id="previewFileName"></span>
-                                    <span class="file-size" id="previewFileSize"></span>
-                                </div>
-                            </div>
-                            <button class="file-remove" onclick="removeSelectedFileNew(event)">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
+                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">支持 PDF、JSON、X509 格式</p>
+                            <input type="file" id="certFileInput" style="display:none;" accept=".pdf,.json,.x509" onchange="handleCertFileUpload(this)">
                         </div>
                     </div>
                 </div>
 
-                <!-- 证书信息表单 -->
-                <div class="card">
+                <div class="card" style="margin-top:24px;">
                     <div class="card-header">
                         <h3 class="card-title">证书信息</h3>
                     </div>
                     <div class="card-body">
                         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
                             <div class="form-group">
-                                <label class="form-label required">证书名称</label>
-                                <input type="text" class="form-input" placeholder="输入证书名称" id="certName">
+                                <label class="form-label required">秘密名称</label>
+                                <input type="text" class="form-input" placeholder="输入秘密名称" id="certName">
                             </div>
                             <div class="form-group">
-                                <label class="form-label required">证书编号</label>
-                                <input type="text" class="form-input" placeholder="输入证书编号" id="certNo">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label required">签发机构</label>
-                                <input type="text" class="form-input" placeholder="输入签发机构名称" id="certIssuer">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">有效期</label>
-                                <input type="date" class="form-input" id="certExpiry">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">关联业务</label>
-                                <select class="form-input" id="certProject">
-                                    <option value="">请选择关联业务</option>
-                                    <option value="smartcar">智能汽车研发项目</option>
-                                    <option value="ai">AI智能算法项目</option>
-                                    <option value="brand">品牌形象建设项目</option>
-                                    <option value="legal">法务合规项目</option>
-                                    <option value="admin">行政管理项目</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">所属部门</label>
+                                <label class="form-label required">所属部门</label>
                                 <select class="form-input" id="certDept">
                                     <option value="">请选择部门</option>
                                     <option value="rd">研发部</option>
-                                    <option value="design">设计部</option>
                                     <option value="market">市场部</option>
-                                    <option value="brand">品牌部</option>
-                                    <option value="legal">法务部</option>
-                                    <option value="tech">技术部</option>
-                                    <option value="admin">行政部</option>
+                                    <option value="finance">财务部</option>
+                                    <option value="hr">人力资源部</option>
+                                    <option value="sales">销售部</option>
+                                    <option value="ops">运营部</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label class="form-label required">密级</label>
+                                <select class="form-input" id="certLevel">
+                                    <option value="">请选择密级</option>
+                                    <option value="core">核心秘密</option>
+                                    <option value="important">重要秘密</option>
+                                    <option value="general">一般秘密</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">有效期至</label>
+                                <input type="date" class="form-input" id="certExpiry">
+                            </div>
                             <div class="form-group" style="grid-column:1/-1;">
-                                <label class="form-label">备注</label>
-                                <textarea class="form-textarea" rows="3" placeholder="输入备注信息" id="certDesc"></textarea>
+                                <label class="form-label">描述</label>
+                                <textarea class="form-textarea" rows="3" placeholder="输入证书描述" id="certDesc"></textarea>
                             </div>
                         </div>
                         <div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end;">
                             <button class="btn btn-secondary" onclick="navigateTo('certificates')">取消</button>
-                            <button class="btn btn-primary" onclick="submitCertUploadNew()">
+                            <button class="btn btn-primary" onclick="submitCertUpload()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                     <polyline points="17,8 12,3 7,8"/>
@@ -8099,84 +7959,7 @@
                     </div>
                 </div>
 
-                <!-- 验证类型选择 - 6种分类卡片 -->
-                <div class="card" style="margin-bottom:24px;">
-                    <div class="card-header">
-                        <h3 class="card-title">选择验证类型</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="cert-type-grid">
-                            <div class="cert-type-card" data-type="copyright" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(37,99,235,0.1);color:var(--primary);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">作品登记证验证</div>
-                            </div>
-                            <div class="cert-type-card" data-type="trademark" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(16,185,129,0.1);color:var(--success);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">商标证书验证</div>
-                            </div>
-                            <div class="cert-type-card" data-type="patent" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(245,158,11,0.1);color:var(--warning);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14,2 14,8 20,8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">专利证书验证</div>
-                                <!-- 专利子类型 -->
-                                <div class="patent-subtype" id="verifyPatentSubtype" style="display:none;">
-                                    <label><input type="radio" name="verifyPatentType" value="invention"> 发明专利</label>
-                                    <label><input type="radio" name="verifyPatentType" value="utility"> 实用新型专利</label>
-                                    <label><input type="radio" name="verifyPatentType" value="design"> 外观设计专利</label>
-                                </div>
-                            </div>
-                            <div class="cert-type-card" data-type="software" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">软件著作权验证</div>
-                            </div>
-                            <div class="cert-type-card" data-type="icp" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(6,182,212,0.1);color:var(--info);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">ICP备案验证</div>
-                            </div>
-                            <div class="cert-type-card" data-type="other" onclick="selectVerifyType(this)">
-                                <div class="cert-type-icon" style="background:rgba(100,116,139,0.1);color:var(--secondary);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                    </svg>
-                                </div>
-                                <div class="cert-type-name">其他证书验证</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 可信时间戳验证 -->
-                <div class="card" style="margin-bottom:24px;">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">可信时间戳验证</h3>
                     </div>
@@ -8205,7 +7988,7 @@
                                 </div>
                                 <div style="margin-top:12px;font-size:14px;color:var(--text-secondary);">
                                     <p><strong>证书编号：</strong><span id="verifyCertId">-</span></p>
-                                    <p><strong>证书名称：</strong><span id="verifyName">-</span></p>
+                                    <p><strong>秘密名称：</strong><span id="verifyName">-</span></p>
                                     <p><strong>有效期至：</strong><span id="verifyExpiry">-</span></p>
                                     <p><strong>哈希值：</strong><span id="verifyHash" style="font-family:monospace;word-break:break-all;">-</span></p>
                                 </div>
@@ -8226,53 +8009,55 @@
                     </div>
                 </div>
 
-                <!-- 文件验证方式 -->
-                <div class="card">
+                <div class="card" style="margin-top:24px;">
                     <div class="card-header">
-                        <h3 class="card-title">文件验证方式</h3>
+                        <h3 class="card-title">其他证书验证功能</h3>
                     </div>
                     <div class="card-body">
                         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-                            <div class="verify-feature-card" onclick="loadSourceFile()">
+                            <div class="verify-feature-card" onclick="showVerifyModal('hash')">
                                 <div style="width:48px;height:48px;border-radius:50%;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14,2 14,8 20,8"></polyline>
+                                        <line x1="4" y1="9" x2="20" y2="9"/>
+                                        <line x1="4" y1="15" x2="20" y2="15"/>
+                                        <line x1="10" y1="3" x2="8" y2="21"/>
+                                        <line x1="16" y1="3" x2="14" y2="21"/>
                                     </svg>
                                 </div>
-                                <h4 style="margin-bottom:8px;">加载源文件</h4>
-                                <p style="font-size:13px;color:var(--text-secondary);">上传原始文件进行哈希验证</p>
+                                <h4 style="margin-bottom:8px;">哈希值验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">通过输入文件哈希值验证数据完整性</p>
                             </div>
-                            <div class="verify-feature-card" onclick="loadCertFile()">
+                            <div class="verify-feature-card" onclick="showVerifyModal('signature')">
                                 <div style="width:48px;height:48px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14,2 14,8 20,8"></polyline>
-                                        <path d="M9 15l2 2 4-4"></path>
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        <polyline points="9,12 11,14 15,10"/>
                                     </svg>
                                 </div>
-                                <h4 style="margin-bottom:8px;">加载证书文件</h4>
-                                <p style="font-size:13px;color:var(--text-secondary);">上传证书PDF文件进行验证</p>
+                                <h4 style="margin-bottom:8px;">数字签名验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证电子签名的真实性和完整性</p>
                             </div>
-                            <div class="verify-feature-card" onclick="selectFromAuthRecords()">
+                            <div class="verify-feature-card" onclick="showVerifyModal('timestamp')">
                                 <div style="width:48px;height:48px;border-radius:50%;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2">
-                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
                                     </svg>
                                 </div>
-                                <h4 style="margin-bottom:8px;">从认证记录选择</h4>
-                                <p style="font-size:13px;color:var(--text-secondary);">从已有认证记录中验证</p>
+                                <h4 style="margin-bottom:8px;">时间戳验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证可信时间戳的权威性和有效性</p>
                             </div>
-                            <div class="verify-feature-card" onclick="selectFromEvidenceRecords()">
+                            <div class="verify-feature-card" onclick="showVerifyModal('chain')">
                                 <div style="width:48px;height:48px;border-radius:50%;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--chart-purple)" stroke-width="2">
-                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                        <circle cx="12" cy="13" r="4"></circle>
+                                        <rect x="3" y="3" width="7" height="7"/>
+                                        <rect x="14" y="3" width="7" height="7"/>
+                                        <rect x="14" y="14" width="7" height="7"/>
+                                        <rect x="3" y="14" width="7" height="7"/>
                                     </svg>
                                 </div>
-                                <h4 style="margin-bottom:8px;">从取证记录选择</h4>
-                                <p style="font-size:13px;color:var(--text-secondary);">从已有取证记录中验证</p>
+                                <h4 style="margin-bottom:8px;">区块链存证验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证区块链上记录的存证信息</p>
                             </div>
                         </div>
                     </div>
@@ -9076,7 +8861,7 @@
                             </svg>
                             重置配置
                         </button>
-                        <button class="btn btn-primary btn-lg" onclick="generateNewReport()">
+                        <button class="btn btn-primary" onclick="generateNewReport()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14,2 14,8 20,8"/>
@@ -11104,10 +10889,24 @@
     <script>
         // 初始化首页
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化首页图表
-            setTimeout(() => {
-                initHomeCharts();
-            }, 500);
+            // 初始化首页图表 - 使用 requestAnimationFrame 确保页面渲染完成
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    if (typeof echarts !== 'undefined') {
+                        initHomeCharts();
+                    } else {
+                        // echarts 未加载，延迟重试
+                        const checkEcharts = setInterval(() => {
+                            if (typeof echarts !== 'undefined') {
+                                clearInterval(checkEcharts);
+                                initHomeCharts();
+                            }
+                        }, 200);
+                        // 最多等待10秒
+                        setTimeout(() => clearInterval(checkEcharts), 10000);
+                    }
+                }, 300);
+            });
             initWelcomeDate();
         });
 
@@ -11417,14 +11216,18 @@
 
             // 显示对应页面
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + page)?.classList.add('active');
-
-            // 根据页面类型初始化图表
-            if (page === 'dashboard') {
-                setTimeout(() => {
-                    initHomeCharts();
-                    resizeHomeCharts();
-                }, 500);
+            const targetPage = document.getElementById('page-' + page);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                // 根据页面类型初始化图表，确保页面已渲染
+                if (page === 'dashboard') {
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            initHomeCharts();
+                            resizeHomeCharts();
+                        }, 100);
+                    });
+                }
             }
         }
 
@@ -13728,26 +13531,31 @@
 
         // ========== 首页图表初始化 ==========
         let homeTrendChart, homeCategoryChart;
+        let chartsInitialized = false;
 
         function initHomeCharts() {
-            // 销毁旧图表实例，防止重复初始化
-            if (homeTrendChart) {
-                homeTrendChart.dispose();
-                homeTrendChart = null;
-            }
-            if (homeCategoryChart) {
-                homeCategoryChart.dispose();
-                homeCategoryChart = null;
+            // 检查 echarts 是否可用
+            if (typeof echarts === 'undefined') {
+                console.warn('ECharts 未加载，延迟初始化...');
+                setTimeout(initHomeCharts, 500);
+                return;
             }
             initHomeTrendChart();
             initHomeCategoryChart();
+            chartsInitialized = true;
         }
 
         function initHomeTrendChart() {
             const chartDom = document.getElementById('homeTrendChart');
             if (!chartDom) return;
+            // 如果已有图表实例，先销毁
+            if (homeTrendChart) {
+                homeTrendChart.dispose();
+                homeTrendChart = null;
+            }
             
             homeTrendChart = echarts.init(chartDom);
+            if (!homeTrendChart) return;
             
             const option = {
                 tooltip: {
@@ -13836,8 +13644,14 @@
         function initHomeCategoryChart() {
             const chartDom = document.getElementById('homeCategoryChart');
             if (!chartDom) return;
+            // 如果已有图表实例，先销毁
+            if (homeCategoryChart) {
+                homeCategoryChart.dispose();
+                homeCategoryChart = null;
+            }
             
             homeCategoryChart = echarts.init(chartDom);
+            if (!homeCategoryChart) return;
             
             const option = {
                 tooltip: {
