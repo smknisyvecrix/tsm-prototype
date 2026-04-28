@@ -8861,7 +8861,7 @@
                             </svg>
                             重置配置
                         </button>
-                        <button class="btn btn-primary btn-lg" onclick="generateNewReport()">
+                        <button class="btn btn-primary" onclick="generateNewReport()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14,2 14,8 20,8"/>
@@ -10889,10 +10889,24 @@
     <script>
         // 初始化首页
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化首页图表
-            setTimeout(() => {
-                initHomeCharts();
-            }, 500);
+            // 初始化首页图表 - 使用 requestAnimationFrame 确保页面渲染完成
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    if (typeof echarts !== 'undefined') {
+                        initHomeCharts();
+                    } else {
+                        // echarts 未加载，延迟重试
+                        const checkEcharts = setInterval(() => {
+                            if (typeof echarts !== 'undefined') {
+                                clearInterval(checkEcharts);
+                                initHomeCharts();
+                            }
+                        }, 200);
+                        // 最多等待10秒
+                        setTimeout(() => clearInterval(checkEcharts), 10000);
+                    }
+                }, 300);
+            });
             initWelcomeDate();
         });
 
@@ -11202,14 +11216,18 @@
 
             // 显示对应页面
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + page)?.classList.add('active');
-
-            // 根据页面类型初始化图表
-            if (page === 'dashboard') {
-                setTimeout(() => {
-                    initHomeCharts();
-                    resizeHomeCharts();
-                }, 500);
+            const targetPage = document.getElementById('page-' + page);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                // 根据页面类型初始化图表，确保页面已渲染
+                if (page === 'dashboard') {
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            initHomeCharts();
+                            resizeHomeCharts();
+                        }, 100);
+                    });
+                }
             }
         }
 
@@ -13513,17 +13531,31 @@
 
         // ========== 首页图表初始化 ==========
         let homeTrendChart, homeCategoryChart;
+        let chartsInitialized = false;
 
         function initHomeCharts() {
+            // 检查 echarts 是否可用
+            if (typeof echarts === 'undefined') {
+                console.warn('ECharts 未加载，延迟初始化...');
+                setTimeout(initHomeCharts, 500);
+                return;
+            }
             initHomeTrendChart();
             initHomeCategoryChart();
+            chartsInitialized = true;
         }
 
         function initHomeTrendChart() {
             const chartDom = document.getElementById('homeTrendChart');
             if (!chartDom) return;
+            // 如果已有图表实例，先销毁
+            if (homeTrendChart) {
+                homeTrendChart.dispose();
+                homeTrendChart = null;
+            }
             
             homeTrendChart = echarts.init(chartDom);
+            if (!homeTrendChart) return;
             
             const option = {
                 tooltip: {
@@ -13612,8 +13644,14 @@
         function initHomeCategoryChart() {
             const chartDom = document.getElementById('homeCategoryChart');
             if (!chartDom) return;
+            // 如果已有图表实例，先销毁
+            if (homeCategoryChart) {
+                homeCategoryChart.dispose();
+                homeCategoryChart = null;
+            }
             
             homeCategoryChart = echarts.init(chartDom);
+            if (!homeCategoryChart) return;
             
             const option = {
                 tooltip: {
