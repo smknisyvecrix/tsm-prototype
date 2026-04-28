@@ -5048,7 +5048,36 @@
         .detail-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
         .detail-value { font-size: 14px; font-weight: 500; color: var(--text-primary); }
         .detail-value.mono { font-family: monospace; font-size: 12px; word-break: break-all; background: var(--bg-secondary); padding: 8px 12px; border-radius: var(--radius-sm); }
-</style>
+
+        /* ========== 报告列表页优化样式 ========== */
+        .report-list-table tbody tr {
+            height: 56px;
+            transition: background-color 0.2s;
+        }
+        .report-list-table tbody tr:hover {
+            background-color: var(--bg-secondary);
+        }
+        .report-list-table td {
+            padding: 14px 16px;
+            vertical-align: middle;
+        }
+        .report-list-table .btn-sm {
+            padding: 6px 14px;
+            font-size: 13px;
+            min-width: 56px;
+        }
+        .report-list-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .report-list-pagination {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-light);
+        }
+        </style>
 </head>
 <body>
     <!-- Toast 容器 -->
@@ -7649,17 +7678,8 @@
                         </select>
                     </div>
                     <div class="filter-item" style="flex:1;">
-                        <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="width:100%;" id="certSearchInput" oninput="searchCertificates()">
+                        <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="margin-left:0;width:100%;" id="certSearchInput" oninput="searchCertificates()">
                     </div>
-                    <!-- 跳转到上传页面的链接 -->
-                    <a href="javascript:;" onclick="navigateTo('cert-upload')" class="btn btn-primary" style="margin-left:auto;text-decoration:none;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="17,8 12,3 7,8"/>
-                            <line x1="12" y1="3" x2="12" y2="15"/>
-                        </svg>
-                        上传证书
-                    </a>
                     <div class="filter-actions">
                         <button class="btn btn-secondary btn-sm" onclick="resetCertFilters()">重置</button>
                         <button class="btn btn-primary btn-sm" onclick="filterCertificates()">查询</button>
@@ -13701,6 +13721,15 @@
         let homeTrendChart, homeCategoryChart;
 
         function initHomeCharts() {
+            // 销毁旧图表实例，防止重复初始化
+            if (homeTrendChart) {
+                homeTrendChart.dispose();
+                homeTrendChart = null;
+            }
+            if (homeCategoryChart) {
+                homeCategoryChart.dispose();
+                homeCategoryChart = null;
+            }
             initHomeTrendChart();
             initHomeCategoryChart();
         }
