@@ -4945,7 +4945,44 @@
             margin-bottom: 4px;
         }
 
-    </style>
+    
+        /* ========== 证书上传页样式 ========== */
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        /* ========== 证书验证页样式 ========== */
+        .verify-feature-card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .verify-feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        /* ========== 报告列表页样式 ========== */
+        .report-name-cell {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ========== 标签颜色 ========== */
+        .tag-blue { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+        .tag-purple { background: rgba(139, 92, 246, 0.1); color: var(--chart-purple); }
+</style>
 </head>
 <body>
     <!-- Toast 容器 -->
@@ -5103,6 +5140,14 @@
                 <!-- 证书管理 -->
                 <div class="nav-section">
                     <div class="nav-section-title">证书管理</div>
+                    <div class="nav-item" data-page="cert-upload">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <span>证书上传</span>
+                    </div>
                     <div class="nav-item" data-page="certificates">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -5113,14 +5158,38 @@
                         </svg>
                         <span>证书列表</span>
                     </div>
+                    <div class="nav-item" data-page="cert-verify">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9,12 11,14 15,10"/>
+                        </svg>
+                        <span>证书验证</span>
+                    </div>
+                </div>
+
+                <!-- 报告管理 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">报告管理</div>
                     <div class="nav-item" data-page="report">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <polyline points="14,2 14,8 20,8"/>
                             <line x1="16" y1="13" x2="8" y2="13"/>
                             <line x1="16" y1="17" x2="8" y2="17"/>
+                            <line x1="10" y1="9" x2="8" y2="9"/>
                         </svg>
                         <span>报告生成</span>
+                    </div>
+                    <div class="nav-item" data-page="report-list">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                        <span>报告列表</span>
                     </div>
                 </div>
                 <!-- 系统管理 -->
@@ -5428,75 +5497,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="chart-container">
-                                <svg class="line-chart" viewBox="0 0 600 250" preserveAspectRatio="xMidYMid meet">
-                                    <!-- 网格线 -->
-                                    <g class="grid-lines">
-                                        <line x1="60" y1="30" x2="580" y2="30" stroke="#f1f5f9" stroke-width="1"/>
-                                        <line x1="60" y1="80" x2="580" y2="80" stroke="#f1f5f9" stroke-width="1"/>
-                                        <line x1="60" y1="130" x2="580" y2="130" stroke="#f1f5f9" stroke-width="1"/>
-                                        <line x1="60" y1="180" x2="580" y2="180" stroke="#f1f5f9" stroke-width="1"/>
-                                        <line x1="60" y1="230" x2="580" y2="230" stroke="#f1f5f9" stroke-width="1"/>
-                                    </g>
-                                    <!-- Y轴标签 -->
-                                    <g class="y-labels" fill="#94a3b8" font-size="11">
-                                        <text x="50" y="34" text-anchor="end">100</text>
-                                        <text x="50" y="84" text-anchor="end">80</text>
-                                        <text x="50" y="134" text-anchor="end">60</text>
-                                        <text x="50" y="184" text-anchor="end">40</text>
-                                        <text x="50" y="234" text-anchor="end">20</text>
-                                    </g>
-                                    <!-- 申请量线（蓝色） -->
-                                    <polyline 
-                                        class="chart-line apply-line"
-                                        points="80,50 140,60 200,45 260,70 320,55 380,40 440,50 500,35 560,45"
-                                        fill="none" 
-                                        stroke="#2563eb" 
-                                        stroke-width="2.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"/>
-                                    <!-- 认证量线（绿色） -->
-                                    <polyline 
-                                        class="chart-line certify-line"
-                                        points="80,130 140,120 200,135 260,115 320,125 380,110 440,120 500,105 560,115"
-                                        fill="none" 
-                                        stroke="#10b981" 
-                                        stroke-width="2.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"/>
-                                    <!-- 驳回量线（红色） -->
-                                    <polyline 
-                                        class="chart-line reject-line"
-                                        points="80,200 140,190 200,205 260,185 320,195 380,180 440,190 500,175 560,185"
-                                        fill="none" 
-                                        stroke="#ef4444" 
-                                        stroke-width="2.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"/>
-                                    <!-- 数据点 -->
-                                    <g class="data-points">
-                                        <!-- 申请量点 -->
-                                        <circle cx="80" cy="50" r="4" fill="#2563eb"/><circle cx="140" cy="60" r="4" fill="#2563eb"/><circle cx="200" cy="45" r="4" fill="#2563eb"/><circle cx="260" cy="70" r="4" fill="#2563eb"/><circle cx="320" cy="55" r="4" fill="#2563eb"/><circle cx="380" cy="40" r="4" fill="#2563eb"/><circle cx="440" cy="50" r="4" fill="#2563eb"/><circle cx="500" cy="35" r="4" fill="#2563eb"/><circle cx="560" cy="45" r="4" fill="#2563eb"/>
-                                        <!-- 认证量点 -->
-                                        <circle cx="80" cy="130" r="4" fill="#10b981"/><circle cx="140" cy="120" r="4" fill="#10b981"/><circle cx="200" cy="135" r="4" fill="#10b981"/><circle cx="260" cy="115" r="4" fill="#10b981"/><circle cx="320" cy="125" r="4" fill="#10b981"/><circle cx="380" cy="110" r="4" fill="#10b981"/><circle cx="440" cy="120" r="4" fill="#10b981"/><circle cx="500" cy="105" r="4" fill="#10b981"/><circle cx="560" cy="115" r="4" fill="#10b981"/>
-                                        <!-- 驳回量点 -->
-                                        <circle cx="80" cy="200" r="4" fill="#ef4444"/><circle cx="140" cy="190" r="4" fill="#ef4444"/><circle cx="200" cy="205" r="4" fill="#ef4444"/><circle cx="260" cy="185" r="4" fill="#ef4444"/><circle cx="320" cy="195" r="4" fill="#ef4444"/><circle cx="380" cy="180" r="4" fill="#ef4444"/><circle cx="440" cy="190" r="4" fill="#ef4444"/><circle cx="500" cy="175" r="4" fill="#ef4444"/><circle cx="560" cy="185" r="4" fill="#ef4444"/>
-                                    </g>
-                                    <!-- X轴标签 -->
-                                    <g class="x-labels" fill="#94a3b8" font-size="11" text-anchor="middle">
-                                        <text x="80" y="250">周一</text>
-                                        <text x="140" y="250">周二</text>
-                                        <text x="200" y="250">周三</text>
-                                        <text x="260" y="250">周四</text>
-                                        <text x="320" y="250">周五</text>
-                                        <text x="380" y="250">周六</text>
-                                        <text x="440" y="250">周日</text>
-                                        <text x="500" y="250">周一</text>
-                                        <text x="560" y="250">周二</text>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="chart-legend">
+                            <div class="chart-container-wrapper" id="homeTrendChart" style="height:280px;"></div>
+                            <div class="chart-legend" style="justify-content:center;">
                                 <div class="legend-item">
                                     <span class="legend-dot" style="background:#2563eb;"></span>
                                     <span class="legend-text">申请量</span>
@@ -5518,29 +5520,9 @@
                         <div class="card-header">
                             <h3 class="card-title">数据分类分布</h3>
                         </div>
-                        <div class="card-body">
-                            <div class="pie-chart-container">
-                                <svg class="pie-chart" viewBox="0 0 200 200">
-                                    <!-- 外环 -->
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f1f5f9" stroke-width="30"/>
-                                    <!-- 技术秘密 35% -->
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#2563eb" stroke-width="30"
-                                        stroke-dasharray="153.94 307.88" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                                    <!-- 经营信息 30% -->
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="30"
-                                        stroke-dasharray="131.95 307.88" stroke-dashoffset="-153.94" transform="rotate(-90 100 100)"/>
-                                    <!-- 管理信息 20% -->
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f59e0b" stroke-width="30"
-                                        stroke-dasharray="87.96 307.88" stroke-dashoffset="-285.89" transform="rotate(-90 100 100)"/>
-                                    <!-- 其他 15% -->
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="#94a3b8" stroke-width="30"
-                                        stroke-dasharray="65.97 307.88" stroke-dashoffset="-373.85" transform="rotate(-90 100 100)"/>
-                                    <!-- 中心文字 -->
-                                    <text x="100" y="95" text-anchor="middle" fill="#1e293b" font-size="18" font-weight="700">1,856</text>
-                                    <text x="100" y="115" text-anchor="middle" fill="#64748b" font-size="11">总认证数</text>
-                                </svg>
-                            </div>
-                            <div class="pie-legend">
+                        <div class="card-body" style="display:flex;align-items:center;gap:20px;">
+                            <div class="chart-container-wrapper" id="homeCategoryChart" style="flex:0 0 50%;height:200px;"></div>
+                            <div class="pie-legend" style="flex:1;">
                                 <div class="pie-legend-item">
                                     <span class="pie-dot" style="background:#2563eb;"></span>
                                     <span class="pie-label">技术秘密</span>
@@ -7275,7 +7257,7 @@
                                     <li style="padding:6px 0;font-size:13px;color:var(--text-secondary);">• 系统正式上线</li>
                                     <li style="padding:6px 0;font-size:13px;color:var(--text-secondary);">• 支持商业秘密认证申请与审核</li>
                                     <li style="padding:6px 0;font-size:13px;color:var(--text-secondary);">• 支持电子证据固化与取证</li>
-                                    <li style="padding:6px 0;font-size:13px;color:var(--text-secondary);">• 支持证书管理与溯源验证</li>
+                                    <li style="padding:6px 0;font-size:13px;color:var(--text-secondary);">• 支持证书管理与证书验证</li>
                                 </ul>
                             </div>
                         </div>
@@ -7809,11 +7791,103 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- 溯源验证区域 -->
+
+            <!-- 证书上传页 -->
+            <div class="page" id="page-cert-upload">
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title">证书上传</h2>
+                        <p class="page-subtitle">上传并注册您的商业秘密保护证书</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">上传证书文件</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-area" id="uploadArea" onclick="document.getElementById('certFileInput').click()">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted);">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17,8 12,3 7,8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            <p style="margin-top:16px;color:var(--text-secondary);">点击或拖拽文件到此处上传</p>
+                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">支持 PDF、JSON、X509 格式</p>
+                            <input type="file" id="certFileInput" style="display:none;" accept=".pdf,.json,.x509" onchange="handleCertFileUpload(this)">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card" style="margin-top:24px;">
                     <div class="card-header">
-                        <h3 class="card-title">溯源验证</h3>
+                        <h3 class="card-title">证书信息</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label required">秘密名称</label>
+                                <input type="text" class="form-input" placeholder="输入秘密名称" id="certName">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">所属部门</label>
+                                <select class="form-input" id="certDept">
+                                    <option value="">请选择部门</option>
+                                    <option value="rd">研发部</option>
+                                    <option value="market">市场部</option>
+                                    <option value="finance">财务部</option>
+                                    <option value="hr">人力资源部</option>
+                                    <option value="sales">销售部</option>
+                                    <option value="ops">运营部</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">密级</label>
+                                <select class="form-input" id="certLevel">
+                                    <option value="">请选择密级</option>
+                                    <option value="core">核心秘密</option>
+                                    <option value="important">重要秘密</option>
+                                    <option value="general">一般秘密</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">有效期至</label>
+                                <input type="date" class="form-input" id="certExpiry">
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1;">
+                                <label class="form-label">描述</label>
+                                <textarea class="form-textarea" rows="3" placeholder="输入证书描述" id="certDesc"></textarea>
+                            </div>
+                        </div>
+                        <div style="margin-top:24px;display:flex;gap:12px;justify-content:flex-end;">
+                            <button class="btn btn-secondary" onclick="navigateTo('certificates')">取消</button>
+                            <button class="btn btn-primary" onclick="submitCertUpload()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17,8 12,3 7,8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                上传并注册
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 证书验证页 -->
+            <div class="page" id="page-cert-verify">
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title">证书验证</h2>
+                        <p class="page-subtitle">验证证书的真实性和有效性</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">可信时间戳验证</h3>
                     </div>
                     <div class="card-body">
                         <div style="display:flex;gap:16px;align-items:flex-end;">
@@ -7844,6 +7918,72 @@
                                     <p><strong>有效期至：</strong><span id="verifyExpiry">-</span></p>
                                     <p><strong>哈希值：</strong><span id="verifyHash" style="font-family:monospace;word-break:break-all;">-</span></p>
                                 </div>
+                            </div>
+                        </div>
+                        <div id="verifyResultError" style="margin-top:16px;display:none;">
+                            <div style="padding:16px;background:rgba(239,68,68,0.1);border-radius:var(--radius);border:1px solid rgba(239,68,68,0.3);">
+                                <div style="display:flex;align-items:center;gap:8px;color:var(--danger);font-weight:600;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="15" y1="9" x2="9" y2="15"/>
+                                        <line x1="9" y1="9" x2="15" y2="15"/>
+                                    </svg>
+                                    验证失败 - 证书无效或不存在
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:24px;">
+                    <div class="card-header">
+                        <h3 class="card-title">其他证书验证功能</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+                            <div class="verify-feature-card" onclick="showVerifyModal('hash')">
+                                <div style="width:48px;height:48px;border-radius:50%;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                                        <line x1="4" y1="9" x2="20" y2="9"/>
+                                        <line x1="4" y1="15" x2="20" y2="15"/>
+                                        <line x1="10" y1="3" x2="8" y2="21"/>
+                                        <line x1="16" y1="3" x2="14" y2="21"/>
+                                    </svg>
+                                </div>
+                                <h4 style="margin-bottom:8px;">哈希值验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">通过输入文件哈希值验证数据完整性</p>
+                            </div>
+                            <div class="verify-feature-card" onclick="showVerifyModal('signature')">
+                                <div style="width:48px;height:48px;border-radius:50%;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        <polyline points="9,12 11,14 15,10"/>
+                                    </svg>
+                                </div>
+                                <h4 style="margin-bottom:8px;">数字签名验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证电子签名的真实性和完整性</p>
+                            </div>
+                            <div class="verify-feature-card" onclick="showVerifyModal('timestamp')">
+                                <div style="width:48px;height:48px;border-radius:50%;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                </div>
+                                <h4 style="margin-bottom:8px;">时间戳验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证可信时间戳的权威性和有效性</p>
+                            </div>
+                            <div class="verify-feature-card" onclick="showVerifyModal('chain')">
+                                <div style="width:48px;height:48px;border-radius:50%;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--chart-purple)" stroke-width="2">
+                                        <rect x="3" y="3" width="7" height="7"/>
+                                        <rect x="14" y="3" width="7" height="7"/>
+                                        <rect x="14" y="14" width="7" height="7"/>
+                                        <rect x="3" y="14" width="7" height="7"/>
+                                    </svg>
+                                </div>
+                                <h4 style="margin-bottom:8px;">区块链存证验证</h4>
+                                <p style="font-size:13px;color:var(--text-secondary);">验证区块链上记录的存证信息</p>
                             </div>
                         </div>
                     </div>
@@ -8047,6 +8187,183 @@
                     <button class="btn btn-secondary" onclick="downloadCertPackage()">下载证书</button>
                     <button class="btn btn-secondary" onclick="downloadEvidencePackage()">下载证据包</button>
                     <button class="btn btn-primary" onclick="navigateTo('report')">生成报告</button>
+                </div>
+            </div>
+
+
+            <!-- 报告列表页 -->
+            <div class="page" id="page-report-list">
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title">报告列表</h2>
+                        <p class="page-subtitle">查看和管理所有已生成的报告</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('report')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        新建报告
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-body" style="padding:0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>报告名称</th>
+                                    <th>报告类型</th>
+                                    <th>生成时间</th>
+                                    <th>生成人</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="report-name-cell">智能驾驶算法安全评估报告</span></td>
+                                    <td><span class="tag tag-blue">安全评估</span></td>
+                                    <td>2026-04-28 14:30</td>
+                                    <td>张明华</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-001')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-001')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">Q1季度认证数据统计报告</span></td>
+                                    <td><span class="tag tag-green">数据统计</span></td>
+                                    <td>2026-04-27 10:15</td>
+                                    <td>李思远</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-002')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-002')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">供应商价格体系保密审查报告</span></td>
+                                    <td><span class="tag tag-yellow">保密审查</span></td>
+                                    <td>2026-04-26 16:45</td>
+                                    <td>王芳</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-003')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-003')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">核心算法知识产权保护报告</span></td>
+                                    <td><span class="tag tag-purple">知识产权</span></td>
+                                    <td>2026-04-25 09:20</td>
+                                    <td>陈静</td>
+                                    <td><span class="status-badge processing"><span class="status-dot"></span>处理中</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-004')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" disabled>下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">年度电子取证工作总结报告</span></td>
+                                    <td><span class="tag tag-blue">工作总结</span></td>
+                                    <td>2026-04-24 11:00</td>
+                                    <td>刘强</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-005')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-005')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">客户画像分析数据合规报告</span></td>
+                                    <td><span class="tag tag-green">合规报告</span></td>
+                                    <td>2026-04-23 15:30</td>
+                                    <td>赵敏</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-006')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-006')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">生产工艺参数保密等级评估</span></td>
+                                    <td><span class="tag tag-yellow">等级评估</span></td>
+                                    <td>2026-04-22 13:45</td>
+                                    <td>周洋</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-007')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-007')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">财务审计报告保密管理建议书</span></td>
+                                    <td><span class="tag tag-purple">管理建议</span></td>
+                                    <td>2026-04-21 10:00</td>
+                                    <td>吴涛</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-008')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-008')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">研发项目知识产权归属报告</span></td>
+                                    <td><span class="tag tag-blue">知识产权</span></td>
+                                    <td>2026-04-20 14:20</td>
+                                    <td>孙磊</td>
+                                    <td><span class="status-badge error"><span class="status-dot"></span>生成失败</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="retryReport('RPT-2026-009')">重试</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="deleteReport('RPT-2026-009')">删除</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">市场战略文档保密风险评估</span></td>
+                                    <td><span class="tag tag-yellow">风险评估</span></td>
+                                    <td>2026-04-19 09:15</td>
+                                    <td>郑丽</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-010')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-010')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">人力资源数据安全审计报告</span></td>
+                                    <td><span class="tag tag-green">安全审计</span></td>
+                                    <td>2026-04-18 16:00</td>
+                                    <td>杨帆</td>
+                                    <td><span class="status-badge approved"><span class="status-dot"></span>已完成</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-011')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="downloadReport('RPT-2026-011')">下载</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="report-name-cell">销售合同保密条款执行报告</span></td>
+                                    <td><span class="tag tag-purple">执行报告</span></td>
+                                    <td>2026-04-17 11:30</td>
+                                    <td>黄磊</td>
+                                    <td><span class="status-badge processing"><span class="status-dot"></span>处理中</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewReport('RPT-2026-012')">查看</button>
+                                        <button class="btn btn-secondary btn-sm" disabled>下载</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination" style="padding:16px 24px;">
+                            <div class="pagination-info">共 12 条记录，第 1/1 页</div>
+                            <div class="pagination-controls">
+                                <button class="pagination-btn" disabled>上一页</button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn" disabled>下一页</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -10498,6 +10815,10 @@
     <script>
         // 初始化首页
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化首页图表
+            setTimeout(() => {
+                initHomeCharts();
+            }, 500);
             initWelcomeDate();
         });
 
@@ -10647,6 +10968,9 @@
             'certificates': '证书列表',
             'certdetail': '证书详情',
             'report': '报告生成',
+            'cert-upload': '证书上传',
+            'cert-verify': '证书验证',
+            'report-list': '报告列表',
             'cert-flow': '认证流程',
             'audit-flow': '审核流程',
             'evidence-flow': '取证流程',
@@ -10804,6 +11128,14 @@
             // 显示对应页面
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + page)?.classList.add('active');
+
+            // 根据页面类型初始化图表
+            if (page === 'dashboard') {
+                setTimeout(() => {
+                    initHomeCharts();
+                    resizeHomeCharts();
+                }, 100);
+            }
         }
 
         // 更新数据类型下拉选项
@@ -13021,7 +13353,254 @@
                 }
             });
         }
-        </script>
+        
+        // ========== 证书上传页JS ==========
+        function handleCertFileUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const uploadArea = document.getElementById('uploadArea');
+                if (uploadArea) {
+                    uploadArea.innerHTML = '<div style="text-align:center;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg><p style="margin-top:16px;color:var(--success);font-weight:500;">' + file.name + '</p><p style="margin-top:8px;font-size:12px;color:var(--text-muted);">' + (file.size / 1024).toFixed(2) + ' KB</p></div>';
+                }
+            }
+        }
+
+        function submitCertUpload() {
+            const certName = document.getElementById('certName');
+            const certDept = document.getElementById('certDept');
+            const certLevel = document.getElementById('certLevel');
+            
+            if (!certName.value || !certDept.value || !certLevel.value) {
+                showToast('请填写必填项', 'error');
+                return;
+            }
+            
+            showToast('证书上传成功', 'success');
+            setTimeout(() => navigateTo('certificates'), 1500);
+        }
+
+        // ========== 证书验证页JS ==========
+        function verifyCertificate() {
+            const input = document.getElementById('verifyInput');
+            const resultDiv = document.getElementById('verifyResult');
+            const errorDiv = document.getElementById('verifyResultError');
+            
+            if (!input.value) {
+                showToast('请输入证书编号', 'error');
+                return;
+            }
+            
+            // 模拟验证
+            setTimeout(() => {
+                if (input.value.startsWith('CR-') || input.value.startsWith('TSM-') || input.value.startsWith('TSA-')) {
+                    document.getElementById('verifyCertId').textContent = input.value;
+                    document.getElementById('verifyName').textContent = '智能驾驶算法核心代码';
+                    document.getElementById('verifyExpiry').textContent = '2027-04-28';
+                    document.getElementById('verifyHash').textContent = 'sha256:a1b2c3d4e5f6...';
+                    resultDiv.style.display = 'block';
+                    errorDiv.style.display = 'none';
+                } else {
+                    resultDiv.style.display = 'none';
+                    errorDiv.style.display = 'block';
+                }
+            }, 500);
+        }
+
+        function showVerifyModal(type) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.style.display = 'flex';
+            modal.innerHTML = '<div class="modal" style="max-width:500px;"><div class="modal-header"><h3 class="modal-title">' + 
+                (type === 'hash' ? '哈希值验证' : type === 'signature' ? '数字签名验证' : type === 'timestamp' ? '时间戳验证' : '区块链存证验证') + 
+                '</h3><button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body"><div class="form-group"><label class="form-label">输入验证信息</label><textarea class="form-textarea" rows="4" placeholder="请输入验证信息..."></textarea></div></div><div class="modal-footer"><button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">取消</button><button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove();showToast('验证成功','success')">验证</button></div></div>';
+            document.body.appendChild(modal);
+        }
+
+        // ========== 报告列表页JS ==========
+        function viewReport(id) {
+            showToast('正在打开报告：' + id, 'info');
+        }
+
+        function downloadReport(id) {
+            showToast('正在下载报告：' + id, 'success');
+        }
+
+        function retryReport(id) {
+            showToast('正在重新生成报告：' + id, 'info');
+            setTimeout(() => showToast('报告生成成功', 'success'), 2000);
+        }
+
+        function deleteReport(id) {
+            if (confirm('确定要删除该报告吗？')) {
+                showToast('报告已删除', 'success');
+            }
+        }
+
+        // ========== 首页图表初始化 ==========
+        let homeTrendChart, homeCategoryChart;
+
+        function initHomeCharts() {
+            initHomeTrendChart();
+            initHomeCategoryChart();
+        }
+
+        function initHomeTrendChart() {
+            const chartDom = document.getElementById('homeTrendChart');
+            if (!chartDom) return;
+            
+            homeTrendChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'cross' },
+                    formatter: function(params) {
+                        let result = params[0].axisValue + '<br/>';
+                        params.forEach(p => {
+                            if (p.value > 0) {
+                                result += p.marker + p.seriesName + ': ' + p.value + '件<br/>';
+                            }
+                        });
+                        return result;
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '10%',
+                    top: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日', '周一', '周二'],
+                    axisLabel: { fontSize: 11 }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '数量（件）',
+                    nameTextStyle: { fontSize: 12 }
+                },
+                series: [
+                    {
+                        name: '申请量',
+                        type: 'line',
+                        data: [85, 72, 90, 68, 78, 95, 82, 88, 75],
+                        smooth: true,
+                        itemStyle: { color: '#2563eb' },
+                        lineStyle: { width: 3 },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(37, 99, 235, 0.3)' },
+                                { offset: 1, color: 'rgba(37, 99, 235, 0.05)' }
+                            ])
+                        },
+                        emphasis: { focus: 'series' }
+                    },
+                    {
+                        name: '认证量',
+                        type: 'line',
+                        data: [65, 58, 72, 55, 68, 78, 62, 70, 58],
+                        smooth: true,
+                        itemStyle: { color: '#10b981' },
+                        lineStyle: { width: 3 },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(16, 185, 129, 0.3)' },
+                                { offset: 1, color: 'rgba(16, 185, 129, 0.05)' }
+                            ])
+                        },
+                        emphasis: { focus: 'series' }
+                    },
+                    {
+                        name: '驳回量',
+                        type: 'line',
+                        data: [8, 12, 6, 15, 10, 5, 12, 8, 14],
+                        smooth: true,
+                        itemStyle: { color: '#ef4444' },
+                        lineStyle: { width: 3 },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(239, 68, 68, 0.3)' },
+                                { offset: 1, color: 'rgba(239, 68, 68, 0.05)' }
+                            ])
+                        },
+                        emphasis: { focus: 'series' }
+                    }
+                ]
+            };
+            
+            homeTrendChart.setOption(option);
+        }
+
+        function initHomeCategoryChart() {
+            const chartDom = document.getElementById('homeCategoryChart');
+            if (!chartDom) return;
+            
+            homeCategoryChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}: {c}% ({d}%)'
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: ['50%', '80%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 4,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: 16,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: [
+                            { value: 35, name: '技术秘密', itemStyle: { color: '#2563eb' } },
+                            { value: 30, name: '经营信息', itemStyle: { color: '#10b981' } },
+                            { value: 20, name: '管理信息', itemStyle: { color: '#f59e0b' } },
+                            { value: 15, name: '其他', itemStyle: { color: '#94a3b8' } }
+                        ]
+                    }
+                ]
+            };
+            
+            homeCategoryChart.setOption(option);
+        }
+
+        // 页面切换时重新初始化图表
+        function resizeHomeCharts() {
+            if (homeTrendChart) homeTrendChart.resize();
+            if (homeCategoryChart) homeCategoryChart.resize();
+        }
+
+        // 窗口resize时重绘图表
+        window.addEventListener('resize', function() {
+            resizeHomeCharts();
+            resizeDataBoardCharts();
+        });
+
+        // 数据看板图表resize函数
+        function resizeDataBoardCharts() {
+            if (typeof barChart !== 'undefined' && barChart) barChart.resize();
+            if (typeof lineChart !== 'undefined' && lineChart) lineChart.resize();
+            if (typeof pieChart !== 'undefined' && pieChart) pieChart.resize();
+        }
+</script>
         </div>
     </main>
 </body>
