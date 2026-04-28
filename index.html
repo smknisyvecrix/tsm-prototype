@@ -3676,6 +3676,310 @@
             color: var(--info);
         }
 
+
+        /* ========== 证书上传模态框样式 ========== */
+        .upload-modal .modal {
+            max-width: 560px;
+        }
+        
+        .upload-type-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .upload-type-card {
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .upload-type-card:hover {
+            border-color: var(--primary-light);
+            background: rgba(37, 99, 235, 0.02);
+        }
+        
+        .upload-type-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+        
+        .upload-type-card .type-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+        }
+        
+        .upload-type-card.selected .type-icon {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .upload-type-card .type-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .upload-type-card .type-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        
+        .upload-type-card .type-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        
+        .upload-dropzone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+        }
+        
+        .upload-dropzone:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.02);
+        }
+        
+        .upload-dropzone.dragover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+        
+        .upload-dropzone.has-file {
+            border-style: solid;
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        
+        .upload-dropzone .dropzone-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .upload-dropzone .dropzone-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary);
+        }
+        
+        .upload-dropzone.has-file .dropzone-icon svg {
+            color: var(--success);
+        }
+        
+        .upload-dropzone .dropzone-text {
+            font-size: 15px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .upload-dropzone .dropzone-hint {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .upload-file-preview {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            margin-top: 16px;
+        }
+        
+        .upload-file-preview .file-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .upload-file-preview .file-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+        
+        .upload-file-preview .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .upload-file-preview .file-name {
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .upload-file-preview .file-size {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .upload-file-preview .file-remove {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .upload-file-preview .file-remove:hover {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .upload-file-preview .file-remove svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* 证书图片预览模态框 */
+        .cert-preview-modal .modal {
+            max-width: 900px;
+        }
+        
+        .cert-preview-content {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .cert-preview-image {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        
+        .cert-preview-image img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+        }
+        
+        .cert-preview-image .pdf-placeholder {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .cert-preview-image .pdf-placeholder svg {
+            width: 64px;
+            height: 64px;
+            color: var(--danger);
+            margin-bottom: 16px;
+        }
+        
+        .cert-preview-info {
+            width: 280px;
+            flex-shrink: 0;
+        }
+        
+        .cert-preview-info .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .cert-preview-info .info-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .cert-preview-info .info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        /* 证书卡片样式 */
+        .cert-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .cert-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        
+        .cert-card .cert-thumb {
+            width: 100%;
+            height: 120px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .cert-card .cert-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .cert-card .cert-thumb svg {
+            width: 40px;
+            height: 40px;
+            color: var(--text-muted);
+        }
+        
+        .cert-card .cert-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cert-card .cert-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         /* 证书列表统计栏 */
         .cert-stats-bar {
             display: flex;
@@ -4842,7 +5146,7 @@
             </nav>
             <div class="sidebar-footer">
                 <div style="font-size:11px;color:var(--text-muted);padding:4px 16px;border-top:1px solid var(--border-light);margin-top:8px;">
-                    企业核心数据资产归集平台 V2.0.0
+                    企业核心数据资产归集平台 V2.0.1
                 </div>
                 <div class="user-info">
                     <div class="user-avatar">张</div>
@@ -6862,14 +7166,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">版本更新日志</h3>
-                        <span class="tag tag-primary">当前版本: V2.0.0</span>
+                        <span class="tag tag-primary">当前版本: V2.0.1</span>
                     </div>
                     <div class="card-body">
                         <div style="max-height:600px;overflow-y:auto;padding-right:8px;">
                             <!-- v2.0.0 -->
                             <div style="border-left:3px solid var(--primary);padding-left:20px;margin-bottom:32px;position:relative;">
                                 <div style="position:absolute;left:-8px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--primary);"></div>
-                                <div style="font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">V2.0.0</div>
+                                <div style="font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">V2.0.1</div>
                                 <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">2026-04-28</div>
                                 
                                 <div style="margin-bottom:16px;">
@@ -7299,6 +7603,15 @@
                     <div class="filter-item" style="flex:1;">
                         <input type="text" class="form-input" placeholder="搜索证书编号或证书名称..." style="width:100%;" id="certSearchInput" oninput="searchCertificates()">
                     </div>
+                    <!-- 证书上传按钮 -->
+                    <button class="btn btn-primary" onclick="showUploadModal()" style="margin-left:auto;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        上传证书
+                    </button>
                     <div class="filter-actions">
                         <button class="btn btn-secondary btn-sm" onclick="resetCertFilters()">重置</button>
                         <button class="btn btn-primary btn-sm" onclick="filterCertificates()">查询</button>
@@ -12407,6 +12720,221 @@
             }
         });
     </script>
+
+
+        <!-- 证书上传模态框 -->
+        <div class="modal-overlay upload-modal" id="uploadCertModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title">上传证书</h3>
+                    <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- 证书类型选择 -->
+                    <div style="margin-bottom:20px;">
+                        <label style="font-weight:500;margin-bottom:8px;display:block;">证书类型</label>
+                        <div class="upload-type-selector">
+                            <div class="upload-type-card selected" data-type="copyright" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">著作权</div>
+                                <div class="type-count">2份</div>
+                            </div>
+                            <div class="upload-type-card" data-type="trademark" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">商标</div>
+                                <div class="type-count">2份</div>
+                            </div>
+                            <div class="upload-type-card" data-type="patent" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">专利证书</div>
+                                <div class="type-count">2份</div>
+                            </div>
+                            <div class="upload-type-card" data-type="software" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21"/>
+                                        <line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">软件著作权</div>
+                                <div class="type-count">0份</div>
+                            </div>
+                            <div class="upload-type-card" data-type="icp" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="2" y1="12" x2="22" y2="12"/>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">ICP备案</div>
+                                <div class="type-count">0份</div>
+                            </div>
+                            <div class="upload-type-card" data-type="notary" onclick="selectUploadType(this)">
+                                <div class="type-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22,4 12,14.01 9,11.01"/>
+                                    </svg>
+                                </div>
+                                <div class="type-name">公证书</div>
+                                <div class="type-count">2份</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 文件上传区域 -->
+                    <div style="margin-bottom:20px;">
+                        <label style="font-weight:500;margin-bottom:8px;display:block;">证书文件</label>
+                        <div class="upload-dropzone" id="uploadDropzone" onclick="document.getElementById('certFileInput').click()">
+                            <div class="dropzone-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17,8 12,3 7,8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                            </div>
+                            <div class="dropzone-text" id="dropzoneText">点击或拖拽上传证书文件</div>
+                            <div class="dropzone-hint">支持 JPG、PNG、PDF 格式，单个文件不超过 10MB</div>
+                        </div>
+                        <input type="file" id="certFileInput" style="display:none;" accept=".jpg,.jpeg,.png,.pdf" onchange="handleCertFileSelect(this)">
+                        <div class="upload-file-preview" id="filePreview" style="display:none;">
+                            <div class="file-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                            </div>
+                            <div class="file-info">
+                                <div class="file-name" id="previewFileName"></div>
+                                <div class="file-size" id="previewFileSize"></div>
+                            </div>
+                            <button class="file-remove" onclick="removeSelectedFile(event)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 证书信息表单 -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                        <div class="form-group">
+                            <label class="form-label">证书名称 <span style="color:var(--danger);">*</span></label>
+                            <input type="text" class="form-input" id="certName" placeholder="请输入证书名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">证书编号</label>
+                            <input type="text" class="form-input" id="certNumber" placeholder="请输入证书编号">
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+                        <div class="form-group">
+                            <label class="form-label">有效期至</label>
+                            <input type="date" class="form-input" id="certExpiry">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">关联业务</label>
+                            <select class="form-input" id="certProject">
+                                <option value="">请选择（可选）</option>
+                                <option value="智能汽车研发项目">智能汽车研发项目</option>
+                                <option value="金融风控系统开发">金融风控系统开发</option>
+                                <option value="品牌形象建设项目">品牌形象建设项目</option>
+                                <option value="法务合规项目">法务合规项目</option>
+                                <option value="行政管理项目">行政管理项目</option>
+                                <option value="技术研发项目">技术研发项目</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:16px;">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-input" id="certRemark" rows="2" placeholder="请输入备注信息（可选）"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeUploadModal()">取消</button>
+                    <button class="btn btn-primary" onclick="submitCertUpload()">确认上传</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 证书图片预览模态框 -->
+        <div class="modal-overlay cert-preview-modal" id="certPreviewModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="previewCertTitle">证书预览</h3>
+                    <button class="modal-close" onclick="closeCertPreview()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="cert-preview-content">
+                        <div class="cert-preview-image" id="certPreviewImage">
+                            <!-- 动态内容 -->
+                        </div>
+                        <div class="cert-preview-info">
+                            <div class="info-section">
+                                <div class="info-label">证书编号</div>
+                                <div class="info-value" id="previewInfoId">-</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="info-label">证书类型</div>
+                                <div class="info-value" id="previewInfoType">-</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="info-label">有效期至</div>
+                                <div class="info-value" id="previewInfoExpiry">-</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="info-label">关联业务</div>
+                                <div class="info-value" id="previewInfoProject">-</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="info-label">上传时间</div>
+                                <div class="info-value" id="previewInfoUpload">-</div>
+                            </div>
+                            <div class="info-section">
+                                <div class="info-label">备注</div>
+                                <div class="info-value" id="previewInfoRemark">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="deletePreviewCert()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3,6 5,6 21,6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        删除
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadPreviewCert()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        下载
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- 批量导入模态框 -->
         <div class="modal-overlay" id="batchImportModal">
