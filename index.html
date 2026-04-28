@@ -4997,6 +4997,14 @@
         .radio-card-content { padding: 12px 20px; border: 2px solid var(--border); border-radius: var(--radius); text-align: center; transition: all 0.2s; }
         .radio-card input:checked + .radio-card-content { border-color: var(--primary); background: rgba(37, 99, 235, 0.05); color: var(--primary); }
         .other-cert-name { padding: 16px; background: var(--bg-tertiary); border-radius: var(--radius); }
+        .file-preview { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--bg-tertiary); border-radius: var(--radius); margin-top: 16px; }
+        .file-preview .file-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .file-preview .file-info svg { flex-shrink: 0; }
+        .file-preview .file-details { display: flex; flex-direction: column; }
+        .file-preview .file-name { font-weight: 500; color: var(--text-primary); font-size: 14px; }
+        .file-preview .file-size { font-size: 12px; color: var(--text-muted); }
+        .file-preview .file-remove { width: 32px; height: 32px; border: none; border-radius: 50%; background: var(--bg-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: all 0.2s; flex-shrink: 0; }
+        .file-preview .file-remove:hover { background: var(--danger); color: white; }
         .upload-area-new { border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; background: var(--bg-secondary); transition: all 0.3s; }
         .upload-area-new:hover { border-color: var(--primary); background: rgba(37, 99, 235, 0.02); }
         .upload-icon-wrapper { width: 64px; height: 64px; border-radius: 50%; background: rgba(37, 99, 235, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--primary); }
@@ -8275,7 +8283,7 @@
 
                 <div class="card">
                     <div class="card-body" style="padding:0;">
-                        <table class="data-table">
+                        <table class="report-data-table">
                             <thead>
                                 <tr>
                                     <th>报告名称</th>
@@ -11164,6 +11172,7 @@
         function showMainLayout() {
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('mainLayout').classList.add('active');
+            navigateTo('dashboard');
         }
 
         // 退出登录
@@ -13738,6 +13747,37 @@
                 document.getElementById('recordEvidenceTime').textContent = '2026-04-25 10:15:30';
                 document.getElementById('recordEvidenceHash').textContent = 'b8e4d7c3f9a1b2c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8a9b0';
             } else { recordInfo.style.display = 'none'; }
+        }
+        // ========== 验证页面新函数 ==========
+        function loadSourceFile() { document.getElementById('sourceFileInputVerify').click(); }
+        function loadCertFile() { document.getElementById('certFileInputVerify').click(); }
+        function selectFromAuthRecords() { showToast('请从认证记录列表中选择', 'info'); navigateTo('audit'); }
+        function selectFromEvidenceRecords() { showToast('请从取证记录列表中选择', 'info'); navigateTo('evidence'); }
+        function handleDrop(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                const fileInput = document.getElementById('certFileInput');
+                const dt = new DataTransfer();
+                dt.items.add(files[0]);
+                fileInput.files = dt.files;
+                fileInput.dispatchEvent(new Event('change'));
+                event.target.style.borderColor = 'var(--border)';
+                event.target.style.background = 'var(--bg-secondary)';
+            }
+        }
+        function selectVerifyType(element) {
+            document.querySelectorAll('#page-cert-verify .cert-type-card').forEach(card => { card.classList.remove('selected'); });
+            element.classList.add('selected');
+            selectedVerifyType = element.dataset.type;
+            // 显示/隐藏专利子类型
+            const patentSubtype = document.getElementById('verifyPatentSubtype');
+            if (patentSubtype) {
+                if (selectedVerifyType === 'patent') { patentSubtype.style.display = 'block'; }
+                else { patentSubtype.style.display = 'none'; }
+            }
+            showToast('已选择验证类型：' + element.querySelector('.cert-type-name').textContent, 'info');
         }
 </script>
         </div>
