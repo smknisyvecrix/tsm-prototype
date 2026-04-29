@@ -5056,6 +5056,101 @@
         .detail-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
         .detail-value { font-size: 14px; font-weight: 500; color: var(--text-primary); }
         .detail-value.mono { font-family: monospace; font-size: 12px; word-break: break-all; background: var(--bg-secondary); padding: 8px 12px; border-radius: var(--radius-sm); }
+
+        /* ========== 行业热点及知识库样式 ========== */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .news-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .news-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .news-date {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .news-title {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .news-summary {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ========== 待办事项增强样式 ========== */
+        .todo-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .todo-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+        .todo-item:last-child {
+            border-bottom: none;
+        }
+        .todo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .todo-icon.urgent { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
+        .todo-icon.warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .todo-icon.info { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+        .todo-icon.success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .todo-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .todo-title {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .todo-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .todo-arrow {
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* 紫色标签 */
+        .tag-purple { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
 </style>
 </head>
 <body>
@@ -5634,64 +5729,76 @@
                             <span class="tag tag-red">5 待处理</span>
                         </div>
                         <div class="card-body" style="padding:0;">
-                            <div style="display:flex;flex-direction:column;">
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('audit')">
-                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(220,38,38,0.1);color:var(--danger);display:flex;align-items:center;justify-content:center;">
+                            <div class="todo-list">
+                                <div class="todo-item" onclick="navigateTo('audit')">
+                                    <div class="todo-icon urgent">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M9 11l3 3L22 4"/>
                                         </svg>
                                     </div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">🔴紧急</span>3 条认证申请待审核</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">涉及核心秘密数据</div>
+                                    <div class="todo-content">
+                                        <div class="todo-title">
+                                            <span class="tag tag-red" style="font-size:10px;padding:2px 6px;">🔴紧急</span>
+                                            3 条认证申请待审核
+                                        </div>
+                                        <div class="todo-desc">涉及核心秘密数据</div>
                                     </div>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                    <svg class="todo-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
-                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,0.1);color:var(--warning);display:flex;align-items:center;justify-content:center;">
+                                <div class="todo-item">
+                                    <div class="todo-icon warning">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <circle cx="12" cy="12" r="10"/>
                                             <polyline points="12,6 12,12 16,14"/>
                                         </svg>
                                     </div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">⚠️提醒</span>2 份证书即将过期</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">请及时续期</div>
+                                    <div class="todo-content">
+                                        <div class="todo-title">
+                                            <span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;">⚠️提醒</span>
+                                            2 份证书即将过期
+                                        </div>
+                                        <div class="todo-desc">请及时续期</div>
                                     </div>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                    <svg class="todo-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
-                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(37,99,235,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;">
+                                <div class="todo-item">
+                                    <div class="todo-icon info">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                             <polyline points="17,8 12,3 7,8"/>
                                             <line x1="12" y1="3" x2="12" y2="15"/>
                                         </svg>
                                     </div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳待传</span>1 份文件待上传</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">智能驾驶算法项目</div>
+                                    <div class="todo-content">
+                                        <div class="todo-title">
+                                            <span class="tag tag-blue" style="font-size:10px;padding:2px 6px;">⏳待传</span>
+                                            1 份文件待上传
+                                        </div>
+                                        <div class="todo-desc">智能驾驶算法项目</div>
                                     </div>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                    <svg class="todo-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;cursor:pointer;" onclick="navigateTo('evidence')">
-                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(16,185,129,0.1);color:var(--success);display:flex;align-items:center;justify-content:center;">
+                                <div class="todo-item" onclick="navigateTo('evidence')" style="border-bottom:none;">
+                                    <div class="todo-icon success">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                                             <circle cx="12" cy="13" r="4"/>
                                         </svg>
                                     </div>
-                                    <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳进行中</span>网页取证任务进行中</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">预计剩余 15 分钟</div>
+                                    <div class="todo-content">
+                                        <div class="todo-title">
+                                            <span class="tag tag-green" style="font-size:10px;padding:2px 6px;">⏳进行中</span>
+                                            网页取证任务进行中
+                                        </div>
+                                        <div class="todo-desc">预计剩余 15 分钟</div>
                                     </div>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                    <svg class="todo-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
@@ -5699,48 +5806,52 @@
                         </div>
                     </div>
 
-                    <!-- 商业秘密资讯 -->
+                    <!-- 行业热点及知识库 -->
                     <div class="card" style="flex: 0 0 calc(50% - 12px);">
                         <div class="card-header">
                             <h3 class="card-title">
-                                商业秘密资讯
+                                行业热点及知识库
                                 <span id="newsPeriod" style="font-size:12px;color:var(--text-muted);font-weight:normal;margin-left:8px;">当前：2026年4月数据</span>
                             </h3>
                             <button class="btn btn-secondary btn-sm">更多</button>
                         </div>
                         <div class="card-body" style="padding:0;">
-                            <div style="display:flex;flex-direction:column;">
-                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
-                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                                        <span class="tag tag-red" style="font-size:11px;">政策</span>
-                                        <span style="font-size:12px;color:var(--text-muted);">今天</span>
+                            <div class="news-list">
+                                <!-- 政策类 -->
+                                <div class="news-item">
+                                    <div class="news-meta">
+                                        <span class="tag tag-red">📋 政策</span>
+                                        <span class="news-date">今天</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">《商业秘密保护规定》6月1日起施行</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">明确将数据、算法纳入商业秘密保护范畴...</div>
+                                    <div class="news-title">《商业秘密保护规定》6月1日起施行</div>
+                                    <div class="news-summary">明确将数据、算法纳入商业秘密保护范畴...</div>
                                 </div>
-                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
-                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                                        <span class="tag tag-blue" style="font-size:11px;">动态</span>
-                                        <span style="font-size:12px;color:var(--text-muted);">昨天</span>
+                                <!-- 判例类 -->
+                                <div class="news-item">
+                                    <div class="news-meta">
+                                        <span class="tag tag-purple">⚖️ 判例</span>
+                                        <span class="news-date">昨天</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">最高法惩罚性赔偿解释 5月1日起施行</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">恶意侵权最高可判5倍赔偿...</div>
+                                    <div class="news-title">最高法惩罚性赔偿解释 5月1日起施行</div>
+                                    <div class="news-summary">恶意侵权最高可判5倍赔偿...</div>
                                 </div>
-                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
-                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                                        <span class="tag tag-yellow" style="font-size:11px;">热点</span>
-                                        <span style="font-size:12px;color:var(--text-muted);">2天前</span>
+                                <!-- 热点类 -->
+                                <div class="news-item">
+                                    <div class="news-meta">
+                                        <span class="tag tag-yellow">🔥 热点</span>
+                                        <span class="news-date">2天前</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">AI声音克隆侵权案例分析</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">全国首例AI生成声音侵权案获赔25万元...</div>
+                                    <div class="news-title">AI声音克隆侵权案例分析</div>
+                                    <div class="news-summary">全国首例AI生成声音侵权案获赔25万元...</div>
                                 </div>
-                                <div style="padding:16px 24px;cursor:pointer;">
-                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                                        <span class="tag tag-green" style="font-size:11px;">案例</span>
-                                        <span style="font-size:12px;color:var(--text-muted);">3天前</span>
+                                <!-- 案例类 -->
+                                <div class="news-item" style="border-bottom:none;">
+                                    <div class="news-meta">
+                                        <span class="tag tag-blue">📰 案例</span>
+                                        <span class="news-date">3天前</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">厦门法院发布数据权益保护典型案例</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">涉及数据抓取、技术秘密侵害等五大类型...</div>
+                                    <div class="news-title">厦门法院发布数据权益保护典型案例</div>
+                                    <div class="news-summary">涉及数据抓取、技术秘密侵害等五大类型...</div>
                                 </div>
                             </div>
                         </div>
@@ -10889,24 +11000,6 @@
     <script>
         // 初始化首页
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化首页图表 - 使用 requestAnimationFrame 确保页面渲染完成
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    if (typeof echarts !== 'undefined') {
-                        initHomeCharts();
-                    } else {
-                        // echarts 未加载，延迟重试
-                        const checkEcharts = setInterval(() => {
-                            if (typeof echarts !== 'undefined') {
-                                clearInterval(checkEcharts);
-                                initHomeCharts();
-                            }
-                        }, 200);
-                        // 最多等待10秒
-                        setTimeout(() => clearInterval(checkEcharts), 10000);
-                    }
-                }, 300);
-            });
             initWelcomeDate();
         });
 
@@ -13817,6 +13910,29 @@
             }
             showToast('已选择验证类型：' + element.querySelector('.cert-type-name').textContent, 'info');
         }
+
+        // ========== 初始化首页图表 ==========
+        // 在第二个script块末尾添加，确保initHomeCharts函数已定义
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用 requestAnimationFrame 确保页面渲染完成
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    if (typeof echarts !== 'undefined' && typeof initHomeCharts !== 'undefined') {
+                        initHomeCharts();
+                    } else {
+                        // 延迟重试直到函数可用
+                        const checkCharts = setInterval(() => {
+                            if (typeof echarts !== 'undefined' && typeof initHomeCharts !== 'undefined') {
+                                clearInterval(checkCharts);
+                                initHomeCharts();
+                            }
+                        }, 200);
+                        // 最多等待15秒
+                        setTimeout(() => clearInterval(checkCharts), 15000);
+                    }
+                }, 500);
+            });
+        });
 </script>
         </div>
     </main>
