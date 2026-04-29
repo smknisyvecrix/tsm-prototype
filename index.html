@@ -5622,6 +5622,93 @@
                     </div>
                 </div>
 
+                <!-- 数据看板摘要区域 -->
+                <div class="dashboard-summary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px;">
+                    <div class="card hover-lift" style="cursor:pointer;" onclick="navigateTo('databoard')">
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                                <div style="width:44px;height:44px;border-radius:10px;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                                        <line x1="18" y1="20" x2="18" y2="10"/>
+                                        <line x1="12" y1="20" x2="12" y2="4"/>
+                                        <line x1="6" y1="20" x2="6" y2="14"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style="font-size:12px;color:var(--text-muted);">本月认证</div>
+                                    <div style="font-size:24px;font-weight:700;color:var(--text-primary);">256</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:12px;color:var(--success);">↑ 12%</span>
+                                <span style="font-size:11px;color:var(--text-muted);">vs上月</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover-lift" style="cursor:pointer;" onclick="navigateTo('databoard')">
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                                <div style="width:44px;height:44px;border-radius:10px;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                        <circle cx="12" cy="13" r="4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style="font-size:12px;color:var(--text-muted);">本月取证</div>
+                                    <div style="font-size:24px;font-weight:700;color:var(--text-primary);">48</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:12px;color:var(--success);">↑ 18%</span>
+                                <span style="font-size:11px;color:var(--text-muted);">vs上月</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover-lift" style="cursor:pointer;" onclick="navigateTo('certificates')">
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                                <div style="width:44px;height:44px;border-radius:10px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                        <line x1="16" y1="2" x2="16" y2="6"/>
+                                        <line x1="8" y1="2" x2="8" y2="6"/>
+                                        <line x1="3" y1="10" x2="21" y2="10"/>
+                                        <path d="M9 16l2 2 4-4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style="font-size:12px;color:var(--text-muted);">证书有效</div>
+                                    <div style="font-size:24px;font-weight:700;color:var(--text-primary);">1,856</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:12px;color:var(--success);">98.5%</span>
+                                <span style="font-size:11px;color:var(--text-muted);">有效率</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hover-lift" style="cursor:pointer;" onclick="navigateTo('audit')">
+                        <div class="card-body" style="padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                                <div style="width:44px;height:44px;border-radius:10px;background:rgba(239,68,68,0.1);display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style="font-size:12px;color:var(--text-muted);">待审核</div>
+                                    <div style="font-size:24px;font-weight:700;color:var(--text-primary);">12</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:11px;padding:2px 8px;background:rgba(239,68,68,0.1);color:var(--danger);border-radius:4px;">⚠️ 3紧急</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 第三行：待办事项 + 资讯 -->
                 <div class="bottom-row">
                     <!-- 待办事项 -->
@@ -5631,10 +5718,11 @@
                                 待办事项
                                 <span id="todoPeriod" style="font-size:12px;color:var(--text-muted);font-weight:normal;margin-left:8px;">（当前：2026年4月）</span>
                             </h3>
-                            <span class="tag tag-red">5 待处理</span>
+                            <span class="tag tag-red">8 待处理</span>
                         </div>
                         <div class="card-body" style="padding:0;">
                             <div style="display:flex;flex-direction:column;">
+                                <!-- 待办项1：紧急认证审核 -->
                                 <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('audit')">
                                     <div style="width:40px;height:40px;border-radius:50%;background:rgba(220,38,38,0.1);color:var(--danger);display:flex;align-items:center;justify-content:center;">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -5642,14 +5730,21 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">🔴紧急</span>3 条认证申请待审核</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">涉及核心秘密数据</div>
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-red" style="font-size:10px;padding:2px 6px;margin-right:6px;">🔴紧急</span>3 条认证申请待审核</div>
+                                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                            <span style="font-size:11px;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--text-secondary);">技术秘密 1件</span>
+                                            <span style="font-size:11px;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--text-secondary);">经营信息 2件</span>
+                                        </div>
                                     </div>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
-                                        <polyline points="9,18 15,12 9,6"/>
-                                    </svg>
+                                    <div style="display:flex;align-items:center;gap:8px;">
+                                        <span style="font-size:12px;color:var(--danger);">今日</span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                            <polyline points="9,18 15,12 9,6"/>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
+                                <!-- 待办项2：即将过期的证书 -->
+                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('certificates')">
                                     <div style="width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,0.1);color:var(--warning);display:flex;align-items:center;justify-content:center;">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <circle cx="12" cy="12" r="10"/>
@@ -5657,14 +5752,21 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">⚠️提醒</span>2 份证书即将过期</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">请及时续期</div>
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-yellow" style="font-size:10px;padding:2px 6px;margin-right:6px;">⚠️提醒</span>2 份证书即将过期</div>
+                                        <div style="font-size:12px;color:var(--text-secondary);">新能源汽车电池技术专利（剩余15天）</div>
+                                        <div style="margin-top:4px;display:flex;align-items:center;gap:8px;">
+                                            <div style="flex:1;height:4px;background:var(--bg-tertiary);border-radius:2px;">
+                                                <div style="width:85%;height:100%;background:var(--warning);border-radius:2px;"></div>
+                                            </div>
+                                            <span style="font-size:10px;color:var(--text-muted);">85%</span>
+                                        </div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
+                                <!-- 待办项3：待上传文件 -->
+                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('apply')">
                                     <div style="width:40px;height:40px;border-radius:50%;background:rgba(37,99,235,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -5673,14 +5775,22 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳待传</span>1 份文件待上传</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">智能驾驶算法项目</div>
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">📎待传</span>待上传项目文件</div>
+                                        <div style="display:flex;gap:8px;align-items:center;">
+                                            <span style="font-size:12px;color:var(--text-secondary);">智能驾驶算法项目</span>
+                                            <span style="font-size:11px;padding:2px 6px;background:rgba(220,38,38,0.1);color:var(--danger);border-radius:4px;">🔴核心秘密</span>
+                                        </div>
+                                        <div style="margin-top:6px;display:flex;gap:12px;">
+                                            <span style="font-size:11px;color:var(--text-muted);">📄 设计文档 3份</span>
+                                            <span style="font-size:11px;color:var(--text-muted);">📊 测试数据 2份</span>
+                                        </div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
                                         <polyline points="9,18 15,12 9,6"/>
                                     </svg>
                                 </div>
-                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;cursor:pointer;" onclick="navigateTo('evidence')">
+                                <!-- 待办项4：进行中的取证任务 -->
+                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('evidence')">
                                     <div style="width:40px;height:40px;border-radius:50%;background:rgba(16,185,129,0.1);color:var(--success);display:flex;align-items:center;justify-content:center;">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
@@ -5688,8 +5798,68 @@
                                         </svg>
                                     </div>
                                     <div style="flex:1;">
-                                        <div style="font-weight:500;margin-bottom:2px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">⏳进行中</span>网页取证任务进行中</div>
-                                        <div style="font-size:12px;color:var(--text-muted);">预计剩余 15 分钟</div>
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-green" style="font-size:10px;padding:2px 6px;margin-right:6px;">🔄进行中</span>网页取证任务进行中</div>
+                                        <div style="display:flex;align-items:center;gap:12px;">
+                                            <span style="font-size:12px;color:var(--text-secondary);">竞品分析页面采集</span>
+                                            <span style="font-size:11px;padding:2px 6px;background:var(--bg-tertiary);color:var(--text-muted);border-radius:4px;">预计15分钟</span>
+                                        </div>
+                                        <div style="margin-top:6px;display:flex;align-items:center;gap:8px;">
+                                            <div style="flex:1;height:4px;background:var(--bg-tertiary);border-radius:2px;">
+                                                <div style="width:60%;height:100%;background:var(--success);border-radius:2px;"></div>
+                                            </div>
+                                            <span style="font-size:10px;color:var(--success);font-weight:500;">60%</span>
+                                        </div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                        <polyline points="9,18 15,12 9,6"/>
+                                    </svg>
+                                </div>
+                                <!-- 待办项5：月度报告待生成 -->
+                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="navigateTo('report')">
+                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(139,92,246,0.1);color:var(--chart-purple);display:flex;align-items:center;justify-content:center;">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                            <polyline points="14,2 14,8 20,8"/>
+                                            <line x1="16" y1="13" x2="8" y2="13"/>
+                                            <line x1="16" y1="17" x2="8" y2="17"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-purple" style="font-size:10px;padding:2px 6px;margin-right:6px;">📋报告</span>3月月度报告待生成</div>
+                                        <div style="display:flex;gap:8px;align-items:center;">
+                                            <span style="font-size:12px;color:var(--text-secondary);">包含认证统计、取证分析、风险评估</span>
+                                        </div>
+                                        <div style="margin-top:6px;display:flex;gap:12px;">
+                                            <span style="font-size:11px;color:var(--text-muted);">📅 截止：4月5日</span>
+                                            <span style="font-size:11px;color:var(--text-muted);">👤 负责人：张明华</span>
+                                        </div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
+                                        <polyline points="9,18 15,12 9,6"/>
+                                    </svg>
+                                </div>
+                                <!-- 待办项6：员工培训待完成 -->
+                                <div style="display:flex;align-items:center;gap:16px;padding:16px 24px;cursor:pointer;">
+                                    <div style="width:40px;height:40px;border-radius:50%;background:rgba(6,182,212,0.1);color:var(--info);display:flex;align-items:center;justify-content:center;">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:500;margin-bottom:4px;"><span class="tag tag-blue" style="font-size:10px;padding:2px 6px;margin-right:6px;">👥培训</span>商业秘密保护培训待完成</div>
+                                        <div style="display:flex;gap:8px;align-items:center;">
+                                            <span style="font-size:12px;color:var(--text-secondary);">新入职员工保密协议签署</span>
+                                            <span style="font-size:11px;padding:2px 6px;background:var(--bg-tertiary);color:var(--text-muted);border-radius:4px;">剩余 3 人</span>
+                                        </div>
+                                        <div style="margin-top:6px;display:flex;align-items:center;gap:8px;">
+                                            <div style="flex:1;height:4px;background:var(--bg-tertiary);border-radius:2px;">
+                                                <div style="width:75%;height:100%;background:var(--info);border-radius:2px;"></div>
+                                            </div>
+                                            <span style="font-size:10px;color:var(--text-muted);">75%完成</span>
+                                        </div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);">
                                         <polyline points="9,18 15,12 9,6"/>
@@ -5704,43 +5874,78 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 行业热点及知识库
-                                <span id="newsPeriod" style="font-size:12px;color:var(--text-muted);font-weight:normal;margin-left:8px;">当前：2026年4月数据</span>
+                                <span id="newsPeriod" style="font-size:12px;color:var(--text-muted);font-weight:normal;margin-left:8px;">2026年4月更新</span>
                             </h3>
-                            <button class="btn btn-secondary btn-sm">更多</button>
+                            <button class="btn btn-secondary btn-sm" onclick="navigateTo('knowledge')">更多</button>
                         </div>
                         <div class="card-body" style="padding:0;">
                             <div style="display:flex;flex-direction:column;">
-                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
+                                <!-- 新闻1：政策 -->
+                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;" onclick="window.open('https://www.mps.gov.cn', '_blank')">
                                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                                         <span class="tag tag-red" style="font-size:11px;">政策</span>
+                                        <span class="tag tag-purple" style="font-size:10px;padding:2px 6px;">重要</span>
                                         <span style="font-size:12px;color:var(--text-muted);">今天</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">《数据安全法》配套规章征求意见</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">进一步明确企业数据分类分级保护要求...</div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:6px;color:var(--primary);">《数据安全法》配套规章征求意见</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">进一步明确企业数据分类分级保护要求，企业需在30日内提交反馈意见...</div>
+                                    <div style="margin-top:8px;display:flex;gap:12px;">
+                                        <span style="font-size:11px;color:var(--text-muted);">📌 工信部</span>
+                                        <span style="font-size:11px;color:var(--primary);cursor:pointer;">查看详情 →</span>
+                                    </div>
                                 </div>
+                                <!-- 新闻2：动态 -->
                                 <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
                                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                                         <span class="tag tag-blue" style="font-size:11px;">动态</span>
                                         <span style="font-size:12px;color:var(--text-muted);">昨天</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">国家知识产权局发布年度十大案例</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">涵盖商业秘密、专利侵权等热点领域...</div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:6px;">国家知识产权局发布年度十大案例</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">涵盖商业秘密、专利侵权等热点领域，为企业提供维权参考...</div>
+                                    <div style="margin-top:8px;display:flex;gap:16px;">
+                                        <span style="font-size:11px;color:var(--success);">✓ 已解读</span>
+                                        <span style="font-size:11px;color:var(--text-muted);">📊 浏览 1.2万次</span>
+                                    </div>
                                 </div>
+                                <!-- 新闻3：热点 -->
                                 <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
                                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                                         <span class="tag tag-yellow" style="font-size:11px;">热点</span>
                                         <span style="font-size:12px;color:var(--text-muted);">2天前</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">企业商业秘密管理最佳实践白皮书</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">涵盖保密制度、员工培训、泄密应急等...</div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:6px;">企业商业秘密管理最佳实践白皮书</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">涵盖保密制度、员工培训、泄密应急等核心模块，附赠管理工具包...</div>
+                                    <div style="margin-top:8px;display:flex;gap:8px;">
+                                        <span style="font-size:11px;padding:2px 8px;background:rgba(37,99,235,0.1);color:var(--primary);border-radius:4px;">📥 PDF下载</span>
+                                        <span style="font-size:11px;padding:2px 8px;background:rgba(16,185,129,0.1);color:var(--success);border-radius:4px;">免费</span>
+                                    </div>
                                 </div>
-                                <div style="padding:16px 24px;cursor:pointer;">
+                                <!-- 新闻4：案例 -->
+                                <div style="padding:16px 24px;border-bottom:1px solid var(--border-light);cursor:pointer;">
                                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                                         <span class="tag tag-green" style="font-size:11px;">案例</span>
+                                        <span class="tag tag-red" style="font-size:10px;padding:2px 6px;">🔥 热门</span>
                                         <span style="font-size:12px;color:var(--text-muted);">3天前</span>
                                     </div>
-                                    <div style="font-weight:500;font-size:14px;margin-bottom:4px;">商业秘密与专利保护的选择策略</div>
-                                    <div style="font-size:12px;color:var(--text-secondary);">分析两种保护方式的优劣与适用场景...</div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:6px;">商业秘密与专利保护的选择策略</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">分析两种保护方式的优劣与适用场景，附真实判例解析...</div>
+                                    <div style="margin-top:8px;display:flex;gap:12px;">
+                                        <span style="font-size:11px;color:var(--text-muted);">⏱️ 阅读时长 8分钟</span>
+                                        <span style="font-size:11px;color:var(--text-muted);">📊 收藏 856次</span>
+                                    </div>
+                                </div>
+                                <!-- 新闻5：法规 -->
+                                <div style="padding:16px 24px;cursor:pointer;">
+                                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                        <span class="tag tag-purple" style="font-size:11px;">法规</span>
+                                        <span style="font-size:12px;color:var(--text-muted);">4天前</span>
+                                    </div>
+                                    <div style="font-weight:500;font-size:14px;margin-bottom:6px;">最高法发布商业秘密纠纷司法解释</div>
+                                    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">明确举证责任分配、损害赔偿计算等关键问题...</div>
+                                    <div style="margin-top:8px;display:flex;gap:8px;">
+                                        <span style="font-size:11px;padding:2px 8px;background:var(--danger);color:white;border-radius:4px;">🔥 新规</span>
+                                        <span style="font-size:11px;color:var(--primary);cursor:pointer;">查看全文 →</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -10889,26 +11094,40 @@
     <script>
         // 初始化首页
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化首页图表 - 使用 requestAnimationFrame 确保页面渲染完成
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    if (typeof echarts !== 'undefined') {
-                        initHomeCharts();
-                    } else {
-                        // echarts 未加载，延迟重试
-                        const checkEcharts = setInterval(() => {
-                            if (typeof echarts !== 'undefined') {
-                                clearInterval(checkEcharts);
-                                initHomeCharts();
-                            }
-                        }, 200);
-                        // 最多等待10秒
-                        setTimeout(() => clearInterval(checkEcharts), 10000);
-                    }
-                }, 300);
-            });
             initWelcomeDate();
+            // 初始化首页图表 - 使用多种方式确保可靠初始化
+            // 方法1: 立即尝试初始化（页面可能已加载）
+            setTimeout(() => {
+                initHomeCharts();
+            }, 100);
+            
+            // 方法2: 监听页面可见性变化（页面切换回来时重新初始化）
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    // 页面变为可见时，尝试重新初始化图表
+                    chartsInitialized = false;
+                    setTimeout(initHomeCharts, 100);
+                }
+            });
+            
+            // 方法3: 监听侧边栏点击事件，切换到首页时初始化
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash || '';
+                if (hash === '' || hash === '#' || hash.includes('home')) {
+                    setTimeout(() => {
+                        chartsInitialized = false;
+                        initHomeCharts();
+                    }, 100);
+                }
+            });
         });
+        
+        // 页面切换时重新初始化图表
+        function ensureChartsInitialized() {
+            if (!chartsInitialized) {
+                initHomeCharts();
+            }
+        }
 
         // 设置欢迎区的日期
         function initWelcomeDate() {
@@ -13534,15 +13753,51 @@
         let chartsInitialized = false;
 
         function initHomeCharts() {
-            // 检查 echarts 是否可用
+            // 使用多种方式确保图表能正确初始化
+            if (chartsInitialized) return;
+            
+            // 方法1: 检查DOM元素是否存在
+            const trendChartDom = document.getElementById('homeTrendChart');
+            const categoryChartDom = document.getElementById('homeCategoryChart');
+            
+            if (!trendChartDom || !categoryChartDom) {
+                console.warn('图表容器未找到，延迟初始化...');
+                setTimeout(initHomeCharts, 500);
+                return;
+            }
+            
+            // 方法2: 检查echarts是否加载
             if (typeof echarts === 'undefined') {
                 console.warn('ECharts 未加载，延迟初始化...');
                 setTimeout(initHomeCharts, 500);
                 return;
             }
-            initHomeTrendChart();
-            initHomeCategoryChart();
-            chartsInitialized = true;
+            
+            // 方法3: 检查DOM是否可见（可能display:none）
+            const style = window.getComputedStyle(trendChartDom);
+            if (style.display === 'none' || style.visibility === 'hidden') {
+                console.warn('图表容器不可见，延迟初始化...');
+                setTimeout(initHomeCharts, 500);
+                return;
+            }
+            
+            // 方法4: 确保容器有实际尺寸
+            const rect = trendChartDom.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) {
+                console.warn('图表容器尺寸为0，延迟初始化...');
+                setTimeout(initHomeCharts, 500);
+                return;
+            }
+            
+            try {
+                initHomeTrendChart();
+                initHomeCategoryChart();
+                chartsInitialized = true;
+                console.log('首页图表初始化成功');
+            } catch (e) {
+                console.error('图表初始化失败:', e);
+                setTimeout(initHomeCharts, 500);
+            }
         }
 
         function initHomeTrendChart() {
